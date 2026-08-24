@@ -18,12 +18,12 @@ export function EffectCardsDemo() {
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         EffectCards
       </p>
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex h-96 items-center justify-center">
         <Swiper
           modules={[EffectCards]}
           effect="cards"
           grabCursor
-          className="h-48 w-40"
+          className="h-full w-64"
         >
           {phases.map((phase) => (
             <SwiperSlide

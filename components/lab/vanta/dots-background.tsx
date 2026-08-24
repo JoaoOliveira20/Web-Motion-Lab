@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import DOTS from "vanta/dist/vanta.dots.min.js";
+import type DOTS from "vanta/dist/vanta.dots.min.js";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCssVariable } from "@/hooks/use-css-variable";
 import { hexStringToNumber } from "@/lib/color";
 import { exposeThreeGlobally } from "@/lib/vanta-three-global";
+
+type VantaInstance = ReturnType<typeof DOTS>;
 
 export function DotsBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,27 +20,37 @@ export function DotsBackground() {
   useEffect(() => {
     if (prefersReducedMotion || !containerRef.current) return;
 
+    let effect: VantaInstance | undefined;
+    let cancelled = false;
+
     exposeThreeGlobally(THREE);
 
-    const effect = DOTS({
-      el: containerRef.current,
-      THREE,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200,
-      minWidth: 200,
-      scale: 1,
-      scaleMobile: 1,
-      color: hexStringToNumber(accent),
-      color2: hexStringToNumber(muted),
-      backgroundColor: hexStringToNumber(surface),
-      size: 2.4,
-      spacing: 28,
-      showLines: true,
+    import("vanta/dist/vanta.dots.min.js").then(({ default: DOTS }) => {
+      if (cancelled || !containerRef.current) return;
+
+      effect = DOTS({
+        el: containerRef.current,
+        THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1,
+        scaleMobile: 1,
+        color: hexStringToNumber(accent),
+        color2: hexStringToNumber(muted),
+        backgroundColor: hexStringToNumber(surface),
+        size: 2.4,
+        spacing: 28,
+        showLines: true,
+      });
     });
 
-    return () => effect.destroy();
+    return () => {
+      cancelled = true;
+      effect?.destroy();
+    };
   }, [prefersReducedMotion, accent, muted, surface]);
 
   return (

@@ -44,12 +44,28 @@ mesmo recebendo `options.THREE` explicitamente. Lendo
 `vanta.dots.js`, o motivo ficou claro: ao contrário de `vanta.waves.js`
 e `vanta.net.js`, a classe `Effect` do `DOTS` **não tem constructor
 próprio** — nunca lê `userOptions.THREE`, só o `THREE` capturado no
-escopo do módulo a partir de `window.THREE` no momento do import. Ou
-seja, é uma inconsistência real entre efeitos dentro da própria
-biblioteca, não um erro de uso. Corrigido atribuindo
-`window.THREE = THREE` explicitamente antes de instanciar qualquer
-efeito (`lib/vanta-three-global.ts`) — mais robusto do que confiar em
-cada efeito individualmente ler a opção.
+escopo do módulo a partir de `window.THREE` **no momento em que o
+módulo é avaliado**, não em quando o efeito é instanciado.
+
+Uma primeira tentativa de correção (`window.THREE = THREE` dentro do
+`useEffect`, antes de chamar `DOTS({...})`) continuou falhando com o
+mesmo erro. A causa: `import DOTS from "vanta/dist/vanta.dots.min.js"`
+no topo do arquivo é um import estático — em módulos ES, todos os
+imports estáticos de um arquivo são resolvidos e avaliados **antes** de
+qualquer código do próprio arquivo rodar, incluindo o corpo de
+componentes e efeitos. Ou seja, `vanta.dots.min.js` (e seu
+`let THREE = window.THREE` de escopo de módulo) já tinha sido avaliado
+muito antes do `useEffect` do React sequer existir — atribuir
+`window.THREE` depois disso não tem efeito nenhum sobre aquele módulo
+já carregado.
+
+**Correção final**: trocar o import estático por um `import()` dinâmico
+dentro do próprio `useEffect`, depois de atribuir `window.THREE`. Import
+dinâmico só avalia o módulo no momento em que é chamado — nunca antes —
+o que garante a ordem correta independentemente de qual efeito Vanta
+está sendo carregado ou se ele lê `options.THREE` ou não. Aplicado nos
+dois componentes (`NetBackground` e `DotsBackground`) por consistência,
+mesmo o `NET` já funcionando com o import estático.
 
 ## Componentes construídos
 

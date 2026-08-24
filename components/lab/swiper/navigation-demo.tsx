@@ -21,7 +21,7 @@ export function NavigationDemo() {
         Navigation + Pagination
       </p>
       <div
-        className="mt-6"
+        className="mt-6 h-96"
         style={{ "--swiper-theme-color": "var(--accent)" } as React.CSSProperties}
       >
         <Swiper
@@ -29,13 +29,12 @@ export function NavigationDemo() {
           navigation
           pagination={{ clickable: true }}
           spaceBetween={16}
-          slidesPerView={1.15}
-          breakpoints={{ 640: { slidesPerView: 2.2 } }}
-          className="pb-10"
+          slidesPerView={1.1}
+          className="h-full pb-10"
         >
           {categories.map((category) => (
             <SwiperSlide key={category.name}>
-              <div className="flex h-40 flex-col justify-between border border-border bg-surface p-5">
+              <div className="flex h-full flex-col justify-between border border-border bg-surface p-5">
                 <p className="font-mono text-xs text-accent">{category.name}</p>
                 <p className="text-sm text-muted">{category.detail}</p>
               </div>

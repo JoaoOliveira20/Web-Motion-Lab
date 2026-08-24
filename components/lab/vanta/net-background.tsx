@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import NET from "vanta/dist/vanta.net.min.js";
+import type NET from "vanta/dist/vanta.net.min.js";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCssVariable } from "@/hooks/use-css-variable";
 import { hexStringToNumber } from "@/lib/color";
 import { exposeThreeGlobally } from "@/lib/vanta-three-global";
+
+type VantaInstance = ReturnType<typeof NET>;
 
 export function NetBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,27 +19,37 @@ export function NetBackground() {
   useEffect(() => {
     if (prefersReducedMotion || !containerRef.current) return;
 
+    let effect: VantaInstance | undefined;
+    let cancelled = false;
+
     exposeThreeGlobally(THREE);
 
-    const effect = NET({
-      el: containerRef.current,
-      THREE,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200,
-      minWidth: 200,
-      scale: 1,
-      scaleMobile: 1,
-      color: hexStringToNumber(foreground),
-      backgroundColor: hexStringToNumber(surface),
-      points: 8,
-      maxDistance: 22,
-      spacing: 18,
-      showDots: false,
+    import("vanta/dist/vanta.net.min.js").then(({ default: NET }) => {
+      if (cancelled || !containerRef.current) return;
+
+      effect = NET({
+        el: containerRef.current,
+        THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1,
+        scaleMobile: 1,
+        color: hexStringToNumber(foreground),
+        backgroundColor: hexStringToNumber(surface),
+        points: 8,
+        maxDistance: 22,
+        spacing: 18,
+        showDots: false,
+      });
     });
 
-    return () => effect.destroy();
+    return () => {
+      cancelled = true;
+      effect?.destroy();
+    };
   }, [prefersReducedMotion, foreground, surface]);
 
   return (
