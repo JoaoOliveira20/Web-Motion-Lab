@@ -49,7 +49,7 @@ GitHub de cada projeto e adaptado manualmente aos tokens do laboratório,
 sem rodar `shadcn init` (que sobrescreveria o design system da Fase 0).
 
 - [x] Lab React Bits (SpotlightCard + TiltedCard)
-- [ ] Lab Motion Primitives
+- [x] Lab Motion Primitives (Magnetic + InView)
 - [ ] Lab Magic UI
 - [ ] Lab Aceternity
 

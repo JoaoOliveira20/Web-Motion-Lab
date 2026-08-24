@@ -77,7 +77,7 @@ export const experiments: Experiment[] = [
     category: "UI",
     complexity: 2,
     summary: "Blocos de motion reutilizáveis para interfaces.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "magic-ui",
