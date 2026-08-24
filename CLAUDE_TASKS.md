@@ -85,7 +85,7 @@ docs/decisions/0003-spline-runtime-pin.md).
 ## Fase 5 — Composição
 
 - [x] Lenis + GSAP (gsap.ticker sincronizando lenis.raf, sem autoRaf)
-- [ ] GSAP + Three.js
+- [x] GSAP + Three.js (timeline com scrub controlando câmera e rotação)
 - [ ] Motion + React Bits
 - [ ] Swiper + Motion
 - [ ] Lottie + Motion
