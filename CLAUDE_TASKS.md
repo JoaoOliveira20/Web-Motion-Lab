@@ -51,7 +51,13 @@ sem rodar `shadcn init` (que sobrescreveria o design system da Fase 0).
 - [x] Lab React Bits (SpotlightCard + TiltedCard)
 - [x] Lab Motion Primitives (Magnetic + InView)
 - [x] Lab Magic UI (BorderBeam + Marquee)
-- [ ] Lab Aceternity
+- [x] Lab Aceternity (TextRevealCard + FollowerPointerCard)
+
+Fase 2 concluída. As quatro bibliotecas de UI são todas "de cópia", sem
+pacote npm — cada uma com seu próprio mecanismo de distribuição (ver
+docs/decisions/0002-bibliotecas-de-copia.md). Nenhuma rodou a CLI do
+shadcn; todo componente foi buscado no GitHub/registry oficial e
+adaptado manualmente aos tokens do design system da Fase 0.
 
 ## Fase 3 — Conteúdo visual
 

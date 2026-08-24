@@ -95,7 +95,7 @@ export const experiments: Experiment[] = [
     category: "UI",
     complexity: 3,
     summary: "Efeitos de interface mais elaborados e sua composição com motion.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "lottie",
