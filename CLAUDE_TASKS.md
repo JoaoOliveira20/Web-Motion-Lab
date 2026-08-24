@@ -73,8 +73,14 @@ como comparação direta entre os dois experimentos.
 
 - [x] Lab tsParticles (repulse + grab, lazy via dynamic ssr:false)
 - [x] Lab Vanta (NET + DOTS, tipos locais em types/vanta.d.ts)
-- [ ] Lab Spline
+- [x] Lab Spline (cena oficial de demonstração; runtime fixado em 1.12.98 por bug upstream)
 - [x] Lab Three.js (wireframe + point wave, sem OrbitControls)
+
+Fase 4 concluída — as 16 bibliotecas do laboratório têm experimento
+funcional. tsParticles e Three.js/Vanta isolados via
+next/dynamic(ssr:false); Spline exigiu fixar @splinetool/runtime em
+1.12.98 por bug de empacotamento na versão 2.x (documentado em
+docs/decisions/0003-spline-runtime-pin.md).
 
 ## Fase 5 — Composição
 

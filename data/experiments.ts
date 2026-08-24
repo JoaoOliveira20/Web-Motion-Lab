@@ -149,7 +149,7 @@ export const experiments: Experiment[] = [
     category: "3D",
     complexity: 3,
     summary: "Objeto 3D interativo exportado do editor Spline.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "three",
