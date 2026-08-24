@@ -122,7 +122,7 @@ export const experiments: Experiment[] = [
     category: "Carousel",
     complexity: 2,
     summary: "Carrossel leve construído a partir de primitivas de baixo nível.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "tsparticles",

@@ -63,7 +63,11 @@ adaptado manualmente aos tokens do design system da Fase 0.
 
 - [x] Lab Lottie (declarativo + lottieRef imperativo)
 - [x] Lab Swiper (Navigation/Pagination + EffectCards)
-- [ ] Lab Embla
+- [x] Lab Embla (setas/pontos próprios + dragFree)
+
+Fase 3 concluída. Swiper e Embla resolvem o mesmo problema de carrossel
+com filosofias opostas (módulos prontos vs. primitivas), documentado
+como comparação direta entre os dois experimentos.
 
 ## Fase 4 — Visual pesado
 
