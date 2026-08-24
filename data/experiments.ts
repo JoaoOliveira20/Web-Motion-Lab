@@ -32,7 +32,7 @@ export const experiments: Experiment[] = [
     category: "Animation",
     complexity: 3,
     summary: "Coreografia de múltiplos elementos com timelines e ScrollTrigger.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "lenis",
