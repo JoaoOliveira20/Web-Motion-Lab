@@ -90,7 +90,13 @@ docs/decisions/0003-spline-runtime-pin.md).
 - [x] Swiper + Motion (onSlideChange alimentando legenda animada)
 - [x] Lottie + Motion (onHoverStart/onHoverEnd comandando lottieRef)
 - [x] tsParticles + Lenis (parallax via lenis.scroll em camada separada)
-- [ ] Rough Notation + GSAP
+- [x] Rough Notation + GSAP (ScrollTrigger substitui IntersectionObserver)
+
+Fase 5 concluída. As sete composições cobrem os padrões de integração
+mais comuns entre bibliotecas de animação (ver fechamento em
+docs/experiments/compose-rough-notation-gsap.md). Nenhuma exigiu
+modificar o código dos experimentos isolados das Fases 1-4 — todas
+reaproveitaram componentes/padrões já existentes.
 
 ## Fase 6 — Showcase
 
