@@ -62,7 +62,7 @@ adaptado manualmente aos tokens do design system da Fase 0.
 ## Fase 3 — Conteúdo visual
 
 - [x] Lab Lottie (declarativo + lottieRef imperativo)
-- [ ] Lab Swiper
+- [x] Lab Swiper (Navigation/Pagination + EffectCards)
 - [ ] Lab Embla
 
 ## Fase 4 — Visual pesado

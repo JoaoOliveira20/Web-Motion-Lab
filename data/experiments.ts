@@ -113,7 +113,7 @@ export const experiments: Experiment[] = [
     category: "Carousel",
     complexity: 2,
     summary: "Galeria com navegação, paginação e efeitos configuráveis.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "embla",
