@@ -86,7 +86,7 @@ docs/decisions/0003-spline-runtime-pin.md).
 
 - [x] Lenis + GSAP (gsap.ticker sincronizando lenis.raf, sem autoRaf)
 - [x] GSAP + Three.js (timeline com scrub controlando câmera e rotação)
-- [ ] Motion + React Bits
+- [x] Motion + React Bits (AnimatePresence + SpotlightCard reaproveitado)
 - [ ] Swiper + Motion
 - [ ] Lottie + Motion
 - [ ] tsParticles + Lenis
