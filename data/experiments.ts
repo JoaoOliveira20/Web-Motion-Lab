@@ -158,6 +158,6 @@ export const experiments: Experiment[] = [
     category: "3D",
     complexity: 4,
     summary: "Cena, câmera e objetos 3D controlados via código.",
-    status: "planejado",
+    status: "disponivel",
   },
 ];

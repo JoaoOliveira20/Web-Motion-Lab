@@ -74,7 +74,7 @@ como comparação direta entre os dois experimentos.
 - [x] Lab tsParticles (repulse + grab, lazy via dynamic ssr:false)
 - [x] Lab Vanta (NET + DOTS, tipos locais em types/vanta.d.ts)
 - [ ] Lab Spline
-- [ ] Lab Three.js
+- [x] Lab Three.js (wireframe + point wave, sem OrbitControls)
 
 ## Fase 5 — Composição
 
