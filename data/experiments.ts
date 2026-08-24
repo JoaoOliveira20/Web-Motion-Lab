@@ -131,7 +131,7 @@ export const experiments: Experiment[] = [
     category: "Visual",
     complexity: 3,
     summary: "Campo de partículas interativo respondendo a ponteiro e scroll.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "vanta",

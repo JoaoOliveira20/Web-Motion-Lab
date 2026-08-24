@@ -71,7 +71,7 @@ como comparação direta entre os dois experimentos.
 
 ## Fase 4 — Visual pesado
 
-- [ ] Lab tsParticles
+- [x] Lab tsParticles (repulse + grab, lazy via dynamic ssr:false)
 - [ ] Lab Vanta
 - [ ] Lab Spline
 - [ ] Lab Three.js
