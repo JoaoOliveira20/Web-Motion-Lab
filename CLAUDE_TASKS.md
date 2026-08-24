@@ -89,7 +89,7 @@ docs/decisions/0003-spline-runtime-pin.md).
 - [x] Motion + React Bits (AnimatePresence + SpotlightCard reaproveitado)
 - [x] Swiper + Motion (onSlideChange alimentando legenda animada)
 - [x] Lottie + Motion (onHoverStart/onHoverEnd comandando lottieRef)
-- [ ] tsParticles + Lenis
+- [x] tsParticles + Lenis (parallax via lenis.scroll em camada separada)
 - [ ] Rough Notation + GSAP
 
 ## Fase 6 — Showcase
