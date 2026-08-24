@@ -3,18 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCssVariable } from "@/hooks/use-css-variable";
 import { hexStringToNumber } from "@/lib/color";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const waypoints = ["largo", "médio", "próximo"];
 
 export function ScrollCameraScene() {
   const canvasRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const accent = useCssVariable("--accent", "#ff4d1c");
   const [activeWaypoint, setActiveWaypoint] = useState(0);
@@ -22,7 +20,8 @@ export function ScrollCameraScene() {
   useEffect(() => {
     const container = canvasRef.current;
     const scroller = scrollRef.current;
-    if (!container || !scroller) return;
+    const content = contentRef.current;
+    if (!container || !scroller || !content) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -61,31 +60,33 @@ export function ScrollCameraScene() {
     });
     resizeObserver.observe(container);
 
-    const context = gsap.context(() => {
-      if (prefersReducedMotion) {
-        camera.position.z = 3;
-        return;
-      }
+    let removeScrollListener: (() => void) | undefined;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: scroller,
-          scroller,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1,
-          onUpdate: (self) =>
-            setActiveWaypoint(Math.min(2, Math.floor(self.progress * 3))),
-        },
-      });
-
-      timeline
+    if (prefersReducedMotion) {
+      camera.position.z = 3;
+    } else {
+      const timeline = gsap.timeline({ paused: true })
         .to(camera.position, { z: 3, ease: "none" }, 0)
         .to(mesh.rotation, { y: Math.PI * 2, x: Math.PI, ease: "none" }, 0);
-    }, scroller);
+
+      const handleScroll = () => {
+        const maxScroll = scroller.scrollHeight - scroller.clientHeight;
+        const progress = maxScroll > 0 ? scroller.scrollTop / maxScroll : 0;
+        timeline.progress(progress);
+        setActiveWaypoint(Math.min(2, Math.floor(progress * 3)));
+      };
+
+      scroller.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll();
+
+      removeScrollListener = () => {
+        scroller.removeEventListener("scroll", handleScroll);
+        timeline.kill();
+      };
+    }
 
     return () => {
-      context.revert();
+      removeScrollListener?.();
       cancelAnimationFrame(frameId);
       resizeObserver.disconnect();
       geometry.dispose();
@@ -98,29 +99,31 @@ export function ScrollCameraScene() {
   return (
     <div className="border border-border p-6">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
-        gsap.timeline(scrub) + camera.position / mesh.rotation
+        gsap.timeline().progress(scrollTop / maxScroll)
       </p>
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div ref={canvasRef} className="h-72 bg-surface" />
         <div
           ref={scrollRef}
-          className="flex h-72 flex-col gap-24 overflow-y-auto overflow-x-hidden p-4"
+          className="h-72 overflow-y-auto overflow-x-hidden p-4"
         >
-          {waypoints.map((label, index) => (
-            <div
-              key={label}
-              className="flex h-24 items-center border border-border bg-surface px-5"
-            >
-              <p
-                className={`font-mono text-xs uppercase tracking-[0.1em] ${
-                  activeWaypoint === index ? "text-accent" : "text-muted"
-                }`}
+          <div ref={contentRef} className="flex flex-col gap-24">
+            {waypoints.map((label, index) => (
+              <div
+                key={label}
+                className="flex h-24 items-center border border-border bg-surface px-5"
               >
-                câmera: plano {label}
-              </p>
-            </div>
-          ))}
-          <div aria-hidden className="h-4" />
+                <p
+                  className={`font-mono text-xs uppercase tracking-[0.1em] ${
+                    activeWaypoint === index ? "text-accent" : "text-muted"
+                  }`}
+                >
+                  câmera: plano {label}
+                </p>
+              </div>
+            ))}
+            <div aria-hidden className="h-4" />
+          </div>
         </div>
       </div>
     </div>

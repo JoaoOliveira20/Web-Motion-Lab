@@ -6,7 +6,7 @@ import { LazyScrollCameraScene } from "@/components/lab/compose/gsap-three/lazy-
 export const metadata: Metadata = {
   title: "GSAP + Three.js — Câmera Guiada por Timeline — Web Motion Lab",
   description:
-    "Composição: ScrollTrigger com scrub anima propriedades de uma cena Three.js — câmera e rotação controladas pela posição de scroll.",
+    "Composição: uma timeline pausada do GSAP tem seu progresso amarrado diretamente à posição de scroll de um contêiner — câmera e rotação controladas pela rolagem.",
 };
 
 const concepts = [
@@ -15,16 +15,16 @@ const concepts = [
     detail: "camera.position e mesh.rotation não são elementos DOM — são objetos JS com propriedades numéricas, e é só isso que o GSAP precisa.",
   },
   {
-    term: "scrub: 1",
-    detail: "A timeline não toca sozinha — ela é 'tocada' pela posição de scroll, com 1s de suavização entre os dois.",
+    term: "timeline.progress(valor)",
+    detail: "A timeline nasce pausada; scrollTop / (scrollHeight - clientHeight) vira o progresso dela a cada evento de scroll — sem ScrollTrigger.",
   },
   {
     term: "Dois loops, uma cena",
-    detail: "O requestAnimationFrame do Three.js só desenha; o GSAP só muda valores. Nenhum sabe da existência do outro.",
+    detail: "O requestAnimationFrame do Three.js só desenha; o listener de scroll só muda valores. Nenhum sabe da existência do outro.",
   },
   {
-    term: "onUpdate do ScrollTrigger",
-    detail: "Sincroniza um indicador de UI (React state) com o progresso da mesma timeline que move a câmera.",
+    term: "Mesmo listener, dois efeitos",
+    detail: "Um único cálculo de progresso move a câmera e atualiza qual waypoint aparece destacado na lista (React state).",
   },
 ];
 

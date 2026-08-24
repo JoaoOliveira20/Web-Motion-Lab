@@ -11,7 +11,8 @@ valores é o GSAP.
 
 ## Bibliotecas
 
-`three` + `gsap`/`ScrollTrigger` (via `@gsap/react`).
+`three` + `gsap` (sem `ScrollTrigger` — ver a segunda correção abaixo
+para o motivo).
 
 ## Conceitos utilizados
 
@@ -19,52 +20,84 @@ valores é o GSAP.
   `THREE.Vector3`, `mesh.rotation` é um `THREE.Euler` — o GSAP não faz
   ideia do que são, só vê propriedades numéricas (`x`, `y`, `z`) e as
   anima como animaria `left`/`top` de um elemento HTML.
-- `gsap.timeline({ scrollTrigger: { scrub: 1 } })`: a timeline não toca
-  sozinha — o progresso dela é controlado diretamente pela posição de
-  scroll do `scroller`, com `1` segundo de suavização entre o valor real
-  do scroll e o valor aplicado à timeline.
-- Dois loops independentes: o `requestAnimationFrame` do Three.js chama
-  `renderer.render(scene, camera)` a cada frame, sem saber que o GSAP
-  está mudando `camera.position.z` por baixo dele. É só por isso que a
-  mudança aparece na tela — sem o loop de render, os valores mudariam
-  mas nada seria redesenhado.
-- `onUpdate` do ScrollTrigger: usado para sincronizar um terceiro
-  sistema (estado React, `activeWaypoint`) com o mesmo progresso que
-  move a câmera — três sistemas (Three.js, GSAP, React) lendo o mesmo
-  número de formas diferentes.
+- `gsap.timeline({ paused: true })` + `.progress(valor)`: a timeline
+  nasce pausada; o progresso dela (`0` a `1`) é setado manualmente a
+  cada evento `scroll` do contêiner, calculado como
+  `scrollTop / (scrollHeight - clientHeight)`.
+- Dois sistemas independentes: o `requestAnimationFrame` do Three.js
+  chama `renderer.render(scene, camera)` a cada frame, sem saber que um
+  listener de `scroll` está mudando `camera.position.z` por baixo dele.
+  É só por isso que a mudança aparece na tela — sem o loop de render, os
+  valores mudariam mas nada seria redesenhado.
+- Um único cálculo, dois efeitos: a mesma variável `progress` move a
+  câmera (via `timeline.progress()`) e atualiza qual waypoint aparece
+  destacado na lista (`setActiveWaypoint`, estado React).
 
-## Bug encontrado na revisão visual: a câmera não trocava de plano
+## Bug 1: a câmera não trocava de plano (ordem de efeitos)
 
 Ao testar no navegador (2026-08-24), rolar a lista de waypoints não
-movia a câmera nem girava o objeto — a cena ficava estática. Causa: a
-criação da cena Three.js (que popula `meshRef.current`/`cameraRef.current`)
-estava num `useEffect` comum (passivo), enquanto o `useGSAP` que lia
-esses refs para montar a timeline roda num `useLayoutEffect`. Layout
-effects da árvore inteira rodam **antes** de qualquer effect passivo —
-ou seja, no primeiro render, `meshRef.current` e `cameraRef.current`
-ainda eram `null` quando o `useGSAP` executava, o `if (!mesh || !camera)
-return` interrompia a função, e a timeline/ScrollTrigger nunca era
-criada. Como as dependências do `useGSAP` não mudam depois disso, o
-problema nunca se corrigia sozinho.
+movia a câmera nem girava o objeto. Causa: a criação da cena Three.js
+(que populava `meshRef.current`/`cameraRef.current`) estava num
+`useEffect` comum (passivo), enquanto o `useGSAP` que lia esses refs
+para montar a timeline roda num `useLayoutEffect`. Layout effects da
+árvore inteira rodam **antes** de qualquer effect passivo — no primeiro
+render, os refs ainda eram `null` quando `useGSAP` executava, a função
+retornava cedo, e a timeline nunca era criada. Mesmo bug de ordenação já
+documentado na composição Lenis + GSAP. Primeira correção: consolidar
+tudo (cena, câmera, mesh, timeline) num único `useEffect`, com variáveis
+locais em vez de refs.
 
-Esse é exatamente o mesmo bug de ordenação já documentado na composição
-Lenis + GSAP — só que lá a correção foi ler a instância via um hook
-reativo (`useLenis()`). Aqui não existe hook equivalente para "a cena
-Three.js está pronta", então a correção foi **consolidar os dois
-efeitos em um só**: a cena, a câmera, o mesh e a timeline do GSAP (via
-`gsap.context()` direto, não `useGSAP`) são todos criados na mesma
-função de efeito, na ordem certa, usando variáveis locais em vez de
-refs — eliminando a possibilidade de uma correr antes da outra estar
-pronta.
+## Bug 2: ainda não funcionava depois da primeira correção (ScrollTrigger auto-referenciado)
+
+Mesmo com os dois efeitos consolidados, a câmera continuou sem reagir ao
+scroll. A configuração usava `ScrollTrigger` com
+`trigger: scroller, scroller: scroller, start: "top top", end: "bottom bottom"`
+— o **mesmo elemento como trigger e como scroller**, o mesmo padrão já
+usado na barra de progresso do experimento GSAP isolado (Fase 1) e na
+composição Lenis + GSAP. Não foi possível confirmar com certeza a causa
+exata sem inspecionar o DOM ao vivo (não há acesso a navegador nesta
+sessão), mas esse padrão de auto-referência depende de como o
+ScrollTrigger mede a posição do `trigger` dentro do próprio `scroller`
+que ele também é — uma medição mais ambígua do que o padrão documentado
+(trigger = um elemento de conteúdo, scroller = o contêiner que o
+recorta).
+
+**Correção**: abandonar `ScrollTrigger` para este caso e amarrar o
+progresso da timeline diretamente a um listener nativo de `scroll` no
+contêiner, sem nenhuma camada de medição de posição:
+
+```js
+const timeline = gsap.timeline({ paused: true })
+  .to(camera.position, { z: 3 }, 0)
+  .to(mesh.rotation, { y: Math.PI * 2 }, 0);
+
+scroller.addEventListener("scroll", () => {
+  const progress = scroller.scrollTop / (scroller.scrollHeight - scroller.clientHeight);
+  timeline.progress(progress);
+});
+```
+
+Isso remove qualquer ambiguidade: `scrollTop`/`scrollHeight`/`clientHeight`
+são propriedades diretas do elemento, sem nenhuma camada de
+interpretação por cima.
 
 ## O que foi aprendido
 
-- Compor GSAP com Three.js não exige nenhuma integração especial — é a
-  mesma API de sempre (`gsap.to(objeto, propriedades)`), porque o GSAP
-  foi desenhado desde o início para animar propriedades de qualquer
-  objeto JavaScript, não só CSS. A "composição" aqui é inteiramente
-  sobre organizar responsabilidades (quem desenha vs. quem decide os
-  valores), não sobre uma API de integração.
+- Compor GSAP com Three.js não exige nenhuma integração especial para o
+  tween em si — é a mesma API de sempre. Onde este experimento
+  tropeçou duas vezes foi em **quando** o código roda (ordem de
+  efeitos) e em **como medir** o progresso do scroll, não em como
+  animar propriedades de um objeto 3D.
+- `timeline.progress(valor)` é uma alternativa legítima e mais simples
+  ao `ScrollTrigger` para o caso específico de "amarrar uma timeline ao
+  progresso de scroll de um contêiner conhecido" — sem pin, sem
+  markers, sem media queries de scroller, é só aritmética.
+- Ainda não há confirmação visual definitiva de que a causa do Bug 2 era
+  de fato a auto-referência trigger=scroller (a correção elimina a
+  ambiguidade em vez de provar a causa) — se a barra de progresso do
+  experimento GSAP isolado (Fase 1) ou da composição Lenis + GSAP também
+  se mostrarem inertes num teste futuro, é o mesmo padrão e merece a
+  mesma correção.
 - Igual à Fase 4, todo o experimento é lazy-carregado via
   `next/dynamic(..., { ssr: false })` — a regra de performance do
   projeto para WebGL vale também nas composições, não só nos
@@ -72,14 +105,18 @@ pronta.
 
 ## Limitações observadas
 
-- Sem `pin: true` no ScrollTrigger (evitado aqui por simplicidade dentro
-  de um cartão pequeno), a cena 3D e a lista de waypoints ficam lado a
-  lado em vez da cena "grudar" na tela enquanto o texto rola por cima —
-  um showcase final com scroll de página inteira se beneficiaria de pin.
+- O cálculo de progresso não tem suavização (`scrub`) — o movimento da
+  câmera segue o scroll 1:1, sem o atraso amortecido que
+  `scrollTrigger.scrub: 1` oferecia. Adicionar suavização exigiria
+  interpolar o valor de progresso antes de aplicá-lo (ex: `gsap.quickTo`
+  ou um `lerp` manual, como no experimento Three.js isolado).
+- Sem pin, a cena 3D e a lista de waypoints ficam lado a lado em vez da
+  cena "grudar" na tela enquanto o texto rola por cima — um showcase
+  final com scroll de página inteira poderia reconsiderar isso.
 
 ## Quando usar
 
-- Qualquer cena 3D onde a câmera ou objetos devem reagir à narrativa de
-  uma página — GSAP timelines dão controle fino de sequenciamento que um
-  cálculo manual de progresso de scroll não ofereceria com a mesma
-  facilidade (labels, offsets relativos, eases por segmento).
+- Quando o progresso de scroll de um contêiner conhecido precisa
+  controlar uma timeline e o comportamento de `ScrollTrigger` (pin,
+  markers, múltiplos triggers) não é necessário — `timeline.progress()`
+  com um listener de scroll é mais simples e mais fácil de depurar.
