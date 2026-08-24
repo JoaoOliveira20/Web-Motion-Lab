@@ -88,7 +88,7 @@ docs/decisions/0003-spline-runtime-pin.md).
 - [x] GSAP + Three.js (timeline com scrub controlando câmera e rotação)
 - [x] Motion + React Bits (AnimatePresence + SpotlightCard reaproveitado)
 - [x] Swiper + Motion (onSlideChange alimentando legenda animada)
-- [ ] Lottie + Motion
+- [x] Lottie + Motion (onHoverStart/onHoverEnd comandando lottieRef)
 - [ ] tsParticles + Lenis
 - [ ] Rough Notation + GSAP
 
