@@ -140,7 +140,7 @@ export const experiments: Experiment[] = [
     category: "Visual",
     complexity: 3,
     summary: "Fundo animado em WebGL configurável.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "spline",
