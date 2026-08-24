@@ -24,6 +24,37 @@ fase.
   chamados de dentro de callbacks do ScrollTrigger em vez de dentro do
   callback do `IntersectionObserver`.
 
+## Bug encontrado na revisão visual: anotação "fica no nada" ao rolar
+
+Ao testar no navegador (2026-08-24), rolar o contêiner para baixo fazia
+a anotação (o traço/círculo desenhado) ficar parada no lugar onde
+apareceu pela primeira vez, enquanto o texto anotado rolava para longe
+dela — os dois se desconectavam visualmente.
+
+Causa: o `attach()` do Rough Notation
+(`node_modules/rough-notation/lib/rough-notation.js`) insere o `<svg>`
+da anotação como **irmão** do elemento anotado
+(`insertAdjacentElement('afterend', svg)`), com
+`style.position = 'absolute'; top: 0; left: 0`. Um elemento
+`position: absolute` sem nenhum ancestral com `position` diferente de
+`static` é posicionado relativo ao *initial containing block* — na
+prática, a página inteira, não o contêiner com `overflow-y-auto`. As
+coordenadas do traço são calculadas uma única vez, em
+`getBoundingClientRect()` (relativas à viewport, no momento de
+`.show()`), então quando o **contêiner** rola, o texto se move dentro
+dele, mas o SVG — posicionado relativo a um ancestral fora do contexto
+de rolagem — não acompanha.
+
+**Correção**: adicionar `position: relative` ao próprio contêiner
+rolável (`className="relative ..."` no `scrollerRef`). Isso faz o
+contêiner virar o *containing block* dos SVGs de anotação — e, como
+eles passam a fazer parte da área de conteúdo rolável desse contêiner
+(não apenas da sua janela visível), voltam a se mover junto com o texto
+ao rolar. O experimento Rough Notation original (Fase 1) nunca expôs
+esse bug porque não usava nenhum contêiner com scroll interno — as
+anotações lá reagiam ao scroll da página inteira, sem essa camada
+extra de posicionamento.
+
 ## O que foi aprendido
 
 - Essa composição confirma uma tese que já apareceu na composição
@@ -45,6 +76,12 @@ fase.
   callback de entrada nunca dispara e a anotação correspondente nunca
   aparece. O `IntersectionObserver` original tinha a mesma limitação
   (threshold-based, não cobre saltos).
+- Rough Notation exige `position: relative` (ou outro valor não-`static`)
+  em algum ancestral entre o elemento anotado e o contêiner com scroll
+  — sem isso, qualquer anotação dentro de um contêiner rolável
+  internamente (não a página inteira) se desconecta visualmente do
+  texto ao rolar. Vale para qualquer uso futuro da biblioteca dentro de
+  um scroller customizado, não só nesta composição.
 
 ## Quando usar
 

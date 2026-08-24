@@ -83,7 +83,7 @@ export function TimedAnnotations() {
 
       <div
         ref={scrollerRef}
-        className="mt-6 flex h-72 flex-col gap-24 overflow-y-auto overflow-x-hidden p-4"
+        className="relative mt-6 flex h-72 flex-col gap-24 overflow-y-auto overflow-x-hidden p-4"
       >
         {paragraphs.map((paragraph) => (
           <p key={paragraph.id} className="text-lg leading-relaxed text-muted">

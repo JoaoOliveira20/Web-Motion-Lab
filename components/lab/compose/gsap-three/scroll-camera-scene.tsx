@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCssVariable } from "@/hooks/use-css-variable";
 import { hexStringToNumber } from "@/lib/color";
@@ -16,15 +15,14 @@ const waypoints = ["largo", "médio", "próximo"];
 export function ScrollCameraScene() {
   const canvasRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const meshRef = useRef<THREE.Mesh | null>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const prefersReducedMotion = useReducedMotion();
   const accent = useCssVariable("--accent", "#ff4d1c");
   const [activeWaypoint, setActiveWaypoint] = useState(0);
 
   useEffect(() => {
     const container = canvasRef.current;
-    if (!container) return;
+    const scroller = scrollRef.current;
+    if (!container || !scroller) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -34,7 +32,6 @@ export function ScrollCameraScene() {
       100,
     );
     camera.position.z = 6;
-    cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -47,7 +44,6 @@ export function ScrollCameraScene() {
       wireframe: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
-    meshRef.current = mesh;
     scene.add(mesh);
 
     let frameId: number;
@@ -65,23 +61,7 @@ export function ScrollCameraScene() {
     });
     resizeObserver.observe(container);
 
-    return () => {
-      cancelAnimationFrame(frameId);
-      resizeObserver.disconnect();
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-      container.removeChild(renderer.domElement);
-    };
-  }, [accent]);
-
-  useGSAP(
-    () => {
-      const scroller = scrollRef.current;
-      const mesh = meshRef.current;
-      const camera = cameraRef.current;
-      if (!scroller || !mesh || !camera) return;
-
+    const context = gsap.context(() => {
       if (prefersReducedMotion) {
         camera.position.z = 3;
         return;
@@ -102,9 +82,18 @@ export function ScrollCameraScene() {
       timeline
         .to(camera.position, { z: 3, ease: "none" }, 0)
         .to(mesh.rotation, { y: Math.PI * 2, x: Math.PI, ease: "none" }, 0);
-    },
-    { dependencies: [prefersReducedMotion] },
-  );
+    }, scroller);
+
+    return () => {
+      context.revert();
+      cancelAnimationFrame(frameId);
+      resizeObserver.disconnect();
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
+      container.removeChild(renderer.domElement);
+    };
+  }, [accent, prefersReducedMotion]);
 
   return (
     <div className="border border-border p-6">
