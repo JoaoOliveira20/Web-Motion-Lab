@@ -50,7 +50,7 @@ sem rodar `shadcn init` (que sobrescreveria o design system da Fase 0).
 
 - [x] Lab React Bits (SpotlightCard + TiltedCard)
 - [x] Lab Motion Primitives (Magnetic + InView)
-- [ ] Lab Magic UI
+- [x] Lab Magic UI (BorderBeam + Marquee)
 - [ ] Lab Aceternity
 
 ## Fase 3 — Conteúdo visual

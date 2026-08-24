@@ -86,7 +86,7 @@ export const experiments: Experiment[] = [
     category: "UI",
     complexity: 2,
     summary: "Avaliação de componentes visuais prontos para produção.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "aceternity",
