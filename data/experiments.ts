@@ -59,7 +59,7 @@ export const experiments: Experiment[] = [
     category: "Typography",
     complexity: 1,
     summary: "Simulação de digitação em tempo real para headlines dinâmicas.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "react-bits",

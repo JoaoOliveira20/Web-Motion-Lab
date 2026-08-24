@@ -33,7 +33,13 @@ Chrome desconectada) — pendente validação visual do usuário.
 - [x] Lab GSAP (timelines + ScrollTrigger)
 - [x] Lab Lenis (scroll suave isolado + scrollTo)
 - [x] Lab Rough Notation (annotate + annotationGroup)
-- [ ] Lab Typed
+- [x] Lab Typed (new Typed() + controle imperativo)
+
+Fase 1 concluída. Os cinco experimentos cobrem os dois modelos de
+animação do laboratório: declarativo (Motion, ligado ao ciclo de vida de
+componentes) e imperativo (GSAP, Rough Notation, Typed.js, cada um com
+seu próprio padrão de cleanup). Lenis cobre a camada de scroll,
+isolada, ainda sem compor com GSAP (isso é Fase 5).
 
 ## Fase 2 — UI
 
