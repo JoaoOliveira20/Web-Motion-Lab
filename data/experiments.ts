@@ -104,7 +104,7 @@ export const experiments: Experiment[] = [
     category: "Animation",
     complexity: 2,
     summary: "Reprodução de animações exportadas do After Effects no navegador.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "swiper",
