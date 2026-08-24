@@ -57,7 +57,7 @@ export function NetBackground() {
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         VANTA.NET
       </p>
-      <div ref={containerRef} className="mt-6 h-64 bg-surface">
+      <div ref={containerRef} className="mt-6 h-96 bg-surface">
         {prefersReducedMotion ? (
           <div className="flex h-full items-center justify-center font-mono text-xs text-muted">
             Desligado com &quot;reduzir movimento&quot; ativo
