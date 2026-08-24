@@ -7,7 +7,7 @@ const CubeScene = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[26rem] items-center justify-center border border-border font-mono text-xs uppercase tracking-[0.14em] text-muted">
+      <div className="flex h-[40rem] items-center justify-center border border-border font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Carregando runtime do Spline…
       </div>
     ),

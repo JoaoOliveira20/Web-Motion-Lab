@@ -112,7 +112,7 @@ export function PointWaveScene() {
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         BufferGeometry + THREE.Points
       </p>
-      <div ref={containerRef} className="mt-6 h-64 bg-surface" />
+      <div ref={containerRef} className="mt-6 h-96 bg-surface" />
     </div>
   );
 }

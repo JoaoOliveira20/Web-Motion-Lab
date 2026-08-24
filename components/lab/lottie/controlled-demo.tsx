@@ -38,13 +38,15 @@ export function ControlledDemo() {
         </div>
       </div>
 
-      <Lottie
-        src="/lottie/ripple.json"
-        lottieRef={lottieRef}
-        autoplay={false}
-        loop
-        className="mt-6 h-56 bg-surface"
-      />
+      <div className="mt-6 h-56 overflow-hidden bg-surface">
+        <Lottie
+          src="/lottie/ripple.json"
+          lottieRef={lottieRef}
+          autoplay={false}
+          loop
+          className="h-full w-full"
+        />
+      </div>
 
       <button
         type="button"

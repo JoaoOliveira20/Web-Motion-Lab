@@ -39,7 +39,7 @@ export function CubeScene() {
           Girar cubo
         </button>
       </div>
-      <div className="mt-6 h-72 bg-surface">
+      <div className="mt-6 h-[32rem] bg-surface">
         <Spline
           scene={SCENE_URL}
           onLoad={handleLoad}

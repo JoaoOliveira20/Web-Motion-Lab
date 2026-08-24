@@ -14,6 +14,7 @@ export function GrabField() {
     () => ({
       fpsLimit: 60,
       detectRetina: true,
+      fullScreen: { enable: false },
       particles: {
         number: { value: 45 },
         shape: { type: "circle" },

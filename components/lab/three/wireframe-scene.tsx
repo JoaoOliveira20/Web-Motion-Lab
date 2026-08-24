@@ -71,7 +71,7 @@ export function WireframeScene() {
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Scene + PerspectiveCamera + WebGLRenderer
       </p>
-      <div ref={containerRef} className="mt-6 h-64 bg-surface" />
+      <div ref={containerRef} className="mt-6 h-96 bg-surface" />
     </div>
   );
 }

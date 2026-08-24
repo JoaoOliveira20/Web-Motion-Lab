@@ -6,6 +6,7 @@ import DOTS from "vanta/dist/vanta.dots.min.js";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCssVariable } from "@/hooks/use-css-variable";
 import { hexStringToNumber } from "@/lib/color";
+import { exposeThreeGlobally } from "@/lib/vanta-three-global";
 
 export function DotsBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,6 +17,8 @@ export function DotsBackground() {
 
   useEffect(() => {
     if (prefersReducedMotion || !containerRef.current) return;
+
+    exposeThreeGlobally(THREE);
 
     const effect = DOTS({
       el: containerRef.current,

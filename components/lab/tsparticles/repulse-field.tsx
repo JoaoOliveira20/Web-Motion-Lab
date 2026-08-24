@@ -15,6 +15,7 @@ export function RepulseField() {
     () => ({
       fpsLimit: 60,
       detectRetina: true,
+      fullScreen: { enable: false },
       particles: {
         number: { value: 60 },
         shape: { type: "circle" },

@@ -37,6 +37,20 @@ importar `* as THREE from "three"` e passar como `options.THREE`
 explicitamente — sem isso, o efeito falha silenciosamente ou lança erro
 ao tentar acessar propriedades de `undefined`.
 
+**Isso não é verdade para todos os efeitos.** Testando no navegador
+(2026-08-24), `VANTA.DOTS` quebrava com
+`TypeError: Cannot read properties of undefined (reading 'PerspectiveCamera')`
+mesmo recebendo `options.THREE` explicitamente. Lendo
+`vanta.dots.js`, o motivo ficou claro: ao contrário de `vanta.waves.js`
+e `vanta.net.js`, a classe `Effect` do `DOTS` **não tem constructor
+próprio** — nunca lê `userOptions.THREE`, só o `THREE` capturado no
+escopo do módulo a partir de `window.THREE` no momento do import. Ou
+seja, é uma inconsistência real entre efeitos dentro da própria
+biblioteca, não um erro de uso. Corrigido atribuindo
+`window.THREE = THREE` explicitamente antes de instanciar qualquer
+efeito (`lib/vanta-three-global.ts`) — mais robusto do que confiar em
+cada efeito individualmente ler a opção.
+
 ## Componentes construídos
 
 - **NetBackground** (`VANTA.NET`): malha triangulada que reage à

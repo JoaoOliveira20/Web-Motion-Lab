@@ -66,6 +66,22 @@ desatualizada em vários pontos:
   (hook `useCssVariable`, em `hooks/`) porque a API Canvas 2D não
   entende `var(--accent)` como valor de `fillStyle`.
 
+## Bug encontrado na revisão visual: `fullScreen.enable` é `true` por padrão
+
+Ao testar no navegador (2026-08-24), as partículas apareciam espalhadas
+pela página inteira em vez de ficarem confinadas nos cartões. Causa:
+`IOptions.fullScreen` tem `enable: true` como padrão no
+`@tsparticles/engine` (confirmado em
+`Options/Classes/FullScreen/FullScreen.js`) — sem configuração
+explícita, o Canvas vira `position: fixed` cobrindo o viewport inteiro,
+ignorando por completo o contêiner onde o componente foi montado. Esse
+comportamento não estava documentado nos exemplos oficiais que consultei
+(`preset-links`/`preset-stars`), porque os presets deles são pensados
+para fundo de página inteira, não para um cartão. Corrigido adicionando
+`fullScreen: { enable: false }` em ambas as configs
+(`RepulseField`/`GrabField`) — com isso o Canvas passa a ocupar 100% do
+elemento pai, como esperado.
+
 ## O que foi aprendido
 
 - "Slim" não significa mais "quase tudo menos as formas pesadas" como em

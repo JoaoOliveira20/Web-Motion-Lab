@@ -76,7 +76,7 @@ export function ScrollTriggerDemo() {
 
       <div
         ref={scrollerRef}
-        className="mt-4 flex h-56 flex-col gap-24 overflow-y-auto p-4"
+        className="mt-4 flex h-56 flex-col gap-24 overflow-y-auto overflow-x-hidden p-4"
       >
         {panels.map((panel) => (
           <div key={panel.title} data-panel className="bg-surface p-5">
