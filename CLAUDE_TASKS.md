@@ -4,22 +4,32 @@ Use este arquivo como roteiro de execução.
 
 ## Fase 0 — Fundação
 
-- [ ] Auditar o projeto atual.
-- [ ] Identificar stack e versões.
-- [ ] Verificar estrutura de pastas.
-- [ ] Verificar dependências instaladas.
-- [ ] Verificar configuração do Next.js.
-- [ ] Verificar TypeScript.
-- [ ] Verificar lint.
-- [ ] Verificar build.
-- [ ] Avaliar o design atual.
-- [ ] Identificar problemas visuais.
-- [ ] Criar/ajustar direção visual.
-- [ ] Criar base de design system.
+- [x] Auditar o projeto atual.
+- [x] Identificar stack e versões.
+- [x] Verificar estrutura de pastas.
+- [x] Verificar dependências instaladas.
+- [x] Verificar configuração do Next.js.
+- [x] Verificar TypeScript.
+- [x] Verificar lint.
+- [x] Verificar build.
+- [x] Avaliar o design atual.
+- [x] Identificar problemas visuais.
+- [x] Criar/ajustar direção visual.
+- [x] Criar base de design system.
+
+Projeto inicializado com Next.js 16 (App Router, Turbopack) + React 19 +
+TypeScript + Tailwind v4. Design system: Fraunces + Geist Sans/Mono,
+paleta neutra com acento laranja-sinal, tokens em `app/globals.css`.
+Homepage com Hero, Experiments, Library Stack e Featured Experiment.
+Estrutura `/lab` criada com página índice. Testado: `tsc --noEmit`, lint
+e build de produção sem erros; rotas `/`, `/lab`, `/lab/motion`
+retornando 200 e `/lab/rota-invalida` retornando 404 via `next dev`.
+Testagem visual em navegador não foi possível nesta sessão (extensão do
+Chrome desconectada) — pendente validação visual do usuário.
 
 ## Fase 1 — Motion
 
-- [ ] Lab Framer Motion
+- [x] Lab Framer Motion (pacote `motion`)
 - [ ] Lab GSAP
 - [ ] Lab Lenis
 - [ ] Lab Rough Notation
