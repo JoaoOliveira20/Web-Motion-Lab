@@ -68,7 +68,7 @@ export const experiments: Experiment[] = [
     category: "UI",
     complexity: 2,
     summary: "Comparação entre componentes prontos e implementação própria.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "motion-primitives",

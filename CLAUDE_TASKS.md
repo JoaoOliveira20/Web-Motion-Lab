@@ -43,7 +43,12 @@ isolada, ainda sem compor com GSAP (isso é Fase 5).
 
 ## Fase 2 — UI
 
-- [ ] Lab React Bits
+Bibliotecas "de cópia" (sem pacote npm) — decisão de arquitetura em
+`docs/decisions/0002-bibliotecas-de-copia.md`: código-fonte buscado no
+GitHub de cada projeto e adaptado manualmente aos tokens do laboratório,
+sem rodar `shadcn init` (que sobrescreveria o design system da Fase 0).
+
+- [x] Lab React Bits (SpotlightCard + TiltedCard)
 - [ ] Lab Motion Primitives
 - [ ] Lab Magic UI
 - [ ] Lab Aceternity
