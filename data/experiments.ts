@@ -50,7 +50,7 @@ export const experiments: Experiment[] = [
     category: "Typography",
     complexity: 1,
     summary: "Destaques desenhados sobre texto ao entrar em viewport.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "typed",

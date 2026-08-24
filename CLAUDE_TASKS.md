@@ -32,7 +32,7 @@ Chrome desconectada) — pendente validação visual do usuário.
 - [x] Lab Framer Motion (pacote `motion`)
 - [x] Lab GSAP (timelines + ScrollTrigger)
 - [x] Lab Lenis (scroll suave isolado + scrollTo)
-- [ ] Lab Rough Notation
+- [x] Lab Rough Notation (annotate + annotationGroup)
 - [ ] Lab Typed
 
 ## Fase 2 — UI
