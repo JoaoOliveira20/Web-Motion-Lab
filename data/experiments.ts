@@ -41,7 +41,7 @@ export const experiments: Experiment[] = [
     category: "Scroll",
     complexity: 2,
     summary: "Smooth scrolling e sincronização com animações baseadas em scroll.",
-    status: "planejado",
+    status: "disponivel",
   },
   {
     slug: "rough-notation",
