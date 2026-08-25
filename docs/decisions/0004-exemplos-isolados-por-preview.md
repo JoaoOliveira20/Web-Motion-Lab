@@ -20,8 +20,11 @@ padrão. De lá, o que fazia sentido puxar:
   confirmada com o usuário: "o preview realmente precisa ser estático".
 - **Código num bloco expansível** — já é exatamente o `<details>` que
   o laboratório já tinha antes desta decisão.
-- **"Exemplos relacionados" no rodapé da página individual** — um link
-  simples pro(s) outro(s) exemplo(s) da mesma biblioteca.
+
+Testado no piloto e removido em seguida: um link "Exemplos
+relacionados" no rodapé de cada página, apontando pro outro exemplo da
+mesma biblioteca. O usuário pediu pra tirar — o filtro por biblioteca
+já cumpre esse papel, o link era redundante.
 
 O que ficou de fora de propósito: nota de qualidade ("MotionScore"),
 paywall, favoritos — aparato de produto comercial sem função aqui. O
@@ -46,24 +49,32 @@ sem entrada no mapa mostram um placeholder neutro (nome da biblioteca em
 mono) em vez de ficarem vazios ou com altura diferente do resto da
 grade.
 
-## Piloto
+## Piloto e rollout
 
-Só a Motion foi dividida por enquanto: `/lab/motion/presence` e
-`/lab/motion/gestures`, cada uma com seu próprio preview
-(`presence-preview.tsx`, `gestures-preview.tsx`). `data/experiments.ts`
-aceita slug com `/` (ex: `"motion/presence"`) — vira a URL aninhada
-automaticamente, sem mudar `ExperimentCard`.
+Piloto na Motion primeiro (`/lab/motion/presence` e
+`/lab/motion/gestures`), aprovado, depois estendido pras 14 bibliotecas
+restantes na mesma sessão — todo experimento isolado (exceto Spline,
+que já tinha só 1 demo) virou 2 páginas com preview próprio. 31
+experimentos isolados no total (antes 16), mais as 7 composições, que
+não precisaram de nada disso — já eram 1 card = 1 demo desde a Fase 5.
 
-`docs/experiments/motion.md` continua cobrindo a biblioteca como um
-todo (aprendizados, alternativas, quando usar) — não foi dividido em
-dois; a divisão é só da camada de apresentação (páginas + preview), não
-da documentação de aprendizado.
+`data/experiments.ts` aceita slug com `/` (ex: `"motion/presence"`) —
+vira a URL aninhada automaticamente, sem mudar `ExperimentCard`.
 
-## Se for expandir pro resto
+`docs/experiments/<slug>.md` continuam cobrindo cada biblioteca como um
+todo (aprendizados, alternativas, quando usar) — nenhum foi dividido; a
+divisão é só da camada de apresentação (páginas + preview), não da
+documentação de aprendizado.
 
-Faltam 14 experimentos isolados nesse mesmo molde (todos exceto Spline,
-que já tem só 1 demo). Por experimento: 1 preview novo em
-`components/lab/<slug>/`, 1 entrada nova em `example-previews.tsx`, 2
-páginas novas em vez de 1, `data/experiments.ts` com slug `<lib>/<x>`,
-doc original mantido como está. Repetitivo, mas mecânico — o padrão já
-está validado neste piloto.
+## Proporção áurea nos cards (aplicada seletivamente)
+
+Depois do piloto, o card de Presença ganhou `aspect-[1.618/1]` como
+teste visual, aprovado e estendido — mas não em todo lugar. Só em
+cards de texto/UI de conteúdo único, sem altura funcional própria:
+`FollowerPointerCard`, `BorderBeamShowcase`, `TiltedCard`,
+`AnnotationShowcase`, `HoverAnnotation`, `LoopTypedDemo`,
+`TerminalTypedDemo`. Pulado em carrosséis (o tamanho do slide já é
+decisão de conteúdo) e em todo canvas WebGL (Three.js, Vanta,
+tsParticles) — forçar uma proporção fixa numa câmera ou canvas
+dimensionado de propósito arrisca distorcer a cena, e sem navegador
+nesta sessão não havia como confirmar visualmente que ficou bem.

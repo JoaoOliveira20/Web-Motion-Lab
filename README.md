@@ -11,8 +11,9 @@ para o backlog de próximos experimentos.
 
 `/showcase` é a peça final do laboratório: uma narrativa de rolagem
 única que reaproveita experimentos e composições já construídos.
-`/lab` é o índice completo dos 16 experimentos isolados e das 7
-composições.
+`/lab` é o índice completo, filtrável por biblioteca: 16 bibliotecas
+(a maioria dividida em 2 exemplos focados, cada um com preview próprio
+no card) e 7 composições.
 
 ## Stack
 
