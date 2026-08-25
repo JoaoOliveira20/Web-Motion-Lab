@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { NavigationDemo } from "@/components/lab/swiper/navigation-demo";
 import { EffectCardsDemo } from "@/components/lab/swiper/effect-cards-demo";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Swiper — Carrossel Completo — Web Motion Lab",
@@ -26,6 +27,23 @@ const concepts = [
   {
     term: "sem autoplay",
     detail: "Nenhum dos dois carrosséis avança sozinho — carrossel automático sem pausa é um problema de acessibilidade (WCAG 2.2.2).",
+  },
+];
+
+const swiperApi = { name: "Swiper (React)", href: "https://swiperjs.com/react" };
+const swiperModulesApi = {
+  name: "Módulos (Navigation/Pagination/EffectCards)",
+  href: "https://swiperjs.com/swiper-api",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/swiper/navigation-demo.tsx",
+    apis: [swiperApi, swiperModulesApi],
+  },
+  {
+    filePath: "lab/swiper/effect-cards-demo.tsx",
+    apis: [swiperApi, swiperModulesApi],
   },
 ];
 
@@ -62,6 +80,15 @@ export default function SwiperLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <NavigationDemo />
           <EffectCardsDemo />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

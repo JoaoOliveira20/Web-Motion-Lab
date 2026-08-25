@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SnapCarousel } from "@/components/lab/embla/snap-carousel";
 import { DragFreeCarousel } from "@/components/lab/embla/drag-free-carousel";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Embla — Carrossel Controlável — Web Motion Lab",
@@ -26,6 +27,30 @@ const concepts = [
   {
     term: "dragFree",
     detail: "Desliga o snap por completo: o carrossel vira um scroll horizontal com inércia.",
+  },
+];
+
+const useEmblaCarouselApi = {
+  name: "useEmblaCarousel()",
+  href: "https://www.embla-carousel.com/docs/get-started/react",
+};
+const emblaMethodsApi = {
+  name: "scrollSnapList() / on('select') / scrollTo()",
+  href: "https://www.embla-carousel.com/docs/v8/api/methods",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/embla/snap-carousel.tsx",
+    apis: [useEmblaCarouselApi],
+  },
+  {
+    filePath: "lab/embla/use-embla-controls.ts",
+    apis: [emblaMethodsApi],
+  },
+  {
+    filePath: "lab/embla/drag-free-carousel.tsx",
+    apis: [useEmblaCarouselApi],
   },
 ];
 
@@ -65,6 +90,15 @@ export default function EmblaLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <SnapCarousel />
           <DragFreeCarousel />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

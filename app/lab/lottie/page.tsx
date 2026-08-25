@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { AutoplayDemo } from "@/components/lab/lottie/autoplay-demo";
 import { ControlledDemo } from "@/components/lab/lottie/controlled-demo";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Lottie — Animação Vetorial — Web Motion Lab",
@@ -26,6 +27,27 @@ const concepts = [
   {
     term: "Cor embutida no arquivo",
     detail: "Ao contrário do SVG do Rough Notation, as cores do Lottie não herdam currentColor — ficam fixas no JSON.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/lottie/autoplay-demo.tsx",
+    apis: [
+      {
+        name: "<Lottie autoplay loop />",
+        href: "https://www.lottiereact.com/docs/reference/lottie",
+      },
+    ],
+  },
+  {
+    filePath: "lab/lottie/controlled-demo.tsx",
+    apis: [
+      {
+        name: "lottieRef (.play/.pause/.setSpeed)",
+        href: "https://www.lottiereact.com/docs/animation/refs-and-handles",
+      },
+    ],
   },
 ];
 
@@ -62,6 +84,15 @@ export default function LottieLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <AutoplayDemo />
           <ControlledDemo />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>
