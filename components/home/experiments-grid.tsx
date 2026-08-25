@@ -25,7 +25,6 @@ export function ExperimentsGrid() {
     <section id="experimentos" className="border-b border-border py-20">
       <Container>
         <SectionHeading
-          eyebrow="Experimentos"
           title="Laboratórios isolados"
           description="Uma amostra das 16 bibliotecas — cada experimento estuda uma em contexto próprio, antes de qualquer combinação."
         />

@@ -6,11 +6,7 @@ export function LibraryStack() {
   return (
     <section id="bibliotecas" className="border-b border-border py-20">
       <Container>
-        <SectionHeading
-          eyebrow="Stack"
-          title="Bibliotecas do laboratório"
-          description="Cada ferramenta tem um propósito específico dentro da pilha — nenhuma é usada só para constar."
-        />
+        <SectionHeading title="Bibliotecas do laboratório" />
         <div className="mt-10 overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse font-mono text-sm">
             <thead>
