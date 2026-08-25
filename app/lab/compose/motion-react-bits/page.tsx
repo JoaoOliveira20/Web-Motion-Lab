@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { FilterableGallery } from "@/components/lab/compose/motion-react-bits/filterable-gallery";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import {
+  animatePresenceApi,
+  layoutAnimationApi,
+  motionComponentApi,
+  useReducedMotionMotionApi,
+} from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Motion + React Bits — Galeria Filtrável — Web Motion Lab",
@@ -25,6 +32,18 @@ const concepts = [
   {
     term: "Duas camadas de interação",
     detail: "Motion anima o filtro; o CSS/ref do SpotlightCard continua cuidando do brilho por baixo, sem interferência.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/motion-react-bits/filterable-gallery.tsx",
+    apis: [
+      motionComponentApi,
+      animatePresenceApi,
+      layoutAnimationApi,
+      useReducedMotionMotionApi,
+    ],
   },
 ];
 
@@ -60,6 +79,15 @@ export default function MotionReactBitsComposePage() {
 
         <div className="mt-10">
           <FilterableGallery />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SyncedScroller } from "@/components/lab/compose/lenis-gsap/synced-scroller";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { reactLenisApi, scrollTriggerApi, useGsapApi, useLenisApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Lenis + GSAP — Scroll Suave Sincronizado — Web Motion Lab",
@@ -25,6 +27,13 @@ const concepts = [
   {
     term: "lenis.rootElement",
     detail: "O elemento wrapper vira o scroller do ScrollTrigger — a mesma API de scroller customizado da Fase 1.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/lenis-gsap/synced-scroller.tsx",
+    apis: [reactLenisApi, useLenisApi, scrollTriggerApi, useGsapApi],
   },
 ];
 
@@ -61,6 +70,15 @@ export default function LenisGsapComposePage() {
 
         <div className="mt-10">
           <SyncedScroller />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

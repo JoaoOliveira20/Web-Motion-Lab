@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TimedAnnotations } from "@/components/lab/compose/rough-notation-gsap/timed-annotations";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { annotateApi, scrollTriggerApi, useGsapApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Rough Notation + GSAP — Anotações no Tempo da Timeline — Web Motion Lab",
@@ -25,6 +27,13 @@ const concepts = [
   {
     term: "scroller customizado",
     detail: "O mesmo padrão de contêiner isolado das Fases 1 e 5 anteriores — não é a página inteira.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/rough-notation-gsap/timed-annotations.tsx",
+    apis: [scrollTriggerApi, useGsapApi, annotateApi],
   },
 ];
 
@@ -60,6 +69,15 @@ export default function RoughNotationGsapComposePage() {
 
         <div className="mt-10">
           <TimedAnnotations />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

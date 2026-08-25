@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { CaptionedCarousel } from "@/components/lab/compose/swiper-motion/captioned-carousel";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import {
+  animatePresenceApi,
+  motionComponentApi,
+  useReducedMotionMotionApi,
+} from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Swiper + Motion — Legenda Sincronizada — Web Motion Lab",
@@ -25,6 +31,18 @@ const concepts = [
   {
     term: "Duas árvores de DOM",
     detail: "A legenda vive fora do <Swiper> — não precisa ser uma SwiperSlide para reagir ao slide ativo.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/swiper-motion/captioned-carousel.tsx",
+    apis: [
+      { name: "Swiper (React) — onSlideChange", href: "https://swiperjs.com/react" },
+      motionComponentApi,
+      animatePresenceApi,
+      useReducedMotionMotionApi,
+    ],
   },
 ];
 
@@ -60,6 +78,15 @@ export default function SwiperMotionComposePage() {
 
         <div className="mt-10">
           <CaptionedCarousel />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

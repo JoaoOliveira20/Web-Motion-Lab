@@ -4,6 +4,7 @@ import { BackLink } from "@/components/navigation/back-link";
 import { AutoplayDemo } from "@/components/lab/lottie/autoplay-demo";
 import { ControlledDemo } from "@/components/lab/lottie/controlled-demo";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { lottieComponentApi, lottieRefApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Lottie — Animação Vetorial — Web Motion Lab",
@@ -33,21 +34,11 @@ const concepts = [
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/lottie/autoplay-demo.tsx",
-    apis: [
-      {
-        name: "<Lottie autoplay loop />",
-        href: "https://www.lottiereact.com/docs/reference/lottie",
-      },
-    ],
+    apis: [lottieComponentApi],
   },
   {
     filePath: "lab/lottie/controlled-demo.tsx",
-    apis: [
-      {
-        name: "lottieRef (.play/.pause/.setSpeed)",
-        href: "https://www.lottiereact.com/docs/animation/refs-and-handles",
-      },
-    ],
+    apis: [lottieRefApi],
   },
 ];
 

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyParticlesParallax } from "@/components/lab/compose/tsparticles-lenis/lazy-parallax";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { reactLenisApi, tsparticlesReactApi, useLenisApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "tsParticles + Lenis — Partículas com Parallax — Web Motion Lab",
@@ -25,6 +27,13 @@ const concepts = [
   {
     term: "fullScreen: false",
     detail: "Mesma correção aplicada no experimento tsParticles isolado — sem isso, o Canvas ignoraria o contêiner.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/tsparticles-lenis/particles-parallax.tsx",
+    apis: [reactLenisApi, useLenisApi, tsparticlesReactApi],
   },
 ];
 
@@ -59,6 +68,15 @@ export default function TsParticlesLenisComposePage() {
 
         <div className="mt-10">
           <LazyParticlesParallax />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

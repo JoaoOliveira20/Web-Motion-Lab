@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TsParticlesLazySection } from "@/components/lab/tsparticles/lazy-section";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { tsparticlesOptionsApi, tsparticlesReactApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "tsParticles — Sistema de Partículas — Web Motion Lab",
@@ -28,15 +29,6 @@ const concepts = [
     detail: "A cor não vem de CSS — é lida de --accent/--muted via getComputedStyle e passada como string ao Canvas.",
   },
 ];
-
-const tsparticlesReactApi = {
-  name: "ParticlesProvider / loadSlim / <Particles>",
-  href: "https://particles.js.org/guide/wrappers-react",
-};
-const tsparticlesOptionsApi = {
-  name: "interactivity (repulse/push/grab)",
-  href: "https://particles.js.org/options/",
-};
 
 const sourceFiles: SourceFileEntry[] = [
   {

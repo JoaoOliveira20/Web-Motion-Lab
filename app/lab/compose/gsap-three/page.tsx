@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyScrollCameraScene } from "@/components/lab/compose/gsap-three/lazy-scene";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { gsapTimelineApi, perspectiveCameraApi, webglRendererApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "GSAP + Three.js — Câmera Guiada por Timeline — Web Motion Lab",
@@ -25,6 +27,13 @@ const concepts = [
   {
     term: "Mesmo listener, dois efeitos",
     detail: "Um único cálculo de progresso move a câmera e atualiza qual waypoint aparece destacado na lista (React state).",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/gsap-three/scroll-camera-scene.tsx",
+    apis: [gsapTimelineApi, perspectiveCameraApi, webglRendererApi],
   },
 ];
 
@@ -60,6 +69,15 @@ export default function GsapThreeComposePage() {
 
         <div className="mt-10">
           <LazyScrollCameraScene />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

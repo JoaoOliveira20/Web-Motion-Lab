@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { HoverPlayIcon } from "@/components/lab/compose/lottie-motion/hover-play-icon";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import {
+  lottieRefApi,
+  motionComponentApi,
+  motionGesturesApi,
+  useReducedMotionMotionApi,
+} from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Lottie + Motion — Ícone Reativo a Gestures — Web Motion Lab",
@@ -25,6 +32,18 @@ const concepts = [
   {
     term: "prefers-reduced-motion",
     detail: "Desliga o scale da Motion; o play/pause do Lottie continua funcionando (não é ambiente, é resposta direta ao hover).",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/compose/lottie-motion/hover-play-icon.tsx",
+    apis: [
+      motionComponentApi,
+      motionGesturesApi,
+      useReducedMotionMotionApi,
+      lottieRefApi,
+    ],
   },
 ];
 
@@ -62,6 +81,15 @@ export default function LottieMotionComposePage() {
 
         <div className="mt-10">
           <HoverPlayIcon />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

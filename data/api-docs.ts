@@ -20,6 +20,11 @@ export const useReducedMotionMotionApi: ApiReference = {
   href: "https://motion.dev/docs/react-use-reduced-motion",
 };
 
+export const layoutAnimationApi: ApiReference = {
+  name: "layout (FLIP) / mode=\"popLayout\"",
+  href: "https://motion.dev/docs/react-layout-animations",
+};
+
 export const useMotionValueApi: ApiReference = {
   name: "useMotionValue",
   href: "https://motion.dev/docs/react-motion-value",
@@ -73,6 +78,36 @@ export const typedClassApi: ApiReference = {
 export const typedMethodsApi: ApiReference = {
   name: ".toggle() / .reset() / .destroy()",
   href: "https://mattboldt.github.io/typed.js/docs/class/src/typed.js~Typed.html",
+};
+
+export const perspectiveCameraApi: ApiReference = {
+  name: "PerspectiveCamera",
+  href: "https://threejs.org/docs/#api/en/cameras/PerspectiveCamera",
+};
+
+export const webglRendererApi: ApiReference = {
+  name: "WebGLRenderer",
+  href: "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
+};
+
+export const lottieComponentApi: ApiReference = {
+  name: "<Lottie autoplay loop />",
+  href: "https://www.lottiereact.com/docs/reference/lottie",
+};
+
+export const lottieRefApi: ApiReference = {
+  name: "lottieRef (.play/.pause/.setSpeed)",
+  href: "https://www.lottiereact.com/docs/animation/refs-and-handles",
+};
+
+export const tsparticlesReactApi: ApiReference = {
+  name: "ParticlesProvider / loadSlim / <Particles>",
+  href: "https://particles.js.org/guide/wrappers-react",
+};
+
+export const tsparticlesOptionsApi: ApiReference = {
+  name: "interactivity (repulse/push/grab)",
+  href: "https://particles.js.org/options/",
 };
 
 export const annotateApi: ApiReference = {

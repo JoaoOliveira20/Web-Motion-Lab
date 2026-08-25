@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { ThreeLazySection } from "@/components/lab/three/lazy-section";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { perspectiveCameraApi, webglRendererApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Three.js — Cena WebGL Programável — Web Motion Lab",
@@ -28,15 +29,6 @@ const concepts = [
     detail: "Geometria, material e renderer cada um precisa de limpeza própria — nenhuma é automática.",
   },
 ];
-
-const perspectiveCameraApi = {
-  name: "PerspectiveCamera",
-  href: "https://threejs.org/docs/#api/en/cameras/PerspectiveCamera",
-};
-const webglRendererApi = {
-  name: "WebGLRenderer",
-  href: "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
-};
 
 const sourceFiles: SourceFileEntry[] = [
   {
