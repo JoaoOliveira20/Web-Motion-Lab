@@ -16,10 +16,7 @@ export default function LabIndexPage() {
     <>
       <BackLink href="/" label="Início" />
       <Container className="mt-8">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-          Índice
-        </p>
-        <h1 className="mt-3 font-display text-display font-light tracking-tight">
+        <h1 className="font-display text-display font-light tracking-tight">
           Todos os experimentos
         </h1>
         <p className="mt-4 max-w-sm text-sm text-muted">

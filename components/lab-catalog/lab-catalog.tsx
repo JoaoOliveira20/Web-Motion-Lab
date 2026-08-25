@@ -126,7 +126,6 @@ export function LabCatalog({ experiments, compositions, libraries }: LabCatalogP
       {filteredExperiments.length > 0 ? (
         <div className="mt-16">
           <SectionHeading
-            eyebrow="Experimentos"
             title="Laboratórios isolados"
             description={`${filteredExperiments.length} de ${experiments.length} experimentos.`}
           />
@@ -143,7 +142,6 @@ export function LabCatalog({ experiments, compositions, libraries }: LabCatalogP
       {filteredCompositions.length > 0 ? (
         <div className="mt-16">
           <SectionHeading
-            eyebrow="Fase 5"
             title="Composições"
             description={`${filteredCompositions.length} de ${compositions.length} composições — pares de bibliotecas combinadas.`}
           />
