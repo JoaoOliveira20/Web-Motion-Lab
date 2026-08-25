@@ -58,7 +58,7 @@ export default function LottieAutoplayLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-2xl">
+        <div className="mt-10">
           <AutoplayDemo />
         </div>
 

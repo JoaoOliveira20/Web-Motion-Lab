@@ -60,7 +60,7 @@ export default function MotionPrimitivesInViewLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-2xl">
+        <div className="mt-10">
           <InViewShowcase />
         </div>
 

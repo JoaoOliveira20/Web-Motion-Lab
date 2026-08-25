@@ -81,7 +81,7 @@ export default function MotionGesturesLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-2xl">
+        <div className="mt-10">
           <GestureGrid />
         </div>
 

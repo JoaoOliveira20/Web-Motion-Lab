@@ -61,7 +61,7 @@ export default function MotionPrimitivesMagneticLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-2xl">
+        <div className="mt-10">
           <MagneticShowcase />
         </div>
 

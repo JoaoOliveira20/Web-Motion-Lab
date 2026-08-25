@@ -62,7 +62,7 @@ export default function AceternityTextRevealLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-2xl">
+        <div className="mt-10">
           <TextRevealCard text="passe o cursor" revealText="clip-path: inset()">
             <TextRevealCardTitle>Arraste sobre o texto</TextRevealCardTitle>
             <TextRevealCardDescription>
