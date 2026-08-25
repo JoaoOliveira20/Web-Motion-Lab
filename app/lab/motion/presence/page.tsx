@@ -70,7 +70,7 @@ export default function MotionPresenceLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-xl">
+        <div className="mt-10 max-w-2xl">
           <PresenceDemo />
         </div>
 

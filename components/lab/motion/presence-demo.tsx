@@ -4,7 +4,7 @@ import { useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 export function PresenceDemo() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const panelId = useId();
   const shouldReduceMotion = useReducedMotion();
 
