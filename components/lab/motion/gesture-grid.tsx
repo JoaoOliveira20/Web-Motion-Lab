@@ -3,9 +3,21 @@
 import { motion, useReducedMotion } from "motion/react";
 
 const cards = [
-  { label: "whileHover", detail: "Escala ao passar o ponteiro" },
-  { label: "whileTap", detail: "Escala ao pressionar" },
-  { label: "whileFocus", detail: "Escala ao focar via teclado" },
+  {
+    label: "whileHover",
+    detail: "Escala ao passar o ponteiro",
+    gesture: { whileHover: { scale: 1.04 } },
+  },
+  {
+    label: "whileTap",
+    detail: "Escala ao pressionar",
+    gesture: { whileTap: { scale: 0.96 } },
+  },
+  {
+    label: "whileFocus",
+    detail: "Escala ao focar via teclado",
+    gesture: { whileFocus: { scale: 1.04 } },
+  },
 ];
 
 export function GestureGrid() {
@@ -21,9 +33,7 @@ export function GestureGrid() {
           <motion.button
             key={card.label}
             type="button"
-            whileHover={shouldReduceMotion ? undefined : { scale: 1.04 }}
-            whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
-            whileFocus={shouldReduceMotion ? undefined : { scale: 1.04 }}
+            {...(shouldReduceMotion ? {} : card.gesture)}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className="flex flex-col items-start gap-2 border border-border bg-surface p-5 text-left"
           >
