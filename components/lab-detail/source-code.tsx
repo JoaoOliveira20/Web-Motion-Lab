@@ -4,19 +4,26 @@ import { ApiReferenceList, type ApiReference } from "@/components/lab-detail/api
 
 export interface SourceFileEntry {
   filePath: string;
+  dir?: "components" | "hooks" | "lib";
   apis?: ApiReference[];
 }
 
-async function SourceFile({ filePath, apis }: SourceFileEntry) {
+async function SourceFile({ filePath, dir = "components", apis }: SourceFileEntry) {
   const code = await readFile(
-    join(process.cwd(), "components", filePath),
+    dir === "hooks"
+      ? join(process.cwd(), "hooks", filePath)
+      : dir === "lib"
+        ? join(process.cwd(), "lib", filePath)
+        : join(process.cwd(), "components", filePath),
     "utf-8",
   );
 
   return (
     <details className="group border border-border">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-3 font-mono text-xs uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground [&::-webkit-details-marker]:hidden">
-        <span>components/{filePath}</span>
+        <span>
+          {dir}/{filePath}
+        </span>
         <span aria-hidden className="text-base leading-none group-open:rotate-45">
           +
         </span>

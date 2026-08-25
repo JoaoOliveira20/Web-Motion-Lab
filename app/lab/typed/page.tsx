@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LoopTypedDemo } from "@/components/lab/typed/loop-typed-demo";
 import { TerminalTypedDemo } from "@/components/lab/typed/terminal-typed-demo";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Typed.js — Texto Digitado — Web Motion Lab",
@@ -26,6 +27,31 @@ const concepts = [
   {
     term: "Fallback estático",
     detail: "Com prefers-reduced-motion, o texto final aparece direto, sem a animação de digitação.",
+  },
+];
+
+const typedClassApi = {
+  name: "new Typed(el, options)",
+  href: "https://mattboldt.github.io/typed.js/docs/class/src/typed.js~Typed.html",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/typed/loop-typed-demo.tsx",
+  },
+  {
+    filePath: "lab/typed/terminal-typed-demo.tsx",
+    apis: [
+      {
+        name: ".toggle() / .reset() / .destroy()",
+        href: "https://mattboldt.github.io/typed.js/docs/class/src/typed.js~Typed.html",
+      },
+    ],
+  },
+  {
+    filePath: "use-typed.ts",
+    dir: "hooks",
+    apis: [typedClassApi],
   },
 ];
 
@@ -65,6 +91,15 @@ export default function TypedLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <LoopTypedDemo />
           <TerminalTypedDemo />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

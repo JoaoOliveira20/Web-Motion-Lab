@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { AnnotationShowcase } from "@/components/lab/rough-notation/annotation-showcase";
 import { HoverAnnotation } from "@/components/lab/rough-notation/hover-annotation";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Rough Notation — Anotações Manuscritas — Web Motion Lab",
@@ -26,6 +27,32 @@ const concepts = [
   {
     term: "IntersectionObserver",
     detail: "Rough Notation não observa viewport sozinho — isso é responsabilidade da aplicação.",
+  },
+];
+
+const annotateApi = {
+  name: "annotate()",
+  href: "https://roughnotation.com/",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/rough-notation/annotation-showcase.tsx",
+    apis: [
+      annotateApi,
+      {
+        name: "annotationGroup()",
+        href: "https://roughnotation.com/",
+      },
+    ],
+  },
+  {
+    filePath: "lab/rough-notation/hover-annotation.tsx",
+  },
+  {
+    filePath: "use-rough-annotation.ts",
+    dir: "hooks",
+    apis: [annotateApi],
   },
 ];
 
@@ -62,6 +89,15 @@ export default function RoughNotationLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <AnnotationShowcase />
           <HoverAnnotation />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

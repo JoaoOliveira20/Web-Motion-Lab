@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SmoothScrollDemo } from "@/components/lab/lenis/smooth-scroll-demo";
 import { ScrollToDemo } from "@/components/lab/lenis/scroll-to-demo";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Lenis — Scroll Suave — Web Motion Lab",
@@ -26,6 +27,32 @@ const concepts = [
   {
     term: "prefers-reduced-motion",
     detail: "Com o sistema pedindo menos movimento, o experimento desliga o Lenis inteiro.",
+  },
+];
+
+const reactLenisApi = {
+  name: "ReactLenis",
+  href: "https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md",
+};
+const useLenisApi = {
+  name: "useLenis()",
+  href: "https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/lenis/smooth-scroll-demo.tsx",
+    apis: [reactLenisApi, useLenisApi],
+  },
+  {
+    filePath: "lab/lenis/scroll-to-demo.tsx",
+    apis: [
+      useLenisApi,
+      {
+        name: "lenis.scrollTo()",
+        href: "https://github.com/darkroomengineering/lenis/blob/main/README.md#methods",
+      },
+    ],
   },
 ];
 
@@ -61,6 +88,15 @@ export default function LenisLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <SmoothScrollDemo />
           <ScrollToDemo />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TimelineDemo } from "@/components/lab/gsap/timeline-demo";
 import { ScrollTriggerDemo } from "@/components/lab/gsap/scroll-trigger-demo";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "GSAP — Timelines Sequenciadas — Web Motion Lab",
@@ -26,6 +27,34 @@ const concepts = [
   {
     term: "scrub",
     detail: "Sincroniza a animação diretamente ao scroll, sem easing de tempo.",
+  },
+];
+
+const useGsapApi = {
+  name: "useGSAP()",
+  href: "https://gsap.com/resources/React/",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/gsap/timeline-demo.tsx",
+    apis: [
+      {
+        name: "gsap.timeline()",
+        href: "https://gsap.com/docs/v3/GSAP/gsap.timeline()/",
+      },
+      useGsapApi,
+    ],
+  },
+  {
+    filePath: "lab/gsap/scroll-trigger-demo.tsx",
+    apis: [
+      {
+        name: "ScrollTrigger",
+        href: "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
+      },
+      useGsapApi,
+    ],
   },
 ];
 
@@ -62,6 +91,15 @@ export default function GsapLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <TimelineDemo />
           <ScrollTriggerDemo />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>
