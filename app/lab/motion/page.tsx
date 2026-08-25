@@ -3,6 +3,8 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { PresenceDemo } from "@/components/lab/motion/presence-demo";
 import { GestureGrid } from "@/components/lab/motion/gesture-grid";
+import { ApiReferenceList } from "@/components/lab-detail/api-reference-list";
+import { SourceCode } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Motion — Presença e Gestures — Web Motion Lab",
@@ -28,6 +30,27 @@ const concepts = [
     detail: "Hook nativo que lê prefers-reduced-motion do sistema.",
   },
 ];
+
+const apis = [
+  {
+    name: "motion",
+    href: "https://motion.dev/docs/react-motion-component",
+  },
+  {
+    name: "AnimatePresence",
+    href: "https://motion.dev/docs/react-animate-presence",
+  },
+  {
+    name: "Gestures (whileHover/whileTap/whileFocus)",
+    href: "https://motion.dev/docs/react-gestures",
+  },
+  {
+    name: "useReducedMotion",
+    href: "https://motion.dev/docs/react-use-reduced-motion",
+  },
+];
+
+const sourceFiles = ["lab/motion/presence-demo.tsx", "lab/motion/gesture-grid.tsx"];
 
 export default function MotionLabPage() {
   return (
@@ -61,6 +84,24 @@ export default function MotionLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <PresenceDemo />
           <GestureGrid />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            APIs usadas neste exemplo
+          </p>
+          <div className="mt-4">
+            <ApiReferenceList apis={apis} />
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>
