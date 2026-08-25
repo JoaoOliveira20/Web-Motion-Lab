@@ -6,7 +6,8 @@ export function AutoplayPreview() {
       <circle cx="24" cy="24" r="15" />
       <path
         d="M20 16 L32 24 L20 32 Z"
-        className="text-accent"
+        className="text-accent motion-safe:animate-preview-pulse"
+        style={{ transformOrigin: "24px 24px" }}
         fill="currentColor"
         stroke="none"
       />

@@ -3,9 +3,11 @@ import { PreviewIcon } from "@/components/lab-detail/preview-icon";
 export function MarqueePreview() {
   return (
     <PreviewIcon>
-      <path d="M6 18 L12 24 L6 30" />
-      <path d="M19 18 L25 24 L19 30" className="text-accent" />
-      <path d="M32 18 L38 24 L32 30" />
+      <g className="motion-safe:animate-preview-slide">
+        <path d="M4 18 L10 24 L4 30" />
+        <path d="M17 18 L23 24 L17 30" className="text-accent" />
+        <path d="M30 18 L36 24 L30 30" />
+      </g>
     </PreviewIcon>
   );
 }

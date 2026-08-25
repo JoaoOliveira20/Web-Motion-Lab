@@ -3,11 +3,10 @@ import { PreviewIcon } from "@/components/lab-detail/preview-icon";
 export function FollowerPointerPreview() {
   return (
     <PreviewIcon>
-      <path
-        d="M12 8 L12 30 L18 25 L22 33 L26 31 L22 23 L30 23 Z"
-        className="text-accent"
-      />
-      <rect x="26" y="30" width="14" height="8" rx="1" strokeDasharray="2 3" />
+      <rect x="10" y="10" width="28" height="24" rx="1" strokeDasharray="3 3" />
+      <g className="text-accent motion-safe:animate-preview-orbit" style={{ transformOrigin: "20px 22px", animationDuration: "5s" }}>
+        <path d="M14 12 L14 28 L19 24 L22 31 L26 29 L23 22 L30 22 Z" />
+      </g>
     </PreviewIcon>
   );
 }
