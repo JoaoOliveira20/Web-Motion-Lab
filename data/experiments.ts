@@ -14,13 +14,23 @@ export interface Experiment {
 
 export const experiments: Experiment[] = [
   {
-    slug: "motion",
-    name: "Presença e Gestures",
+    slug: "motion/presence",
+    name: "Presença",
     library: "Motion",
     category: "Animation",
-    complexity: 2,
+    complexity: 1,
     summary:
-      "Animações declarativas de entrada, saída e resposta a gestures usando AnimatePresence e variants.",
+      "AnimatePresence anima a saída de um elemento antes de removê-lo do DOM — algo que o React sozinho não oferece.",
+    status: "disponivel",
+  },
+  {
+    slug: "motion/gestures",
+    name: "Gestures",
+    library: "Motion",
+    category: "Animation",
+    complexity: 1,
+    summary:
+      "whileHover, whileTap e whileFocus respondem à interação direta, sem listener manual de mouse/touch.",
     status: "disponivel",
   },
   {

@@ -1,5 +1,13 @@
 # Experimento — Motion (Presença e Gestures)
 
+Piloto da reestruturação em exemplos isolados (2026-08-25): o que antes
+era uma página só (`/lab/motion`) virou duas — `/lab/motion/presence` e
+`/lab/motion/gestures` — cada uma com preview próprio no card do
+catálogo. Este documento continua cobrindo os aprendizados da
+biblioteca como um todo; ver
+`docs/decisions/0004-exemplos-isolados-por-preview.md` para o
+raciocínio por trás da divisão.
+
 ## Objetivo
 
 Entender o modelo declarativo de animação da Motion (sucessora da Framer

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Experiment } from "@/data/experiments";
+import { examplePreviews } from "@/components/lab-detail/example-previews";
 import { cn } from "@/lib/cn";
 
 const statusLabel: Record<Experiment["status"], string> = {
@@ -9,6 +10,7 @@ const statusLabel: Record<Experiment["status"], string> = {
 
 export function ExperimentCard({ experiment }: { experiment: Experiment }) {
   const isAvailable = experiment.status === "disponivel";
+  const Preview = examplePreviews[experiment.slug];
 
   const content = (
     <div
@@ -20,6 +22,18 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
       )}
     >
       <div>
+        <div
+          aria-hidden
+          className="mb-5 flex h-28 items-center justify-center overflow-hidden border border-border bg-surface"
+        >
+          {Preview ? (
+            <Preview />
+          ) : (
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/40">
+              {experiment.library}
+            </span>
+          )}
+        </div>
         <div className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.14em] text-muted">
           <span>{experiment.library}</span>
           <span

@@ -1,38 +1,33 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { PresenceDemo } from "@/components/lab/motion/presence-demo";
-import { GestureGrid } from "@/components/lab/motion/gesture-grid";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import {
   animatePresenceApi,
   motionComponentApi,
-  motionGesturesApi,
   useReducedMotionMotionApi,
 } from "@/data/api-docs";
 
 export const metadata: Metadata = {
-  title: "Motion — Presença e Gestures — Web Motion Lab",
+  title: "Motion — Presença — Web Motion Lab",
   description:
-    "Experimento com a biblioteca Motion: animações declarativas de entrada e saída com AnimatePresence, e resposta a gestures do usuário.",
+    "Experimento com a biblioteca Motion: AnimatePresence anima a saída de um elemento antes de removê-lo do DOM.",
 };
 
 const concepts = [
   {
-    term: "Variants",
-    detail: "Estados de animação nomeados e reutilizáveis entre elementos.",
-  },
-  {
     term: "AnimatePresence",
-    detail: "Anima a saída de elementos antes de removê-los do DOM.",
+    detail: "Anima a saída de elementos antes de removê-los do DOM — o React sozinho não permite isso.",
   },
   {
-    term: "Gestures",
-    detail: "whileHover, whileTap e whileFocus respondem à interação direta.",
+    term: "initial / animate / exit",
+    detail: "Três estados descritos como dados; a Motion interpola entre eles, inclusive na saída.",
   },
   {
     term: "useReducedMotion",
-    detail: "Hook nativo que lê prefers-reduced-motion do sistema.",
+    detail: "Hook nativo que lê prefers-reduced-motion do sistema e desliga a animação sem remover a função.",
   },
 ];
 
@@ -41,13 +36,9 @@ const sourceFiles: SourceFileEntry[] = [
     filePath: "lab/motion/presence-demo.tsx",
     apis: [motionComponentApi, animatePresenceApi, useReducedMotionMotionApi],
   },
-  {
-    filePath: "lab/motion/gesture-grid.tsx",
-    apis: [motionComponentApi, motionGesturesApi, useReducedMotionMotionApi],
-  },
 ];
 
-export default function MotionLabPage() {
+export default function MotionPresenceLabPage() {
   return (
     <>
       <BackLink href="/lab" label="Laboratório" />
@@ -56,16 +47,19 @@ export default function MotionLabPage() {
           Motion · Animation
         </p>
         <h1 className="mt-4 font-display text-display font-light tracking-tight">
-          Presença e Gestures
+          Presença
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          Motion (sucessora da Framer Motion) resolve animação declarativa em
-          React: em vez de manipular propriedades de estilo diretamente, o
-          componente descreve estados — e a biblioteca interpola entre eles,
-          incluindo entrada, saída e resposta a gestures.
+          Remover um elemento do React o tira da árvore imediatamente — não
+          sobra tempo para uma animação de saída rodar. O{" "}
+          <code className="mx-1 font-mono text-sm text-accent">
+            AnimatePresence
+          </code>{" "}
+          resolve isso: espera a animação de <code className="mx-1 font-mono text-sm text-accent">exit</code>{" "}
+          terminar antes de deixar o elemento sumir de verdade.
         </p>
 
-        <dl className="mt-10 grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-10 grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">
           {concepts.map((concept) => (
             <div key={concept.term}>
               <dt className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
@@ -76,9 +70,8 @@ export default function MotionLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mt-10 max-w-xl">
           <PresenceDemo />
-          <GestureGrid />
         </div>
 
         <div className="mt-16">
@@ -88,6 +81,18 @@ export default function MotionLabPage() {
           <div className="mt-4">
             <SourceCode files={sourceFiles} />
           </div>
+        </div>
+
+        <div className="mt-16 border-t border-border pt-8">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Outros exemplos de Motion
+          </p>
+          <Link
+            href="/lab/motion/gestures"
+            className="mt-3 inline-block font-display text-xl font-light tracking-tight text-foreground transition-colors hover:text-accent"
+          >
+            Gestures →
+          </Link>
         </div>
       </Container>
     </>
