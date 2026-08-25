@@ -7,7 +7,6 @@ export function LibraryStack() {
     <section id="bibliotecas" className="border-b border-border py-20">
       <Container>
         <SectionHeading
-          index="03"
           eyebrow="Stack"
           title="Bibliotecas do laboratório"
           description="Cada ferramenta tem um propósito específico dentro da pilha — nenhuma é usada só para constar."

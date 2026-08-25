@@ -10,7 +10,6 @@ export interface Experiment {
   complexity: 1 | 2 | 3 | 4 | 5;
   summary: string;
   status: ExperimentStatus;
-  featured?: boolean;
 }
 
 export const experiments: Experiment[] = [
@@ -23,7 +22,6 @@ export const experiments: Experiment[] = [
     summary:
       "Animações declarativas de entrada, saída e resposta a gestures usando AnimatePresence e variants.",
     status: "disponivel",
-    featured: true,
   },
   {
     slug: "gsap",

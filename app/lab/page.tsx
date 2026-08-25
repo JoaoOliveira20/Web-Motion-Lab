@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { experiments } from "@/data/experiments";
 import { compositions } from "@/data/compositions";
+import { libraries } from "@/data/libraries";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
-import { SectionHeading } from "@/components/home/section-heading";
-import { ExperimentCard } from "@/components/home/experiment-card";
-import { CompositionCard } from "@/components/home/composition-card";
+import { LabCatalog } from "@/components/lab-catalog/lab-catalog";
 
 export const metadata: Metadata = {
   title: "Laboratório — Web Motion Lab",
@@ -17,34 +16,24 @@ export default function LabIndexPage() {
     <>
       <BackLink href="/" label="Início" />
       <Container className="mt-8">
-        <SectionHeading
-          index="01"
-          eyebrow="Índice"
-          title="Todos os experimentos"
-          description="Experimentos disponíveis podem ser abertos. Os demais estão planejados nas próximas fases."
-        />
-        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {experiments.map((experiment) => (
-            <li key={experiment.slug}>
-              <ExperimentCard experiment={experiment} />
-            </li>
-          ))}
-        </ul>
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          Índice
+        </p>
+        <h1 className="mt-3 font-display text-display font-light tracking-tight">
+          Todos os experimentos
+        </h1>
+        <p className="mt-4 max-w-sm text-sm text-muted">
+          Experimentos disponíveis podem ser abertos. Os demais estão
+          planejados nas próximas fases. Composições usam mais de uma
+          biblioteca — filtrar por uma delas mostra as duas listas.
+        </p>
 
-        <div className="mt-20">
-          <SectionHeading
-            index="02"
-            eyebrow="Fase 5"
-            title="Composições"
-            description="Pares de bibliotecas combinadas para estudar integração — não é obrigação usar todas juntas, é entender como duas convivem."
+        <div className="mt-10">
+          <LabCatalog
+            experiments={experiments}
+            compositions={compositions}
+            libraries={libraries}
           />
-          <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {compositions.map((composition) => (
-              <li key={composition.slug}>
-                <CompositionCard composition={composition} />
-              </li>
-            ))}
-          </ul>
         </div>
       </Container>
     </>

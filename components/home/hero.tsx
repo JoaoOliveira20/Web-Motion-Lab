@@ -12,7 +12,7 @@ export function Hero() {
     <section className="relative overflow-hidden border-b border-border pb-20 pt-16 md:pt-24">
       <Container>
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-          Laboratório experimental de front-end · 01
+          Laboratório experimental de front-end
         </p>
 
         <h1 className="mt-6 font-display text-hero font-light leading-[0.92] tracking-tight">

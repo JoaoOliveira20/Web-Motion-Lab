@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { experiments } from "@/data/experiments";
 import { Container } from "@/components/layout/container";
 import { SectionHeading } from "@/components/home/section-heading";
@@ -8,7 +9,6 @@ export function ExperimentsGrid() {
     <section id="experimentos" className="border-b border-border py-20">
       <Container>
         <SectionHeading
-          index="02"
           eyebrow="Experimentos"
           title="Laboratórios isolados"
           description="Cada experimento estuda uma biblioteca em contexto próprio, antes de qualquer combinação."
@@ -20,6 +20,14 @@ export function ExperimentsGrid() {
             </li>
           ))}
         </ul>
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/lab"
+            className="inline-flex h-14 items-center justify-center border border-foreground px-8 font-mono text-xs uppercase tracking-[0.14em] transition-colors hover:border-accent hover:text-accent"
+          >
+            Ver todos os laboratórios
+          </Link>
+        </div>
       </Container>
     </section>
   );
