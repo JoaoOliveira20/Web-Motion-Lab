@@ -24,10 +24,7 @@ export function ExperimentsGrid() {
   return (
     <section id="experimentos" className="border-b border-border py-20">
       <Container>
-        <SectionHeading
-          title="Laboratórios isolados"
-          description="Uma amostra das 16 bibliotecas — cada experimento estuda uma em contexto próprio, antes de qualquer combinação."
-        />
+        <SectionHeading title="Laboratórios isolados" />
         <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featuredExperiments.map((experiment) => (
             <li key={experiment.slug}>
