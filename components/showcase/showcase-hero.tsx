@@ -30,10 +30,8 @@ export function ShowcaseHero() {
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
         Fase 6 · Showcase
       </p>
-      <h1 className="mt-6 font-display text-hero font-light leading-[0.92] tracking-tight">
-        Dezesseis bibliotecas.
-        <br />
-        Uma escolha por vez.
+      <h1 className="mt-6 max-w-3xl font-display text-display font-light leading-[1.05] tracking-tight">
+        Dezesseis bibliotecas. Uma escolha por vez.
       </h1>
       <p className="mt-8 max-w-xl text-lg text-muted md:text-xl">
         Este laboratório testou{" "}
