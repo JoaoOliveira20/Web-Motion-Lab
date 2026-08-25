@@ -29,6 +29,7 @@ import { NetPreview } from "@/components/lab/vanta/net-preview";
 import { DotsPreview } from "@/components/lab/vanta/dots-preview";
 import { WireframePreview } from "@/components/lab/three/wireframe-preview";
 import { PointWavePreview } from "@/components/lab/three/point-wave-preview";
+import { CubePreview } from "@/components/lab/spline/cube-preview";
 
 export const examplePreviews: Record<string, ComponentType> = {
   "motion/presence": PresencePreview,
@@ -61,4 +62,5 @@ export const examplePreviews: Record<string, ComponentType> = {
   "vanta/dots": DotsPreview,
   "three/wireframe": WireframePreview,
   "three/point-wave": PointWavePreview,
+  spline: CubePreview,
 };
