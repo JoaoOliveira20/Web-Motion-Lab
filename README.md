@@ -31,6 +31,14 @@ pnpm dev
 - `pnpm lint` — ESLint
 - `pnpm exec tsc --noEmit` — checagem de tipos
 
+## Deploy
+
+Favicon, ícone de tela inicial e imagem de Open Graph/Twitter Card são
+gerados em build (`app/icon.tsx`, `app/apple-icon.tsx`,
+`app/opengraph-image.tsx`, via `next/og`). Antes de publicar em um
+domínio real, defina `metadataBase` em `app/layout.tsx` — sem isso, as
+imagens de compartilhamento social resolvem para `localhost`.
+
 ## Estrutura
 
 ```text

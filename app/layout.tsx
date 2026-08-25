@@ -20,10 +20,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = "Web Motion Lab";
+const description =
+  "Laboratório experimental de front-end para estudar, comparar e combinar bibliotecas modernas de animação, UI, scroll e 3D.";
+
 export const metadata: Metadata = {
-  title: "Web Motion Lab",
-  description:
-    "Laboratório experimental de front-end para estudar, comparar e combinar bibliotecas modernas de animação, UI, scroll e 3D.",
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    siteName: title,
+    type: "website",
+    locale: "pt_BR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

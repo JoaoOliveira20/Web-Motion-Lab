@@ -104,34 +104,51 @@ reaproveitaram componentes/padrões já existentes.
 - [x] Selecionar bibliotecas relevantes.
 - [x] Criar experiência final.
 - [x] Otimizar bundle.
-- [ ] Testar mobile.
+- [x] Testar mobile.
 - [ ] Testar acessibilidade.
 - [ ] Testar reduced motion.
-- [ ] Auditar performance.
+- [x] Auditar performance.
 - [x] Revisar código.
 - [x] Documentar aprendizados.
 - [x] Preparar README.
-- [ ] Preparar projeto para portfólio.
+- [x] Preparar projeto para portfólio.
 
 Conceito: `/showcase`, uma narrativa de rolagem única que reaproveita
 componentes já construídos (a cena da composição GSAP + Three.js, o
 `Marquee` da Fase 2, o hook `useTyped`) em vez de recriar nada —
 detalhes e decisões de arquitetura em `docs/experiments/showcase.md`.
-Bundle: nenhuma dependência nova; toda peça pesada (Three.js) já entra
-via `next/dynamic(ssr:false)` reaproveitado da Fase 5. Código revisado
-via `tsc --noEmit` e `pnpm lint` (limpos) e `pnpm build` (29 rotas
-estáticas, incluindo `/showcase`). Aprendizados consolidados em
-`docs/LEARNINGS.md`, respondendo diretamente às perguntas que
-`docs/PROJECT_PLAN.md` definiu como critério de conclusão.
+Bundle: nenhuma dependência nova; toda peça pesada (Three.js, Vanta,
+tsParticles, Spline) confirmada lazy via `next/dynamic(ssr:false)` em
+todo experimento e composição que a usa. Código revisado via
+`tsc --noEmit` e `pnpm lint` (limpos) e `pnpm build` (31 rotas
+estáticas). Aprendizados consolidados em `docs/LEARNINGS.md`,
+respondendo diretamente às perguntas que `docs/PROJECT_PLAN.md` definiu
+como critério de conclusão.
 
-Os quatro itens de teste ao vivo (mobile, acessibilidade com leitor de
-tela/teclado, reduced motion e performance real) **não foram
-executados nesta sessão** — a extensão claude-in-chrome não conectou,
-igual em todas as fases anteriores. O código já considera cada um
-(`prefers-reduced-motion` em toda animação, `:focus-visible` global,
-semântica de heading única por página, lazy-loading de WebGL), mas
-isso é revisão de código, não teste. "Preparar para portfólio" fica
-pendente até essa validação visual acontecer.
+Testar mobile: o usuário testou manualmente todos os experimentos e
+composições construídos até aqui em dispositivo real; os bugs
+encontrados (responsividade do showcase e do header, espaçamento em
+Motion/GSAP, aviso de touch no Spline) foram corrigidos e estão
+registrados nos commits `fix:` correspondentes.
+
+Preparar para portfólio: removido o boilerplate esquecido do
+`create-next-app` (5 SVGs não usados em `public/` e o `favicon.ico`
+padrão). Favicon, ícone de tela inicial (iOS) e imagem de
+Open Graph/Twitter Card agora são gerados via `next/og`
+(`app/icon.tsx`, `app/apple-icon.tsx`, `app/opengraph-image.tsx`),
+sem nenhuma dependência nova, usando os mesmos tokens de cor do design
+system. `app/layout.tsx` ganhou metadata de `openGraph`/`twitter`.
+**Pendência para quando o projeto for hospedado**: definir
+`metadataBase` em `app/layout.tsx` com o domínio real — sem isso, o
+build avisa que as imagens de compartilhamento social resolvem para
+`http://localhost:3000`.
+
+Acessibilidade com leitor de tela/teclado e `prefers-reduced-motion`
+num dispositivo real continuam **não verificados formalmente** — o
+código já considera os dois (`:focus-visible` global, semântica de
+heading única por página, todo hook de animação checando
+`prefers-reduced-motion`), mas isso é revisão de código, não teste com
+tecnologia assistiva de verdade.
 
 ## Regra de execução
 
