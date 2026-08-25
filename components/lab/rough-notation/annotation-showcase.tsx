@@ -73,7 +73,10 @@ export function AnnotationShowcase() {
   };
 
   return (
-    <div ref={containerRef} className="border border-border p-6">
+    <div
+      ref={containerRef}
+      className="aspect-[1.618/1] overflow-y-auto border border-border p-6"
+    >
       <div className="flex items-center justify-between">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
           annotate() + annotationGroup()

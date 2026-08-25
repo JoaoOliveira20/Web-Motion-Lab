@@ -32,7 +32,7 @@ export function LoopTypedDemo() {
   useTyped(prefersReducedMotion ? { current: null } : targetRef, options);
 
   return (
-    <div className="border border-border p-6">
+    <div className="aspect-[1.618/1] overflow-y-auto border border-border p-6">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         new Typed(elemento, options)
       </p>
