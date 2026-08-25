@@ -3,6 +3,8 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { BorderBeamShowcase } from "@/components/lab/magic-ui/border-beam-showcase";
 import { MarqueeShowcase } from "@/components/lab/magic-ui/marquee-showcase";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { motionComponentApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Magic UI — Componentes Visuais — Web Motion Lab",
@@ -26,6 +28,16 @@ const concepts = [
   {
     term: "reduced motion automático",
     detail: "A regra global de app/globals.css já reduz animações CSS a 1 iteração; BorderBeam (JS) precisa de tratamento próprio.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/magic-ui/border-beam.tsx",
+    apis: [motionComponentApi],
+  },
+  {
+    filePath: "lab/magic-ui/marquee.tsx",
   },
 ];
 
@@ -62,6 +74,15 @@ export default function MagicUiLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <BorderBeamShowcase />
           <MarqueeShowcase />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

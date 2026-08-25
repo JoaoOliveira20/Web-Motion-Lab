@@ -4,6 +4,7 @@ import { BackLink } from "@/components/navigation/back-link";
 import { AnnotationShowcase } from "@/components/lab/rough-notation/annotation-showcase";
 import { HoverAnnotation } from "@/components/lab/rough-notation/hover-annotation";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { annotateApi, annotationGroupApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Rough Notation — Anotações Manuscritas — Web Motion Lab",
@@ -30,21 +31,10 @@ const concepts = [
   },
 ];
 
-const annotateApi = {
-  name: "annotate()",
-  href: "https://roughnotation.com/",
-};
-
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/rough-notation/annotation-showcase.tsx",
-    apis: [
-      annotateApi,
-      {
-        name: "annotationGroup()",
-        href: "https://roughnotation.com/",
-      },
-    ],
+    apis: [annotateApi, annotationGroupApi],
   },
   {
     filePath: "lab/rough-notation/hover-annotation.tsx",

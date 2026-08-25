@@ -4,6 +4,12 @@ import { BackLink } from "@/components/navigation/back-link";
 import { PresenceDemo } from "@/components/lab/motion/presence-demo";
 import { GestureGrid } from "@/components/lab/motion/gesture-grid";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import {
+  animatePresenceApi,
+  motionComponentApi,
+  motionGesturesApi,
+  useReducedMotionMotionApi,
+} from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Motion — Presença e Gestures — Web Motion Lab",
@@ -30,37 +36,14 @@ const concepts = [
   },
 ];
 
-const motionComponentApi = {
-  name: "motion",
-  href: "https://motion.dev/docs/react-motion-component",
-};
-const useReducedMotionApi = {
-  name: "useReducedMotion",
-  href: "https://motion.dev/docs/react-use-reduced-motion",
-};
-
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/motion/presence-demo.tsx",
-    apis: [
-      motionComponentApi,
-      {
-        name: "AnimatePresence",
-        href: "https://motion.dev/docs/react-animate-presence",
-      },
-      useReducedMotionApi,
-    ],
+    apis: [motionComponentApi, animatePresenceApi, useReducedMotionMotionApi],
   },
   {
     filePath: "lab/motion/gesture-grid.tsx",
-    apis: [
-      motionComponentApi,
-      {
-        name: "Gestures (whileHover/whileTap/whileFocus)",
-        href: "https://motion.dev/docs/react-gestures",
-      },
-      useReducedMotionApi,
-    ],
+    apis: [motionComponentApi, motionGesturesApi, useReducedMotionMotionApi],
   },
 ];
 

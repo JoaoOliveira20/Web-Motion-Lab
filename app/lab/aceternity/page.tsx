@@ -7,6 +7,8 @@ import {
   TextRevealCardDescription,
 } from "@/components/lab/aceternity/text-reveal-card";
 import { FollowerPointerCard } from "@/components/lab/aceternity/following-pointer-card";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { animatePresenceApi, motionComponentApi, useMotionValueApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Aceternity — Efeitos Avançados — Web Motion Lab",
@@ -30,6 +32,17 @@ const concepts = [
   {
     term: "touch vs. pointer",
     detail: "O original usava eventos de mouse e touch separados; unificados aqui em Pointer Events.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/aceternity/text-reveal-card.tsx",
+    apis: [motionComponentApi],
+  },
+  {
+    filePath: "lab/aceternity/following-pointer-card.tsx",
+    apis: [motionComponentApi, animatePresenceApi, useMotionValueApi],
   },
 ];
 
@@ -93,6 +106,15 @@ export default function AceternityLabPage() {
                 mova o ponteiro dentro desta área
               </p>
             </FollowerPointerCard>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
           </div>
         </div>
       </Container>

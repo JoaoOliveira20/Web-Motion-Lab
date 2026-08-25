@@ -4,6 +4,7 @@ import { BackLink } from "@/components/navigation/back-link";
 import { SmoothScrollDemo } from "@/components/lab/lenis/smooth-scroll-demo";
 import { ScrollToDemo } from "@/components/lab/lenis/scroll-to-demo";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { lenisScrollToApi, reactLenisApi, useLenisApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Lenis — Scroll Suave — Web Motion Lab",
@@ -30,15 +31,6 @@ const concepts = [
   },
 ];
 
-const reactLenisApi = {
-  name: "ReactLenis",
-  href: "https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md",
-};
-const useLenisApi = {
-  name: "useLenis()",
-  href: "https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md",
-};
-
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/lenis/smooth-scroll-demo.tsx",
@@ -46,13 +38,7 @@ const sourceFiles: SourceFileEntry[] = [
   },
   {
     filePath: "lab/lenis/scroll-to-demo.tsx",
-    apis: [
-      useLenisApi,
-      {
-        name: "lenis.scrollTo()",
-        href: "https://github.com/darkroomengineering/lenis/blob/main/README.md#methods",
-      },
-    ],
+    apis: [useLenisApi, lenisScrollToApi],
   },
 ];
 

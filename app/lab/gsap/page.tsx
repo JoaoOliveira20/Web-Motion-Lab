@@ -4,6 +4,7 @@ import { BackLink } from "@/components/navigation/back-link";
 import { TimelineDemo } from "@/components/lab/gsap/timeline-demo";
 import { ScrollTriggerDemo } from "@/components/lab/gsap/scroll-trigger-demo";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { gsapTimelineApi, scrollTriggerApi, useGsapApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "GSAP — Timelines Sequenciadas — Web Motion Lab",
@@ -30,31 +31,14 @@ const concepts = [
   },
 ];
 
-const useGsapApi = {
-  name: "useGSAP()",
-  href: "https://gsap.com/resources/React/",
-};
-
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/gsap/timeline-demo.tsx",
-    apis: [
-      {
-        name: "gsap.timeline()",
-        href: "https://gsap.com/docs/v3/GSAP/gsap.timeline()/",
-      },
-      useGsapApi,
-    ],
+    apis: [gsapTimelineApi, useGsapApi],
   },
   {
     filePath: "lab/gsap/scroll-trigger-demo.tsx",
-    apis: [
-      {
-        name: "ScrollTrigger",
-        href: "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
-      },
-      useGsapApi,
-    ],
+    apis: [scrollTriggerApi, useGsapApi],
   },
 ];
 

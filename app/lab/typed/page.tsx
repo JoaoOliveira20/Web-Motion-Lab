@@ -4,6 +4,7 @@ import { BackLink } from "@/components/navigation/back-link";
 import { LoopTypedDemo } from "@/components/lab/typed/loop-typed-demo";
 import { TerminalTypedDemo } from "@/components/lab/typed/terminal-typed-demo";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { typedClassApi, typedMethodsApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Typed.js — Texto Digitado — Web Motion Lab",
@@ -30,23 +31,13 @@ const concepts = [
   },
 ];
 
-const typedClassApi = {
-  name: "new Typed(el, options)",
-  href: "https://mattboldt.github.io/typed.js/docs/class/src/typed.js~Typed.html",
-};
-
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/typed/loop-typed-demo.tsx",
   },
   {
     filePath: "lab/typed/terminal-typed-demo.tsx",
-    apis: [
-      {
-        name: ".toggle() / .reset() / .destroy()",
-        href: "https://mattboldt.github.io/typed.js/docs/class/src/typed.js~Typed.html",
-      },
-    ],
+    apis: [typedMethodsApi],
   },
   {
     filePath: "use-typed.ts",

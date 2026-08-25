@@ -3,6 +3,8 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SpotlightCard } from "@/components/lab/react-bits/spotlight-card";
 import { TiltedCard } from "@/components/lab/react-bits/tilted-card";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { motionComponentApi, useMotionValueApi, useSpringApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "React Bits — Efeitos de Componente — Web Motion Lab",
@@ -41,6 +43,16 @@ const spotlightNotes = [
   {
     title: "currentColor evitado",
     detail: "A cor usa color-mix() com o token --accent, então respeita o tema claro/escuro automaticamente.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/react-bits/spotlight-card.tsx",
+  },
+  {
+    filePath: "lab/react-bits/tilted-card.tsx",
+    apis: [motionComponentApi, useMotionValueApi, useSpringApi],
   },
 ];
 
@@ -107,6 +119,15 @@ export default function ReactBitsLabPage() {
                 da rotação do cartão.
               </p>
             </TiltedCard>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
           </div>
         </div>
       </Container>

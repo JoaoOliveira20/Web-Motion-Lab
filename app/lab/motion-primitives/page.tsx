@@ -3,6 +3,8 @@ import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { MagneticShowcase } from "@/components/lab/motion-primitives/magnetic-showcase";
 import { InViewShowcase } from "@/components/lab/motion-primitives/in-view-showcase";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
+import { motionComponentApi, useInViewApi, useMotionValueApi, useSpringApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Motion Primitives — Padrões Reutilizáveis — Web Motion Lab",
@@ -26,6 +28,23 @@ const concepts = [
   {
     term: "once + margin",
     detail: "viewOptions controla se a animação repete e quão cedo ela dispara antes do elemento entrar.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/motion-primitives/magnetic.tsx",
+    apis: [motionComponentApi, useMotionValueApi, useSpringApi],
+  },
+  {
+    filePath: "lab/motion-primitives/magnetic-showcase.tsx",
+  },
+  {
+    filePath: "lab/motion-primitives/in-view.tsx",
+    apis: [motionComponentApi, useInViewApi],
+  },
+  {
+    filePath: "lab/motion-primitives/in-view-showcase.tsx",
   },
 ];
 
@@ -62,6 +81,15 @@ export default function MotionPrimitivesLabPage() {
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <MagneticShowcase />
           <InViewShowcase />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>
