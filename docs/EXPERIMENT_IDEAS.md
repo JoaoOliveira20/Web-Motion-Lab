@@ -11,10 +11,23 @@ feita abaixo (com link para o doc).
 
 ## Feitas
 
-- [x] **Lenis + Three.js — câmera por scroll direto.** `lenis.progress`
-  move a câmera sem GSAP no meio — pergunta se o intermediário da
-  composição GSAP + Three.js era necessário. Ver
-  `docs/experiments/compose-lenis-three.md`.
+Nenhuma ainda — a primeira tentativa (ver "Descartadas" abaixo) não
+sobreviveu à própria régua do laboratório.
+
+## Descartadas
+
+- **Lenis + Three.js — câmera por scroll direto.** Implementada e
+  removida na mesma sessão. `lenis.progress` movendo a câmera direto
+  (sem GSAP) funcionava e o código era mais curto, mas o resultado
+  visual pra quem visita o site era idêntico ao experimento GSAP +
+  Three.js — mesma cena, mesmo mecanismo, só a fonte do valor mudava.
+  Mecanismo interno diferente não é experiência diferente; não
+  justificava uma composição própria. A resposta à pergunta que
+  motivou ("o GSAP era necessário aqui?") ficou registrada como nota em
+  `docs/experiments/compose-gsap-three.md` em vez de virar página
+  separada. Lição pra próxima ideia: antes de construir, checar se o
+  resultado final looks & feels diferente de algo que já existe — não
+  só se o código por baixo é diferente.
 
 ## Backlog
 

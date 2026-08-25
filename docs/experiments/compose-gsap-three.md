@@ -121,8 +121,18 @@ interpretação por cima.
   markers, múltiplos triggers) não é necessário — `timeline.progress()`
   com um listener de scroll é mais simples e mais fácil de depurar.
 
-## Alternativas
+## O GSAP era mesmo necessário aqui?
 
-Ver `docs/experiments/compose-lenis-three.md` para a mesma cena 3D
-controlada sem nenhum GSAP — `lenis.progress` direto no lugar de
-`timeline.progress()`.
+Chegamos a montar uma composição Lenis + Three.js só pra testar: em vez
+de `timeline.progress(scroll)`, usar `lenis.progress` (a própria
+instância do Lenis já expõe o progresso normalizado de 0 a 1) direto em
+`camera.position`/`mesh.rotation`. Funcionava, e o código era um pouco
+mais curto — mas o resultado final, pra quem visita o site, era
+visualmente idêntico a este experimento: mesma cena, mesmo mecanismo de
+"um valor de 0 a 1 move a câmera", só trocando de onde vem o valor. Não
+justificava uma composição própria, então foi descartada (registrado em
+`docs/EXPERIMENT_IDEAS.md`) — mas a resposta fica registrada aqui: para
+mover uma única propriedade com um único valor, o GSAP não é
+estritamente necessário. Ele volta a valer a pena quando entra `scrub`
+pronto (suavização) ou coreografia de múltiplos alvos em tempos
+diferentes — nenhum dos dois é o caso deste experimento.

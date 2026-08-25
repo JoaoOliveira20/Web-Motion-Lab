@@ -65,12 +65,4 @@ export const compositions: Composition[] = [
       "ScrollTrigger substitui o IntersectionObserver do experimento original — annotate() chamado por callbacks de timeline.",
     status: "disponivel",
   },
-  {
-    slug: "lenis-three",
-    name: "Câmera por scroll direto",
-    libraries: ["Lenis", "Three.js"],
-    summary:
-      "lenis.progress move a câmera direto, sem GSAP no meio — a mesma pergunta da composição GSAP + Three.js, resposta oposta.",
-    status: "disponivel",
-  },
 ];
