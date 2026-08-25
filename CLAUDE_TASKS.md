@@ -100,18 +100,38 @@ reaproveitaram componentes/padrões já existentes.
 
 ## Fase 6 — Showcase
 
-- [ ] Definir conceito final.
-- [ ] Selecionar bibliotecas relevantes.
-- [ ] Criar experiência final.
-- [ ] Otimizar bundle.
+- [x] Definir conceito final.
+- [x] Selecionar bibliotecas relevantes.
+- [x] Criar experiência final.
+- [x] Otimizar bundle.
 - [ ] Testar mobile.
 - [ ] Testar acessibilidade.
 - [ ] Testar reduced motion.
 - [ ] Auditar performance.
-- [ ] Revisar código.
-- [ ] Documentar aprendizados.
-- [ ] Preparar README.
+- [x] Revisar código.
+- [x] Documentar aprendizados.
+- [x] Preparar README.
 - [ ] Preparar projeto para portfólio.
+
+Conceito: `/showcase`, uma narrativa de rolagem única que reaproveita
+componentes já construídos (a cena da composição GSAP + Three.js, o
+`Marquee` da Fase 2, o hook `useTyped`) em vez de recriar nada —
+detalhes e decisões de arquitetura em `docs/experiments/showcase.md`.
+Bundle: nenhuma dependência nova; toda peça pesada (Three.js) já entra
+via `next/dynamic(ssr:false)` reaproveitado da Fase 5. Código revisado
+via `tsc --noEmit` e `pnpm lint` (limpos) e `pnpm build` (29 rotas
+estáticas, incluindo `/showcase`). Aprendizados consolidados em
+`docs/LEARNINGS.md`, respondendo diretamente às perguntas que
+`docs/PROJECT_PLAN.md` definiu como critério de conclusão.
+
+Os quatro itens de teste ao vivo (mobile, acessibilidade com leitor de
+tela/teclado, reduced motion e performance real) **não foram
+executados nesta sessão** — a extensão claude-in-chrome não conectou,
+igual em todas as fases anteriores. O código já considera cada um
+(`prefers-reduced-motion` em toda animação, `:focus-visible` global,
+semântica de heading única por página, lazy-loading de WebGL), mas
+isso é revisão de código, não teste. "Preparar para portfólio" fica
+pendente até essa validação visual acontecer.
 
 ## Regra de execução
 

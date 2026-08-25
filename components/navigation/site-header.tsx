@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 
 const navLinks = [
+  { href: "/showcase", label: "Showcase" },
   { href: "/lab", label: "Laboratório" },
   { href: "/#bibliotecas", label: "Bibliotecas" },
 ];
