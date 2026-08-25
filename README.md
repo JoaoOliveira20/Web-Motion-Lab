@@ -5,8 +5,9 @@ para estudar, comparar e combinar bibliotecas modernas de animação, UI,
 scroll, partículas e 3D.
 
 Ver `docs/PROJECT_PLAN.md` para a visão completa, `CLAUDE_TASKS.md` para
-o checklist de execução e `docs/LEARNINGS.md` para a síntese final de
-qual biblioteca escolher em cada situação.
+o checklist de execução, `docs/LEARNINGS.md` para a síntese final de
+qual biblioteca escolher em cada situação, e `docs/EXPERIMENT_IDEAS.md`
+para o backlog de próximos experimentos.
 
 `/showcase` é a peça final do laboratório: uma narrativa de rolagem
 única que reaproveita experimentos e composições já construídos.

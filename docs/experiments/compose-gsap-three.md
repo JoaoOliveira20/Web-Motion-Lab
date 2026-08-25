@@ -120,3 +120,9 @@ interpretação por cima.
   controlar uma timeline e o comportamento de `ScrollTrigger` (pin,
   markers, múltiplos triggers) não é necessário — `timeline.progress()`
   com um listener de scroll é mais simples e mais fácil de depurar.
+
+## Alternativas
+
+Ver `docs/experiments/compose-lenis-three.md` para a mesma cena 3D
+controlada sem nenhum GSAP — `lenis.progress` direto no lugar de
+`timeline.progress()`.
