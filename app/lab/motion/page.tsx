@@ -40,10 +40,12 @@ const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/motion/presence-demo.tsx",
     apis: [motionComponentApi, animatePresenceApi, useReducedMotionMotionApi],
+    copyable: true,
   },
   {
     filePath: "lab/motion/gesture-grid.tsx",
     apis: [motionComponentApi, motionGesturesApi, useReducedMotionMotionApi],
+    copyable: true,
   },
 ];
 

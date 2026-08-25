@@ -1,14 +1,16 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ApiReferenceList, type ApiReference } from "@/components/lab-detail/api-reference-list";
+import { CopyCodeButton } from "@/components/lab-detail/copy-code-button";
 
 export interface SourceFileEntry {
   filePath: string;
   dir?: "components" | "hooks" | "lib";
   apis?: ApiReference[];
+  copyable?: boolean;
 }
 
-async function SourceFile({ filePath, dir = "components", apis }: SourceFileEntry) {
+async function SourceFile({ filePath, dir = "components", apis, copyable }: SourceFileEntry) {
   const code = await readFile(
     dir === "hooks"
       ? join(process.cwd(), "hooks", filePath)
@@ -34,12 +36,15 @@ async function SourceFile({ filePath, dir = "components", apis }: SourceFileEntr
             <ApiReferenceList apis={apis} />
           </div>
         ) : null}
-        <pre
-          tabIndex={0}
-          className="overflow-x-auto bg-surface p-4 text-xs leading-relaxed"
-        >
-          <code className="font-mono">{code}</code>
-        </pre>
+        <div className="relative">
+          <pre
+            tabIndex={0}
+            className="overflow-x-auto bg-surface p-4 pr-14 text-xs leading-relaxed"
+          >
+            <code className="font-mono">{code}</code>
+          </pre>
+          {copyable ? <CopyCodeButton code={code} /> : null}
+        </div>
       </div>
     </details>
   );
