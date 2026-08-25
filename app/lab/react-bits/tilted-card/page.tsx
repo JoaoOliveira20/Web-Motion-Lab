@@ -56,7 +56,7 @@ export default function ReactBitsTiltedCardLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <TiltedCard caption="rotateX / rotateY" className="aspect-[1.618/1]">
             <p className="font-mono text-xs text-accent">Física de mola</p>
             <p className="mt-2 text-sm text-muted">

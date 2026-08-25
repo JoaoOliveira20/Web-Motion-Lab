@@ -62,7 +62,7 @@ export default function AceternityFollowerPointerLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 max-w-2xl">
+        <div className="mt-10">
           <FollowerPointerCard
             label="cursor: none"
             className="flex aspect-[1.618/1] items-center justify-center border border-border bg-surface"
