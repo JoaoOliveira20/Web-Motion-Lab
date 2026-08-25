@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TsParticlesLazySection } from "@/components/lab/tsparticles/lazy-section";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "tsParticles — Sistema de Partículas — Web Motion Lab",
@@ -25,6 +26,30 @@ const concepts = [
   {
     term: "particles.paint.fill.color",
     detail: "A cor não vem de CSS — é lida de --accent/--muted via getComputedStyle e passada como string ao Canvas.",
+  },
+];
+
+const tsparticlesReactApi = {
+  name: "ParticlesProvider / loadSlim / <Particles>",
+  href: "https://particles.js.org/guide/wrappers-react",
+};
+const tsparticlesOptionsApi = {
+  name: "interactivity (repulse/push/grab)",
+  href: "https://particles.js.org/options/",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/tsparticles/particles-provider.tsx",
+    apis: [tsparticlesReactApi],
+  },
+  {
+    filePath: "lab/tsparticles/repulse-field.tsx",
+    apis: [tsparticlesReactApi, tsparticlesOptionsApi],
+  },
+  {
+    filePath: "lab/tsparticles/grab-field.tsx",
+    apis: [tsparticlesReactApi, tsparticlesOptionsApi],
   },
 ];
 
@@ -59,6 +84,15 @@ export default function TsParticlesLabPage() {
 
         <div className="mt-10">
           <TsParticlesLazySection />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

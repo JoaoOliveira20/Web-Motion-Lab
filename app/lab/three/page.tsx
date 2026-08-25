@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { ThreeLazySection } from "@/components/lab/three/lazy-section";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Three.js — Cena WebGL Programável — Web Motion Lab",
@@ -25,6 +26,35 @@ const concepts = [
   {
     term: "dispose()",
     detail: "Geometria, material e renderer cada um precisa de limpeza própria — nenhuma é automática.",
+  },
+];
+
+const perspectiveCameraApi = {
+  name: "PerspectiveCamera",
+  href: "https://threejs.org/docs/#api/en/cameras/PerspectiveCamera",
+};
+const webglRendererApi = {
+  name: "WebGLRenderer",
+  href: "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
+};
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/three/wireframe-scene.tsx",
+    apis: [perspectiveCameraApi, webglRendererApi],
+  },
+  {
+    filePath: "lab/three/point-wave-scene.tsx",
+    apis: [
+      {
+        name: "BufferGeometry",
+        href: "https://threejs.org/docs/#api/en/core/BufferGeometry",
+      },
+      {
+        name: "Points",
+        href: "https://threejs.org/docs/#api/en/objects/Points",
+      },
+    ],
   },
 ];
 
@@ -62,6 +92,15 @@ export default function ThreeLabPage() {
 
         <div className="mt-10">
           <ThreeLazySection />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

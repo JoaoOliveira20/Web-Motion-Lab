@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyCubeScene } from "@/components/lab/spline/lazy-cube-scene";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Spline — Cena 3D Colaborativa — Web Motion Lab",
@@ -25,6 +26,18 @@ const concepts = [
   {
     term: "Manipulação direta",
     detail: "object.rotation.y += x muda a cena em tempo real — sem re-renderizar nenhum componente React.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/spline/cube-scene.tsx",
+    apis: [
+      {
+        name: "<Spline onLoad findObjectByName onSplineMouseDown>",
+        href: "https://docs.spline.design/d16ba1312b9546b9b0339b159a54d96e",
+      },
+    ],
   },
 ];
 
@@ -60,6 +73,15 @@ export default function SplineLabPage() {
 
         <div className="mt-10">
           <LazyCubeScene />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>

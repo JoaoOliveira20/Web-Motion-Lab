@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { VantaLazySection } from "@/components/lab/vanta/lazy-section";
+import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
   title: "Vanta — Background WebGL — Web Motion Lab",
@@ -25,6 +26,17 @@ const concepts = [
   {
     term: "Sem tipos oficiais",
     detail: "Vanta não publica .d.ts — os tipos usados aqui foram escritos localmente em types/vanta.d.ts.",
+  },
+];
+
+const sourceFiles: SourceFileEntry[] = [
+  {
+    filePath: "lab/vanta/net-background.tsx",
+    apis: [{ name: "VANTA.NET()", href: "https://www.vantajs.com/?effect=net" }],
+  },
+  {
+    filePath: "lab/vanta/dots-background.tsx",
+    apis: [{ name: "VANTA.DOTS()", href: "https://www.vantajs.com/?effect=dots" }],
   },
 ];
 
@@ -62,6 +74,15 @@ export default function VantaLabPage() {
 
         <div className="mt-10">
           <VantaLazySection />
+        </div>
+
+        <div className="mt-16">
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            Código-fonte e APIs usadas
+          </p>
+          <div className="mt-4">
+            <SourceCode files={sourceFiles} />
+          </div>
         </div>
       </Container>
     </>
