@@ -47,7 +47,7 @@ export function TimelineDemo() {
 
   return (
     <div ref={containerRef} className="border border-border p-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
           gsap.timeline()
         </p>
@@ -61,7 +61,7 @@ export function TimelineDemo() {
         </button>
       </div>
 
-      <div className="mt-8 flex h-32 items-end gap-3">
+      <div className="mt-8 flex h-32 items-end gap-3 overflow-hidden">
         {steps.map((step) => (
           <div
             key={step}

@@ -51,6 +51,39 @@ Isso significa abrir mão de recursos adicionados na 2.x (não
 investigados, já que não eram necessários para este experimento) até que
 o bug upstream seja corrigido.
 
+## Bug de mobile: aviso de intervenção do navegador ao tocar no cubo
+
+Ao testar no celular (2026-08-25), o console mostrava:
+
+```
+[Intervention] Ignored attempt to cancel a touchend event with
+cancelable=false, for example because scrolling is in progress and
+cannot be interrupted.
+```
+
+Não é um erro do nosso código — é o Chrome recusando um
+`preventDefault()` chamado pelo próprio `@splinetool/runtime` num
+evento de toque, depois que o navegador já assumiu que aquele gesto era
+scroll de página. O runtime do Spline anexa seus próprios listeners de
+toque ao `<canvas>` para permitir arrastar/girar a cena (controles de
+órbita embutidos na cena, fora do nosso controle); sem nenhum sinal
+prévio de que aquele elemento deveria capturar o gesto, o navegador às
+vezes já começou a rolar a página antes do runtime conseguir interceptar
+— e nesse ponto o toque já não é mais cancelável. Mesma classe de
+problema documentada na própria issue
+[`splinetool/react-spline#199`](https://github.com/splinetool/react-spline/issues/199)
+(listener não-passivo no touchstart).
+
+**Correção**: `touch-action: none` (`className="... touch-none"`) no
+próprio `<Spline>`, que também é o elemento que recebe o `className`
+do `<canvas>`. Isso avisa o navegador, antes de qualquer toque
+acontecer, que aquele elemento controla o próprio gesto — o navegador
+nunca inicia o scroll de página ali, então o runtime nunca precisa
+cancelar um toque que já virou scroll. Efeito colateral aceito: rolar a
+página tocando diretamente sobre o cubo deixa de funcionar (é preciso
+tocar fora dele) — comportamento padrão de qualquer widget 3D/mapa
+interativo embutido numa página.
+
 ## Componentes construídos
 
 - **CubeScene**: carrega a cena, localiza o objeto `"Cube"` via
@@ -88,6 +121,11 @@ o bug upstream seja corrigido.
   isso precisa ser revisitado quando a issue #239 for corrigida.
 - Sem acesso ao editor do Spline, não é possível demonstrar a criação de
   uma cena do zero — só o consumo de uma cena já pronta.
+- Com `touch-action: none`, o cubo captura todo gesto de toque —
+  arrastar a página começando o toque em cima dele não funciona mais.
+  Aceitável aqui porque o cubo é um elemento de demonstração isolado,
+  mas seria uma decisão de UX a repensar numa cena que ocupasse a
+  largura inteira da tela.
 
 ## Alternativas
 

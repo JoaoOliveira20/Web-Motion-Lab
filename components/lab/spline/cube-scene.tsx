@@ -44,7 +44,7 @@ export function CubeScene() {
           scene={SCENE_URL}
           onLoad={handleLoad}
           onSplineMouseDown={handleMouseDown}
-          className="h-full w-full"
+          className="h-full w-full touch-none"
         />
       </div>
       <p className="mt-4 text-xs text-muted">
