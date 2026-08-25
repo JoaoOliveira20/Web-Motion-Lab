@@ -10,7 +10,12 @@ export interface SourceFileEntry {
   copyable?: boolean;
 }
 
-async function SourceFile({ filePath, dir = "components", apis, copyable }: SourceFileEntry) {
+async function SourceFile({
+  filePath,
+  dir = "components",
+  apis,
+  copyable = true,
+}: SourceFileEntry) {
   const code = await readFile(
     dir === "hooks"
       ? join(process.cwd(), "hooks", filePath)
