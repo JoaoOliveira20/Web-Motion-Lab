@@ -1,14 +1,24 @@
-const dots = [
-  [4, 20], [16, 12], [28, 22], [40, 10], [52, 24],
-  [8, 34], [22, 40], [34, 32], [46, 42], [58, 36],
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
+const dots: [number, number, boolean][] = [
+  [6, 30, false], [14, 24, false], [22, 16, true],
+  [30, 12, true], [38, 18, false], [42, 26, false],
 ];
 
 export function PointWavePreview() {
   return (
-    <svg viewBox="0 0 64 48" className="h-12 w-16">
-      {dots.map(([x, y], index) => (
-        <circle key={index} cx={x} cy={y} r={1.4} className="fill-accent/70" />
+    <PreviewIcon>
+      {dots.map(([cx, cy, accent], index) => (
+        <circle
+          key={index}
+          cx={cx}
+          cy={cy}
+          r={2.2}
+          fill="currentColor"
+          stroke="none"
+          className={accent ? "text-accent" : undefined}
+        />
       ))}
-    </svg>
+    </PreviewIcon>
   );
 }

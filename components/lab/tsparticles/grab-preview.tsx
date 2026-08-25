@@ -1,24 +1,17 @@
-const dots: [number, number][] = [[10, 10], [26, 8], [40, 18], [16, 28], [34, 32]];
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
 
 export function GrabPreview() {
   return (
-    <svg viewBox="0 0 50 42" className="h-12 w-16">
-      {dots.map(([x, y], index) =>
-        dots.slice(index + 1).map(([x2, y2], j) => (
-          <line
-            key={`${index}-${j}`}
-            x1={x}
-            y1={y}
-            x2={x2}
-            y2={y2}
-            className="stroke-border"
-            strokeWidth={0.5}
-          />
-        )),
-      )}
-      {dots.map(([x, y], index) => (
-        <circle key={index} cx={x} cy={y} r={1.4} className="fill-accent/70" />
-      ))}
-    </svg>
+    <PreviewIcon>
+      <line x1="24" y1="24" x2="12" y2="14" />
+      <line x1="24" y1="24" x2="36" y2="14" />
+      <line x1="24" y1="24" x2="14" y2="36" />
+      <line x1="24" y1="24" x2="34" y2="34" />
+      <circle cx="24" cy="24" r="3" fill="currentColor" stroke="none" className="text-accent" />
+      <circle cx="12" cy="14" r="2" fill="currentColor" stroke="none" />
+      <circle cx="36" cy="14" r="2" fill="currentColor" stroke="none" />
+      <circle cx="14" cy="36" r="2" fill="currentColor" stroke="none" />
+      <circle cx="34" cy="34" r="2" fill="currentColor" stroke="none" />
+    </PreviewIcon>
   );
 }

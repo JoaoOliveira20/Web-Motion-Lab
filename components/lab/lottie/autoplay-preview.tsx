@@ -1,7 +1,15 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function AutoplayPreview() {
   return (
-    <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent/60">
-      <span className="h-4 w-4 rounded-full bg-accent/40" />
-    </div>
+    <PreviewIcon>
+      <circle cx="24" cy="24" r="15" />
+      <path
+        d="M20 16 L32 24 L20 32 Z"
+        className="text-accent"
+        fill="currentColor"
+        stroke="none"
+      />
+    </PreviewIcon>
   );
 }

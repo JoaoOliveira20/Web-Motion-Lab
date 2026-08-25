@@ -1,10 +1,13 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function FollowerPointerPreview() {
   return (
-    <div className="relative flex h-16 w-24 items-center justify-center border border-border bg-background">
-      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-      <span className="absolute bottom-2 right-2 border border-foreground/40 px-1.5 py-0.5 font-mono text-[6px] uppercase tracking-[0.1em] text-muted">
-        cursor
-      </span>
-    </div>
+    <PreviewIcon>
+      <path
+        d="M12 8 L12 30 L18 25 L22 33 L26 31 L22 23 L30 23 Z"
+        className="text-accent"
+      />
+      <rect x="26" y="30" width="14" height="8" rx="1" strokeDasharray="2 3" />
+    </PreviewIcon>
   );
 }

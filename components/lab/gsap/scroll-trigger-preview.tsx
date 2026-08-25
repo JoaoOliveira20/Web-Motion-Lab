@@ -1,13 +1,12 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function ScrollTriggerPreview() {
   return (
-    <div className="w-32">
-      <div className="h-1 w-full bg-border">
-        <div className="h-full w-2/3 bg-accent" />
-      </div>
-      <div className="mt-2 flex flex-col gap-1">
-        <span className="h-6 w-full border border-border bg-background" />
-        <span className="h-6 w-full border border-border bg-background opacity-60" />
-      </div>
-    </div>
+    <PreviewIcon>
+      <line x1="16" y1="8" x2="16" y2="40" />
+      <line x1="12" y1="16" x2="20" y2="16" />
+      <circle cx="16" cy="27" r="3" fill="currentColor" stroke="none" className="text-accent" />
+      <line x1="24" y1="27" x2="34" y2="27" className="text-accent" />
+    </PreviewIcon>
   );
 }

@@ -1,24 +1,18 @@
-const points: [number, number][] = [[8, 10], [26, 6], [42, 16], [14, 30], [34, 34], [50, 24]];
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
 
 export function NetPreview() {
   return (
-    <svg viewBox="0 0 58 42" className="h-12 w-16">
-      {points.map(([x, y], index) =>
-        points.slice(index + 1).map(([x2, y2], j) => (
-          <line
-            key={`${index}-${j}`}
-            x1={x}
-            y1={y}
-            x2={x2}
-            y2={y2}
-            className="stroke-muted/60"
-            strokeWidth={0.4}
-          />
-        )),
-      )}
-      {points.map(([x, y], index) => (
-        <circle key={index} cx={x} cy={y} r={1.2} className="fill-accent/70" />
-      ))}
-    </svg>
+    <PreviewIcon>
+      <line x1="10" y1="14" x2="24" y2="24" strokeWidth="1" />
+      <line x1="24" y1="24" x2="38" y2="16" strokeWidth="1" />
+      <line x1="24" y1="24" x2="14" y2="36" strokeWidth="1" />
+      <line x1="24" y1="24" x2="34" y2="34" strokeWidth="1" />
+      <line x1="10" y1="14" x2="14" y2="36" strokeWidth="1" />
+      <circle cx="10" cy="14" r="2.2" fill="currentColor" stroke="none" className="text-accent" />
+      <circle cx="24" cy="24" r="2.2" fill="currentColor" stroke="none" className="text-accent" />
+      <circle cx="38" cy="16" r="2.2" fill="currentColor" stroke="none" className="text-accent" />
+      <circle cx="14" cy="36" r="2.2" fill="currentColor" stroke="none" className="text-accent" />
+      <circle cx="34" cy="34" r="2.2" fill="currentColor" stroke="none" className="text-accent" />
+    </PreviewIcon>
   );
 }

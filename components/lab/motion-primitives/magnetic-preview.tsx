@@ -1,7 +1,11 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function MagneticPreview() {
   return (
-    <div className="border border-foreground/60 px-4 py-2 font-mono text-[8px] uppercase tracking-[0.1em] text-muted">
-      range 100
-    </div>
+    <PreviewIcon>
+      <rect x="16" y="16" width="16" height="16" rx="2" />
+      <path d="M6 14 Q12 18 16 22" className="text-accent" />
+      <path d="M6 34 Q12 30 16 26" className="text-accent" />
+    </PreviewIcon>
   );
 }

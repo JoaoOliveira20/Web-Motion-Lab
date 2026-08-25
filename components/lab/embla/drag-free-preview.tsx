@@ -1,9 +1,12 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function DragFreePreview() {
   return (
-    <div className="flex items-center gap-1.5 [transform:rotate(-2deg)]">
-      {[0, 1, 2, 3].map((index) => (
-        <span key={index} className="h-9 w-6 shrink-0 border border-border bg-background" />
-      ))}
-    </div>
+    <PreviewIcon>
+      <rect x="24" y="14" width="14" height="20" rx="1" className="text-accent" />
+      <line x1="16" y1="18" x2="20" y2="18" strokeDasharray="1 3" />
+      <line x1="16" y1="24" x2="20" y2="24" strokeDasharray="1 3" />
+      <line x1="16" y1="30" x2="20" y2="30" strokeDasharray="1 3" />
+    </PreviewIcon>
   );
 }

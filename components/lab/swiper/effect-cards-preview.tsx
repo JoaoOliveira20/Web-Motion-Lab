@@ -1,9 +1,19 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function EffectCardsPreview() {
   return (
-    <div className="relative h-14 w-11">
-      <span className="absolute inset-0 -rotate-6 border border-border bg-background" />
-      <span className="absolute inset-0 rotate-3 border border-border bg-background" />
-      <span className="absolute inset-0 border border-accent bg-surface" />
-    </div>
+    <PreviewIcon>
+      <rect x="17" y="11" width="18" height="24" rx="1" transform="rotate(-8 26 23)" />
+      <rect x="15" y="10" width="18" height="24" rx="1" transform="rotate(4 24 22)" />
+      <rect
+        x="15"
+        y="12"
+        width="18"
+        height="24"
+        rx="1"
+        className="text-accent"
+        fill="var(--background)"
+      />
+    </PreviewIcon>
   );
 }

@@ -1,14 +1,12 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function ScrollToPreview() {
   return (
-    <div className="flex gap-1.5">
-      {["A", "B", "C"].map((label) => (
-        <span
-          key={label}
-          className="flex h-7 w-7 items-center justify-center border border-foreground/40 font-mono text-[8px] text-muted"
-        >
-          {label}
-        </span>
-      ))}
-    </div>
+    <PreviewIcon>
+      <circle cx="24" cy="24" r="12" strokeDasharray="3 4" />
+      <circle cx="24" cy="24" r="3" fill="currentColor" stroke="none" className="text-accent" />
+      <path d="M24 4 L24 11" className="text-accent" />
+      <path d="M20 8 L24 12 L28 8" className="text-accent" />
+    </PreviewIcon>
   );
 }

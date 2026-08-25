@@ -1,12 +1,10 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function WireframePreview() {
   return (
-    <svg viewBox="0 0 64 64" className="h-14 w-14 stroke-accent/70" fill="none" strokeWidth="1">
-      <polygon points="32,6 58,24 48,54 16,54 6,24" />
-      <polygon points="32,6 32,32 58,24" />
-      <polygon points="32,6 32,32 6,24" />
-      <polygon points="32,32 48,54 58,24" />
-      <polygon points="32,32 16,54 6,24" />
-      <polygon points="32,32 16,54 48,54" />
-    </svg>
+    <PreviewIcon>
+      <path d="M24 6 L42 18 L36 40 L12 40 L6 18 Z" />
+      <path d="M24 6 L24 26 M24 26 L42 18 M24 26 L6 18 M24 26 L36 40 M24 26 L12 40" className="text-accent" strokeWidth="1.2" />
+    </PreviewIcon>
   );
 }

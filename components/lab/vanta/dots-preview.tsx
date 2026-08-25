@@ -1,15 +1,25 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 const dots: [number, number][] = [
-  [8, 8], [22, 12], [36, 6], [50, 16],
-  [12, 24], [28, 28], [44, 22],
-  [6, 36], [24, 38], [40, 34],
+  [12, 12], [24, 10], [36, 14],
+  [10, 24], [24, 24], [38, 24],
+  [12, 36], [24, 38], [36, 36],
 ];
 
 export function DotsPreview() {
   return (
-    <svg viewBox="0 0 56 44" className="h-12 w-16">
-      {dots.map(([x, y], index) => (
-        <circle key={index} cx={x} cy={y} r={1.5} className="fill-accent/70" />
+    <PreviewIcon>
+      {dots.map(([cx, cy], index) => (
+        <circle
+          key={index}
+          cx={cx}
+          cy={cy}
+          r={2.2}
+          fill="currentColor"
+          stroke="none"
+          className={index === 4 ? "text-accent" : undefined}
+        />
       ))}
-    </svg>
+    </PreviewIcon>
   );
 }

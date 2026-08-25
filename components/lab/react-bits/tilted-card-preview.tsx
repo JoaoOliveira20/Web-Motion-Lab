@@ -1,8 +1,24 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function TiltedCardPreview() {
   return (
-    <div
-      className="h-16 w-24 border border-border bg-background"
-      style={{ transform: "perspective(400px) rotateX(8deg) rotateY(-10deg)" }}
-    />
+    <PreviewIcon>
+      <rect
+        x="12"
+        y="12"
+        width="26"
+        height="20"
+        rx="1"
+        transform="rotate(-8 25 22)"
+      />
+      <circle
+        cx="34"
+        cy="15"
+        r="2"
+        fill="currentColor"
+        stroke="none"
+        className="text-accent"
+      />
+    </PreviewIcon>
   );
 }

@@ -1,9 +1,10 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function SmoothScrollPreview() {
   return (
-    <div className="flex h-16 w-10 flex-col items-center justify-between border border-border bg-background py-2">
-      <span className="h-1 w-4 bg-border" />
-      <span className="h-1 w-4 bg-accent/70" />
-      <span className="h-1 w-4 bg-border" />
-    </div>
+    <PreviewIcon>
+      <rect x="18" y="8" width="12" height="32" rx="6" />
+      <rect x="20" y="14" width="8" height="12" rx="4" className="text-accent" fill="currentColor" stroke="none" />
+    </PreviewIcon>
   );
 }

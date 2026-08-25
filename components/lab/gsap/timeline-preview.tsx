@@ -1,15 +1,12 @@
-const bars = [0.4, 0.7, 1, 0.55];
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
 
 export function TimelinePreview() {
   return (
-    <div className="flex h-14 items-end gap-1.5">
-      {bars.map((scale, index) => (
-        <span
-          key={index}
-          className="w-3 bg-accent/70"
-          style={{ height: `${scale * 100}%` }}
-        />
-      ))}
-    </div>
+    <PreviewIcon>
+      <line x1="12" y1="36" x2="12" y2="24" strokeWidth="3.5" />
+      <line x1="20" y1="36" x2="20" y2="12" strokeWidth="3.5" className="text-accent" />
+      <line x1="28" y1="36" x2="28" y2="28" strokeWidth="3.5" />
+      <line x1="36" y1="36" x2="36" y2="18" strokeWidth="3.5" />
+    </PreviewIcon>
   );
 }

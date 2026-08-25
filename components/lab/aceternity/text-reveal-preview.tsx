@@ -1,15 +1,11 @@
+import { PreviewIcon } from "@/components/lab-detail/preview-icon";
+
 export function TextRevealPreview() {
   return (
-    <div className="relative h-6 w-32 overflow-hidden">
-      <span className="absolute inset-0 font-display text-lg font-light text-border">
-        texto
-      </span>
-      <span
-        className="absolute inset-0 overflow-hidden font-display text-lg font-light text-accent"
-        style={{ clipPath: "inset(0 45% 0 0)" }}
-      >
-        texto
-      </span>
-    </div>
+    <PreviewIcon>
+      <line x1="8" y1="18" x2="40" y2="18" />
+      <line x1="8" y1="30" x2="40" y2="30" />
+      <line x1="24" y1="10" x2="24" y2="38" className="text-accent" strokeWidth="3" />
+    </PreviewIcon>
   );
 }
