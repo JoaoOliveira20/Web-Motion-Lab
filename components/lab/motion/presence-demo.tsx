@@ -10,7 +10,7 @@ export function PresenceDemo() {
 
   return (
     <div className="border border-border p-6">
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
           AnimatePresence
         </p>

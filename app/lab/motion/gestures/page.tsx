@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { GestureGrid } from "@/components/lab/motion/gesture-grid";
@@ -93,18 +92,6 @@ export default function MotionGesturesLabPage() {
           <div className="mt-4">
             <SourceCode files={sourceFiles} />
           </div>
-        </div>
-
-        <div className="mt-16 border-t border-border pt-8">
-          <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
-            Outros exemplos de Motion
-          </p>
-          <Link
-            href="/lab/motion/presence"
-            className="mt-3 inline-block font-display text-xl font-light tracking-tight text-foreground transition-colors hover:text-accent"
-          >
-            Presença →
-          </Link>
         </div>
       </Container>
     </>
