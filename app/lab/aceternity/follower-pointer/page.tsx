@@ -65,7 +65,7 @@ export default function AceternityFollowerPointerLabPage() {
         <div className="mt-10">
           <FollowerPointerCard
             label="cursor: none"
-            className="flex aspect-[1.618/1] items-center justify-center border border-border bg-surface"
+            className="flex h-40 items-center justify-center border border-border bg-surface"
           >
             <p className="pointer-events-none font-mono text-xs text-muted">
               mova o ponteiro dentro desta área

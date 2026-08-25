@@ -47,7 +47,7 @@ const terms: Array<{ term: string; type: RoughAnnotationConfig["type"] }> = [
 
 export function HoverAnnotation() {
   return (
-    <div className="aspect-[1.618/1] overflow-y-auto border border-border p-6">
+    <div className="border border-border p-6">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         useRoughAnnotation() sob demanda
       </p>

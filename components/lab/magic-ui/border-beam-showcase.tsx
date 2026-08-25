@@ -2,7 +2,7 @@ import { BorderBeam } from "@/components/lab/magic-ui/border-beam";
 
 export function BorderBeamShowcase() {
   return (
-    <div className="relative aspect-[1.618/1] overflow-hidden border border-border bg-surface p-6">
+    <div className="relative overflow-hidden border border-border bg-surface p-6">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         BorderBeam
       </p>
