@@ -44,6 +44,16 @@ export const experiments: Experiment[] = [
     status: "disponivel",
   },
   {
+    slug: "motion/scroll-ticker",
+    name: "Ticker por Scroll com Capa",
+    library: "Motion",
+    category: "Animation",
+    complexity: 3,
+    summary:
+      "useInView com root escopado detecta qual item está visível numa lista com scroll-snap; o texto de fundo troca com crossfade via AnimatePresence.",
+    status: "disponivel",
+  },
+  {
     slug: "gsap/timeline",
     name: "Timeline Sequenciada",
     library: "GSAP",
