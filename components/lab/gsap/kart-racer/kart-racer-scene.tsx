@@ -26,6 +26,42 @@ const sceneryConfig: SceneryConfig[] = [
   { side: 1, delay: 4.0, duration: 3.0 },
 ];
 
+function buildPixelCircleClipPath(rows: number): string {
+  const rightPoints: string[] = [];
+  for (let i = 0; i < rows; i += 1) {
+    const yTop = (i / rows) * 100;
+    const yBottom = ((i + 1) / rows) * 100;
+    const ny = ((yTop + yBottom) / 2 / 100) * 2 - 1;
+    const halfWidth = Math.sqrt(Math.max(0, 1 - ny * ny)) * 50;
+    const xRight = (50 + halfWidth).toFixed(2);
+    rightPoints.push(`${xRight}% ${yTop.toFixed(2)}%`, `${xRight}% ${yBottom.toFixed(2)}%`);
+  }
+
+  const leftPoints: string[] = [];
+  for (let i = rows - 1; i >= 0; i -= 1) {
+    const yTop = (i / rows) * 100;
+    const yBottom = ((i + 1) / rows) * 100;
+    const ny = ((yTop + yBottom) / 2 / 100) * 2 - 1;
+    const halfWidth = Math.sqrt(Math.max(0, 1 - ny * ny)) * 50;
+    const xLeft = (50 - halfWidth).toFixed(2);
+    leftPoints.push(`${xLeft}% ${yBottom.toFixed(2)}%`, `${xLeft}% ${yTop.toFixed(2)}%`);
+  }
+
+  return `polygon(${[...rightPoints, ...leftPoints].join(", ")})`;
+}
+
+const SUN_CLIP_PATH = buildPixelCircleClipPath(10);
+const SUN_BAR_MASK = [
+  "linear-gradient(to bottom",
+  "white 0%, white 13%",
+  "transparent 13%, transparent 17%",
+  "white 17%, white 26%",
+  "transparent 26%, transparent 31%",
+  "white 31%, white 42%",
+  "transparent 42%, transparent 49%",
+  "white 49%, white 100%)",
+].join(", ");
+
 const ROAD_SEGMENTS = 20;
 const MAX_CURVE_SHIFT = 46;
 
@@ -179,15 +215,17 @@ export function KartRacerScene({
           }}
         />
         <div
-          className="absolute rounded-full"
+          className="absolute"
           style={{
             top: "20%",
             left: "50%",
-            width: "22%",
+            width: "24%",
             aspectRatio: "1 / 1",
             transform: "translate(-50%, -50%)",
-            background:
-              "radial-gradient(circle, #ffe3a8 0%, #ffb35c 55%, #ff7a4d 100%)",
+            background: "linear-gradient(180deg, #fff2c9 0%, #ffb35c 50%, #ff6a3d 100%)",
+            clipPath: SUN_CLIP_PATH,
+            maskImage: SUN_BAR_MASK,
+            WebkitMaskImage: SUN_BAR_MASK,
           }}
         />
 
