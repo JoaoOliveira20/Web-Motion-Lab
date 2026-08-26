@@ -66,6 +66,16 @@ export const scrollTriggerApi: ApiReference = {
   href: "https://gsap.com/docs/v3/Plugins/ScrollTrigger/",
 };
 
+export const gsapQuickToApi: ApiReference = {
+  name: "gsap.quickTo()",
+  href: "https://gsap.com/docs/v3/GSAP/gsap.quickTo()/",
+};
+
+export const gsapPositionParameterApi: ApiReference = {
+  name: "Position Parameter",
+  href: "https://gsap.com/resources/position-parameter/",
+};
+
 export const reactLenisApi: ApiReference = {
   name: "ReactLenis",
   href: "https://github.com/darkroomengineering/lenis/blob/main/packages/react/README.md",
