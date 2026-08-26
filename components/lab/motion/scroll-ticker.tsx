@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-import { useInView } from "motion/react";
+import { animate, motion, useInView, useMotionValue, useReducedMotion } from "motion/react";
 import { Marquee } from "@/components/lab/magic-ui/marquee";
 import { libraries } from "@/data/libraries";
 
@@ -42,7 +42,26 @@ function TickerSection({
 export function ScrollTicker() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = covers[activeIndex];
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const opacity = useMotionValue(1);
+  const shouldReduceMotion = useReducedMotion();
+  const display = shouldReduceMotion ? covers[activeIndex] : covers[displayIndex];
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    if (activeIndex === displayIndex) return;
+
+    const controls = animate(opacity, 0, {
+      duration: 0.2,
+      ease: "easeIn",
+      onComplete: () => {
+        setDisplayIndex(activeIndex);
+        animate(opacity, 1, { duration: 0.25, ease: "easeOut" });
+      },
+    });
+
+    return () => controls.stop();
+  }, [activeIndex, displayIndex, opacity, shouldReduceMotion]);
 
   return (
     <div className="w-full">
@@ -53,9 +72,12 @@ export function ScrollTicker() {
       <div className="relative mt-6 h-[26rem] overflow-hidden border border-border">
         <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden">
           <Marquee repeat={10} className="[--gap:2rem] [--duration:22s]">
-            <span className="whitespace-nowrap font-display text-4xl font-light uppercase tracking-tight text-accent/20 sm:text-6xl">
-              {active.name}
-            </span>
+            <motion.span
+              style={{ opacity }}
+              className="whitespace-nowrap font-display text-4xl font-light uppercase tracking-tight text-accent/20 sm:text-6xl"
+            >
+              {display.name}
+            </motion.span>
           </Marquee>
         </div>
 
