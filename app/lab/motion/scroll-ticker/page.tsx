@@ -4,12 +4,12 @@ import { BackLink } from "@/components/navigation/back-link";
 import { ScrollTicker } from "@/components/lab/motion/scroll-ticker";
 import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
-import { animatePresenceApi, motionComponentApi, useInViewApi } from "@/data/api-docs";
+import { useInViewApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "Motion — Ticker por Scroll com Capa — Web Motion Lab",
   description:
-    "Experimento com a biblioteca Motion: useInView com root escopado detecta o item ativo numa lista com scroll-snap; o texto de fundo troca com crossfade.",
+    "Experimento com a biblioteca Motion: useInView com root escopado detecta o item ativo numa lista com scroll-snap, trocando o texto de fundo sem nunca interromper a animação.",
 };
 
 const concepts = [
@@ -22,15 +22,15 @@ const concepts = [
     detail: "CSS puro faz o scroll parar exatamente em cada item — nenhuma lib controla a posição de scroll aqui.",
   },
   {
-    term: "AnimatePresence + Marquee",
-    detail: "O texto de fundo reaproveita o Marquee (CSS) do experimento Magic UI; a Motion só cuida do crossfade entre trocas.",
+    term: "Sem remount, sem gap",
+    detail: "O Marquee (CSS) de fundo fica montado o tempo todo; só o texto dele muda — a animação nunca reinicia nem some.",
   },
 ];
 
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/motion/scroll-ticker.tsx",
-    apis: [useInViewApi, animatePresenceApi, motionComponentApi],
+    apis: [useInViewApi],
   },
 ];
 
@@ -52,7 +52,8 @@ export default function MotionScrollTickerLabPage() {
             useInView
           </code>{" "}
           escutando um contêiner específico. O nome em segundo plano troca
-          para acompanhar o item atual.
+          para acompanhar o item atual, sem que a faixa de fundo pare ou
+          reinicie o próprio movimento.
         </p>
 
         <dl className="mt-10 grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">

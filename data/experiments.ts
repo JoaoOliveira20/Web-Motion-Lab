@@ -50,7 +50,7 @@ export const experiments: Experiment[] = [
     category: "Animation",
     complexity: 3,
     summary:
-      "useInView com root escopado detecta qual item está visível numa lista com scroll-snap; o texto de fundo troca com crossfade via AnimatePresence.",
+      "useInView com root escopado detecta qual item está visível numa lista com scroll-snap; o texto de fundo troca sem nunca interromper a animação.",
     status: "disponivel",
   },
   {

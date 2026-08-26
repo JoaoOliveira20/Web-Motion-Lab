@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
+import { useInView } from "motion/react";
 import { Marquee } from "@/components/lab/magic-ui/marquee";
 import { libraries } from "@/data/libraries";
 
@@ -41,7 +41,6 @@ function TickerSection({
 
 export function ScrollTicker() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const shouldReduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const active = covers[activeIndex];
 
@@ -52,23 +51,12 @@ export function ScrollTicker() {
       </p>
 
       <div className="relative mt-6 h-[26rem] overflow-hidden border border-border">
-        <div className="pointer-events-none absolute inset-0 flex items-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.slug}
-              initial={shouldReduceMotion ? undefined : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={shouldReduceMotion ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-full"
-            >
-              <Marquee repeat={3} className="[--duration:16s]">
-                <span className="font-display text-4xl font-light uppercase tracking-tight text-accent/20 sm:text-6xl">
-                  {active.name}
-                </span>
-              </Marquee>
-            </motion.div>
-          </AnimatePresence>
+        <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden">
+          <Marquee repeat={10} className="[--gap:2rem] [--duration:22s]">
+            <span className="whitespace-nowrap font-display text-4xl font-light uppercase tracking-tight text-accent/20 sm:text-6xl">
+              {active.name}
+            </span>
+          </Marquee>
         </div>
 
         <div
