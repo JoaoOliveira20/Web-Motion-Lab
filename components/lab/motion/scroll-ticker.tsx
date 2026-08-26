@@ -69,7 +69,7 @@ export function ScrollTicker() {
         useInView(root) · scroll-snap
       </p>
 
-      <div className="relative mt-6 h-[26rem] overflow-hidden border border-border">
+      <div className="relative mt-6 h-[26rem] w-full overflow-hidden">
         <div className="pointer-events-none absolute inset-0 flex items-center overflow-hidden">
           <Marquee repeat={10} className="[--gap:2rem] [--duration:22s]">
             <motion.span
