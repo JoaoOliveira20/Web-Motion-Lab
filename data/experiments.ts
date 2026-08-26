@@ -54,6 +54,16 @@ export const experiments: Experiment[] = [
     status: "disponivel",
   },
   {
+    slug: "motion/image-reveal-slider",
+    name: "Slider de Revelação",
+    library: "Motion",
+    category: "Animation",
+    complexity: 3,
+    summary:
+      "drag escreve num MotionValue em pixels; useTransform converte a posição num clip-path que revela a camada de cima em tempo real.",
+    status: "disponivel",
+  },
+  {
     slug: "gsap/timeline",
     name: "Timeline Sequenciada",
     library: "GSAP",

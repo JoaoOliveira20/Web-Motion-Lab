@@ -40,6 +40,16 @@ export const useInViewApi: ApiReference = {
   href: "https://motion.dev/docs/react-use-in-view",
 };
 
+export const useTransformApi: ApiReference = {
+  name: "useTransform",
+  href: "https://motion.dev/docs/react-use-transform",
+};
+
+export const motionDragApi: ApiReference = {
+  name: "drag",
+  href: "https://motion.dev/docs/react-gestures#drag",
+};
+
 
 export const useGsapApi: ApiReference = {
   name: "useGSAP()",
