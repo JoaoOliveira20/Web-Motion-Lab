@@ -26,17 +26,20 @@ const sceneryConfig: SceneryConfig[] = [
   { side: 1, delay: 4.0, duration: 3.0 },
 ];
 
-const ROAD_SEGMENTS = 10;
+const ROAD_SEGMENTS = 20;
 const MAX_CURVE_SHIFT = 46;
 
 const roadSegments = Array.from({ length: ROAD_SEGMENTS }, (_, i) => {
   const t = i / (ROAD_SEGMENTS - 1);
+  const shadeMix = 0.55 + t * 0.2;
   return {
     top: (i / ROAD_SEGMENTS) * 100,
     height: 100 / ROAD_SEGMENTS + 0.6,
     width: 16 + t * 84,
     depthFactor: (1 - t) ** 2 * MAX_CURVE_SHIFT,
-    shade: i % 2 === 0 ? "#2c2a2e" : "#332f34",
+    shade: i % 2 === 0 ? `color-mix(in srgb, #241e30 ${shadeMix * 100}%, #2f2438)` : `color-mix(in srgb, #2b2438 ${shadeMix * 100}%, #362a42)`,
+    curb: Math.floor(i / 2) % 2 === 0 ? "#e8483a" : "#f4f0e6",
+    curbWidth: 1 + t * 3,
   };
 });
 
@@ -190,7 +193,10 @@ export function KartRacerScene({
 
         <div
           className="absolute inset-x-0 bottom-0 overflow-hidden"
-          style={{ top: "24%", background: "#3a7a3f" }}
+          style={{
+            top: "24%",
+            background: "linear-gradient(180deg, #5a8f4a 0%, #3a7a3f 30%, #245c33 100%)",
+          }}
         >
           {roadSegments.map((segment, i) => (
             <div
@@ -203,6 +209,9 @@ export function KartRacerScene({
                 left: `calc(50% + var(--curve, 0) * ${segment.depthFactor}%)`,
                 transform: "translateX(-50%)",
                 backgroundColor: segment.shade,
+                borderLeft: `${segment.curbWidth}px solid ${segment.curb}`,
+                borderRight: `${segment.curbWidth}px solid ${segment.curb}`,
+                boxSizing: "content-box",
               }}
             />
           ))}
@@ -213,7 +222,7 @@ export function KartRacerScene({
               ref={(el) => {
                 dashRefs.current[i] = el;
               }}
-              className="pointer-events-none absolute bg-[#f4f3ef]"
+              className="pointer-events-none absolute bg-[#f6ecd2]"
               style={{ transform: "translate(-50%, -50%)" }}
             />
           ))}
@@ -232,6 +241,15 @@ export function KartRacerScene({
           ))}
 
           <div
+            className="absolute left-1/2 top-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+            style={{
+              width: "13%",
+              aspectRatio: "32 / 10",
+              background: "radial-gradient(closest-side, rgba(0,0,0,0.45), transparent 80%)",
+            }}
+          />
+
+          <div
             className="absolute left-1/2 top-[80%] -translate-x-1/2 -translate-y-1/2"
             style={{ width: "15%", aspectRatio: "32 / 28" }}
           >
@@ -240,6 +258,15 @@ export function KartRacerScene({
             </div>
           </div>
         </div>
+
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px)",
+            mixBlendMode: "multiply",
+          }}
+        />
       </div>
     </div>
   );
