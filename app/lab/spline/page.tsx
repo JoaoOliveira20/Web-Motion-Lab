@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyCubeScene } from "@/components/lab/spline/lazy-cube-scene";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
@@ -72,7 +73,9 @@ export default function SplineLabPage() {
         </dl>
 
         <div className="mt-10">
-          <LazyCubeScene />
+          <LiveExample>
+            <LazyCubeScene />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

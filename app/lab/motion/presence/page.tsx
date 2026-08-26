@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { PresenceDemo } from "@/components/lab/motion/presence-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import {
   animatePresenceApi,
@@ -70,7 +71,9 @@ export default function MotionPresenceLabPage() {
         </dl>
 
         <div className="mt-10">
-          <PresenceDemo />
+          <LiveExample>
+            <PresenceDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

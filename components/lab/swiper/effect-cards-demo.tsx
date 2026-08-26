@@ -14,7 +14,7 @@ const phases = [
 
 export function EffectCardsDemo() {
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         EffectCards
       </p>

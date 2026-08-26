@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyPointWaveScene } from "@/components/lab/three/lazy-point-wave";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
@@ -66,7 +67,9 @@ export default function ThreePointWaveLabPage() {
         </dl>
 
         <div className="mt-10">
-          <LazyPointWaveScene />
+          <LiveExample>
+            <LazyPointWaveScene />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

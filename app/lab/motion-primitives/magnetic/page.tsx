@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { MagneticShowcase } from "@/components/lab/motion-primitives/magnetic-showcase";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { motionComponentApi, useMotionValueApi, useSpringApi } from "@/data/api-docs";
 
@@ -62,7 +63,9 @@ export default function MotionPrimitivesMagneticLabPage() {
         </dl>
 
         <div className="mt-10">
-          <MagneticShowcase />
+          <LiveExample>
+            <MagneticShowcase />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

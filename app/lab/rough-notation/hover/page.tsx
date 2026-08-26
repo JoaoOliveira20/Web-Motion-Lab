@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { HoverAnnotation } from "@/components/lab/rough-notation/hover-annotation";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { annotateApi } from "@/data/api-docs";
 
@@ -62,7 +63,9 @@ export default function RoughNotationHoverLabPage() {
         </dl>
 
         <div className="mt-10">
-          <HoverAnnotation />
+          <LiveExample>
+            <HoverAnnotation />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

@@ -46,7 +46,7 @@ export function TimelineDemo() {
   };
 
   return (
-    <div ref={containerRef} className="border border-border p-6">
+    <div ref={containerRef} className="w-full">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
           gsap.timeline()

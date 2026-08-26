@@ -26,7 +26,7 @@ export function CubeScene() {
   };
 
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <div className="flex items-center justify-between">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
           {status}

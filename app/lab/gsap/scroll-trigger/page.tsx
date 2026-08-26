@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { ScrollTriggerDemo } from "@/components/lab/gsap/scroll-trigger-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { scrollTriggerApi, useGsapApi } from "@/data/api-docs";
 
@@ -58,7 +59,9 @@ export default function GsapScrollTriggerLabPage() {
         </dl>
 
         <div className="mt-10">
-          <ScrollTriggerDemo />
+          <LiveExample>
+            <ScrollTriggerDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

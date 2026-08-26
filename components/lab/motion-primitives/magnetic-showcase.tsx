@@ -10,7 +10,7 @@ const buttons = [
 
 export function MagneticShowcase() {
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Magnetic
       </p>

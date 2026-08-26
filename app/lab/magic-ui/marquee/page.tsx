@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { MarqueeShowcase } from "@/components/lab/magic-ui/marquee-showcase";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
@@ -61,7 +62,9 @@ export default function MagicUiMarqueeLabPage() {
         </dl>
 
         <div className="mt-10">
-          <MarqueeShowcase />
+          <LiveExample>
+            <MarqueeShowcase />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

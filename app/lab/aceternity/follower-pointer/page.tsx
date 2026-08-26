@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { FollowerPointerCard } from "@/components/lab/aceternity/following-pointer-card";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { animatePresenceApi, motionComponentApi, useMotionValueApi } from "@/data/api-docs";
 
@@ -63,14 +64,16 @@ export default function AceternityFollowerPointerLabPage() {
         </dl>
 
         <div className="mt-10">
-          <FollowerPointerCard
-            label="cursor: none"
-            className="flex h-40 items-center justify-center border border-border bg-surface"
-          >
-            <p className="pointer-events-none font-mono text-xs text-muted">
-              mova o ponteiro dentro desta área
-            </p>
-          </FollowerPointerCard>
+          <LiveExample>
+            <FollowerPointerCard
+              label="cursor: none"
+              className="flex h-40 w-full items-center justify-center border border-border bg-surface"
+            >
+              <p className="pointer-events-none font-mono text-xs text-muted">
+                mova o ponteiro dentro desta área
+              </p>
+            </FollowerPointerCard>
+          </LiveExample>
         </div>
 
         <div className="mt-16">

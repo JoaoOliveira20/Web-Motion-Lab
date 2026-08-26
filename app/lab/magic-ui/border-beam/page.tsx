@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { BorderBeamShowcase } from "@/components/lab/magic-ui/border-beam-showcase";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { motionComponentApi } from "@/data/api-docs";
 
@@ -61,7 +62,9 @@ export default function MagicUiBorderBeamLabPage() {
         </dl>
 
         <div className="mt-10">
-          <BorderBeamShowcase />
+          <LiveExample>
+            <BorderBeamShowcase />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

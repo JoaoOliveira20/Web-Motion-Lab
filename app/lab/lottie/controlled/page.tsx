@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { ControlledDemo } from "@/components/lab/lottie/controlled-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { lottieRefApi } from "@/data/api-docs";
 
@@ -61,7 +62,9 @@ export default function LottieControlledLabPage() {
         </dl>
 
         <div className="mt-10">
-          <ControlledDemo />
+          <LiveExample>
+            <ControlledDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

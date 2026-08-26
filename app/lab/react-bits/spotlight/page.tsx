@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SpotlightCard } from "@/components/lab/react-bits/spotlight-card";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
@@ -70,13 +71,17 @@ export default function ReactBitsSpotlightLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {spotlightNotes.map((note) => (
-            <SpotlightCard key={note.title}>
-              <p className="font-mono text-xs text-accent">{note.title}</p>
-              <p className="mt-3 text-sm text-muted">{note.detail}</p>
-            </SpotlightCard>
-          ))}
+        <div className="mt-10">
+          <LiveExample>
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
+              {spotlightNotes.map((note) => (
+                <SpotlightCard key={note.title}>
+                  <p className="font-mono text-xs text-accent">{note.title}</p>
+                  <p className="mt-3 text-sm text-muted">{note.detail}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </LiveExample>
         </div>
 
         <div className="mt-16">

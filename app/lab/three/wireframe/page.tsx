@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyWireframeScene } from "@/components/lab/three/lazy-wireframe";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { perspectiveCameraApi, webglRendererApi } from "@/data/api-docs";
 
@@ -62,7 +63,9 @@ export default function ThreeWireframeLabPage() {
         </dl>
 
         <div className="mt-10">
-          <LazyWireframeScene />
+          <LiveExample>
+            <LazyWireframeScene />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

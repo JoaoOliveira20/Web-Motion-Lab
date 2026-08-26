@@ -3,7 +3,7 @@ import { Marquee } from "@/components/lab/magic-ui/marquee";
 
 export function MarqueeShowcase() {
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Marquee
       </p>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyNetBackground } from "@/components/lab/vanta/lazy-net";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
@@ -57,7 +58,9 @@ export default function VantaNetLabPage() {
         </dl>
 
         <div className="mt-10">
-          <LazyNetBackground />
+          <LiveExample>
+            <LazyNetBackground />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

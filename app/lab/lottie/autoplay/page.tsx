@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { AutoplayDemo } from "@/components/lab/lottie/autoplay-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { lottieComponentApi } from "@/data/api-docs";
 
@@ -59,7 +60,9 @@ export default function LottieAutoplayLabPage() {
         </dl>
 
         <div className="mt-10">
-          <AutoplayDemo />
+          <LiveExample>
+            <AutoplayDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

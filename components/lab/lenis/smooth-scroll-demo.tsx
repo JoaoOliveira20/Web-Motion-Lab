@@ -51,7 +51,7 @@ export function SmoothScrollDemo() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Lenis · scroll suave
       </p>

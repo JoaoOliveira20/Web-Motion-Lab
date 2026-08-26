@@ -6,6 +6,7 @@ import {
   TextRevealCardTitle,
   TextRevealCardDescription,
 } from "@/components/lab/aceternity/text-reveal-card";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { motionComponentApi } from "@/data/api-docs";
 
@@ -63,13 +64,15 @@ export default function AceternityTextRevealLabPage() {
         </dl>
 
         <div className="mt-10">
-          <TextRevealCard text="passe o cursor" revealText="clip-path: inset()">
-            <TextRevealCardTitle>Arraste sobre o texto</TextRevealCardTitle>
-            <TextRevealCardDescription>
-              A posição horizontal do ponteiro controla quanto da camada de
-              baixo fica visível.
-            </TextRevealCardDescription>
-          </TextRevealCard>
+          <LiveExample>
+            <TextRevealCard text="passe o cursor" revealText="clip-path: inset()">
+              <TextRevealCardTitle>Arraste sobre o texto</TextRevealCardTitle>
+              <TextRevealCardDescription>
+                A posição horizontal do ponteiro controla quanto da camada
+                de baixo fica visível.
+              </TextRevealCardDescription>
+            </TextRevealCard>
+          </LiveExample>
         </div>
 
         <div className="mt-16">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { NavigationDemo } from "@/components/lab/swiper/navigation-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 const swiperApi = { name: "Swiper (React)", href: "https://swiperjs.com/react" };
@@ -63,7 +64,9 @@ export default function SwiperNavigationLabPage() {
         </dl>
 
         <div className="mt-10">
-          <NavigationDemo />
+          <LiveExample>
+            <NavigationDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

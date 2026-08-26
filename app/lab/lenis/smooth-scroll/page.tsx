@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SmoothScrollDemo } from "@/components/lab/lenis/smooth-scroll-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { reactLenisApi, useLenisApi } from "@/data/api-docs";
 
@@ -58,7 +59,9 @@ export default function LenisSmoothScrollLabPage() {
         </dl>
 
         <div className="mt-10">
-          <SmoothScrollDemo />
+          <LiveExample>
+            <SmoothScrollDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

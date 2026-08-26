@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LoopTypedDemo } from "@/components/lab/typed/loop-typed-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { typedClassApi } from "@/data/api-docs";
 
@@ -62,7 +63,9 @@ export default function TypedLoopLabPage() {
         </dl>
 
         <div className="mt-10">
-          <LoopTypedDemo />
+          <LiveExample>
+            <LoopTypedDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { SnapCarousel } from "@/components/lab/embla/snap-carousel";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 const useEmblaCarouselApi = {
@@ -71,7 +72,9 @@ export default function EmblaSnapLabPage() {
         </dl>
 
         <div className="mt-10">
-          <SnapCarousel />
+          <LiveExample>
+            <SnapCarousel />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

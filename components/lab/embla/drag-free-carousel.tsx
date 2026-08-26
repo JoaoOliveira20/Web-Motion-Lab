@@ -7,7 +7,7 @@ export function DragFreeCarousel() {
   const [emblaRef] = useEmblaCarousel({ dragFree: true, containScroll: "trimSnaps" });
 
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         dragFree: true
       </p>

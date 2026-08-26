@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { AnnotationShowcase } from "@/components/lab/rough-notation/annotation-showcase";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { annotateApi, annotationGroupApi } from "@/data/api-docs";
 
@@ -66,7 +67,9 @@ export default function RoughNotationScrollTriggeredLabPage() {
         </dl>
 
         <div className="mt-10">
-          <AnnotationShowcase />
+          <LiveExample>
+            <AnnotationShowcase />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

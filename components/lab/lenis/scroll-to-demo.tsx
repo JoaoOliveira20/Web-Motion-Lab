@@ -47,7 +47,7 @@ export function ScrollToDemo() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         lenis.scrollTo()
       </p>

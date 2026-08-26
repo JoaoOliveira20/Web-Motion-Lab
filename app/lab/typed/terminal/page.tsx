@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TerminalTypedDemo } from "@/components/lab/typed/terminal-typed-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { typedMethodsApi } from "@/data/api-docs";
 
@@ -58,7 +59,9 @@ export default function TypedTerminalLabPage() {
         </dl>
 
         <div className="mt-10">
-          <TerminalTypedDemo />
+          <LiveExample>
+            <TerminalTypedDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

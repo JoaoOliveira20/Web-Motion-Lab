@@ -8,7 +8,7 @@ const PointWaveScene = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[30rem] items-center justify-center border border-border font-mono text-xs uppercase tracking-[0.14em] text-muted">
+      <div className="flex h-[30rem] w-full items-center justify-center font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Carregando Three.js…
       </div>
     ),

@@ -53,7 +53,7 @@ export function NetBackground() {
   }, [prefersReducedMotion, foreground, surface]);
 
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
         VANTA.NET
       </p>

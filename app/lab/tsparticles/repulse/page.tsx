@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { LazyRepulseField } from "@/components/lab/tsparticles/lazy-repulse";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { tsparticlesOptionsApi, tsparticlesReactApi } from "@/data/api-docs";
 
@@ -62,7 +63,9 @@ export default function TsParticlesRepulseLabPage() {
         </dl>
 
         <div className="mt-10">
-          <LazyRepulseField />
+          <LiveExample>
+            <LazyRepulseField />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

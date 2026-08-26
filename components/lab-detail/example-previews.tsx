@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { PresencePreview } from "@/components/lab/motion/presence-preview";
 import { GesturesPreview } from "@/components/lab/motion/gestures-preview";
+import { RadialMenuPreview } from "@/components/lab/motion/radial-menu-preview";
 import { TimelinePreview } from "@/components/lab/gsap/timeline-preview";
 import { ScrollTriggerPreview } from "@/components/lab/gsap/scroll-trigger-preview";
 import { SmoothScrollPreview } from "@/components/lab/lenis/smooth-scroll-preview";
@@ -34,6 +35,7 @@ import { CubePreview } from "@/components/lab/spline/cube-preview";
 export const examplePreviews: Record<string, ComponentType> = {
   "motion/presence": PresencePreview,
   "motion/gestures": GesturesPreview,
+  "motion/radial-menu": RadialMenuPreview,
   "gsap/timeline": TimelinePreview,
   "gsap/scroll-trigger": ScrollTriggerPreview,
   "lenis/smooth-scroll": SmoothScrollPreview,

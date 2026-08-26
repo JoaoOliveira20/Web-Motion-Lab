@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TiltedCard } from "@/components/lab/react-bits/tilted-card";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { motionComponentApi, useMotionValueApi, useSpringApi } from "@/data/api-docs";
 
@@ -56,21 +57,27 @@ export default function ReactBitsTiltedCardLabPage() {
           ))}
         </dl>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <TiltedCard caption="rotateX / rotateY" className="h-48">
-            <p className="font-mono text-xs text-accent">Física de mola</p>
-            <p className="mt-2 text-sm text-muted">
-              useSpring suaviza a rotação calculada a partir da posição do
-              ponteiro relativa ao centro do cartão.
-            </p>
-          </TiltedCard>
-          <TiltedCard caption="perspective: 800" className="h-48">
-            <p className="font-mono text-xs text-accent">Legenda flutuante</p>
-            <p className="mt-2 text-sm text-muted">
-              A legenda segue o ponteiro com x/y próprios, independentes da
-              rotação do cartão.
-            </p>
-          </TiltedCard>
+        <div className="mt-10">
+          <LiveExample>
+            <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
+              <TiltedCard caption="rotateX / rotateY" className="h-48">
+                <p className="font-mono text-xs text-accent">Física de mola</p>
+                <p className="mt-2 text-sm text-muted">
+                  useSpring suaviza a rotação calculada a partir da posição
+                  do ponteiro relativa ao centro do cartão.
+                </p>
+              </TiltedCard>
+              <TiltedCard caption="perspective: 800" className="h-48">
+                <p className="font-mono text-xs text-accent">
+                  Legenda flutuante
+                </p>
+                <p className="mt-2 text-sm text-muted">
+                  A legenda segue o ponteiro com x/y próprios, independentes
+                  da rotação do cartão.
+                </p>
+              </TiltedCard>
+            </div>
+          </LiveExample>
         </div>
 
         <div className="mt-16">

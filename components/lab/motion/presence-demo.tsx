@@ -9,7 +9,7 @@ export function PresenceDemo() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="border border-border p-6">
+    <div className="w-full">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
           AnimatePresence

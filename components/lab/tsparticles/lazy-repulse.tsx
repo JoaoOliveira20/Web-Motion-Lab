@@ -7,7 +7,7 @@ const RepulseSection = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[21.5rem] items-center justify-center border border-border font-mono text-xs uppercase tracking-[0.14em] text-muted">
+      <div className="flex h-[21.5rem] w-full items-center justify-center font-mono text-xs uppercase tracking-[0.14em] text-muted">
         Carregando engine…
       </div>
     ),

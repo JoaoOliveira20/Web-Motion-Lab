@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { DragFreeCarousel } from "@/components/lab/embla/drag-free-carousel";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 
 export const metadata: Metadata = {
@@ -65,7 +66,9 @@ export default function EmblaDragFreeLabPage() {
         </dl>
 
         <div className="mt-10">
-          <DragFreeCarousel />
+          <LiveExample>
+            <DragFreeCarousel />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

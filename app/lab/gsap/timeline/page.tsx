@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { TimelineDemo } from "@/components/lab/gsap/timeline-demo";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { gsapTimelineApi, useGsapApi } from "@/data/api-docs";
 
@@ -59,7 +60,9 @@ export default function GsapTimelineLabPage() {
         </dl>
 
         <div className="mt-10">
-          <TimelineDemo />
+          <LiveExample>
+            <TimelineDemo />
+          </LiveExample>
         </div>
 
         <div className="mt-16">

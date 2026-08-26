@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { BackLink } from "@/components/navigation/back-link";
 import { InViewShowcase } from "@/components/lab/motion-primitives/in-view-showcase";
+import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
 import { motionComponentApi, useInViewApi } from "@/data/api-docs";
 
@@ -61,7 +62,9 @@ export default function MotionPrimitivesInViewLabPage() {
         </dl>
 
         <div className="mt-10">
-          <InViewShowcase />
+          <LiveExample>
+            <InViewShowcase />
+          </LiveExample>
         </div>
 
         <div className="mt-16">
