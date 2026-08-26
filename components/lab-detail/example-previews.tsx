@@ -4,6 +4,7 @@ import { GesturesPreview } from "@/components/lab/motion/gestures-preview";
 import { RadialMenuPreview } from "@/components/lab/motion/radial-menu-preview";
 import { ScrollTickerPreview } from "@/components/lab/motion/scroll-ticker-preview";
 import { ImageRevealSliderPreview } from "@/components/lab/motion/image-reveal-slider-preview";
+import { KartRacerPreview } from "@/components/lab/gsap/kart-racer/kart-racer-preview";
 import { TimelinePreview } from "@/components/lab/gsap/timeline-preview";
 import { ScrollTriggerPreview } from "@/components/lab/gsap/scroll-trigger-preview";
 import { SmoothScrollPreview } from "@/components/lab/lenis/smooth-scroll-preview";
@@ -40,6 +41,7 @@ export const examplePreviews: Record<string, ComponentType> = {
   "motion/radial-menu": RadialMenuPreview,
   "motion/scroll-ticker": ScrollTickerPreview,
   "motion/image-reveal-slider": ImageRevealSliderPreview,
+  "gsap/kart-racer": KartRacerPreview,
   "gsap/timeline": TimelinePreview,
   "gsap/scroll-trigger": ScrollTriggerPreview,
   "lenis/smooth-scroll": SmoothScrollPreview,

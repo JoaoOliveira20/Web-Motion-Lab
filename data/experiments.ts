@@ -82,6 +82,16 @@ export const experiments: Experiment[] = [
     status: "disponivel",
   },
   {
+    slug: "gsap/kart-racer",
+    name: "Corrida Retrô em Loop",
+    library: "GSAP",
+    category: "Animation",
+    complexity: 5,
+    summary:
+      "Uma timeline infinita sincroniza kart, pista e cenário lateral numa cena de corrida arcade autoplay, sem jogo nem interação por trás.",
+    status: "disponivel",
+  },
+  {
     slug: "lenis/smooth-scroll",
     name: "Scroll Suave",
     library: "Lenis",
