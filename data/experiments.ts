@@ -34,6 +34,16 @@ export const experiments: Experiment[] = [
     status: "disponivel",
   },
   {
+    slug: "motion/radial-menu",
+    name: "Menu Radial",
+    library: "Motion",
+    category: "Animation",
+    complexity: 3,
+    summary:
+      "Coordenadas polares posicionam itens em círculo; cada um anima com stagger via AnimatePresence e fecha por Escape ou clique fora.",
+    status: "disponivel",
+  },
+  {
     slug: "gsap/timeline",
     name: "Timeline Sequenciada",
     library: "GSAP",
