@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useMotionValue, useTransform } from "motion/react";
-import { DogMark } from "@/components/lab/motion/dog-mark";
 
 export function ImageRevealSlider() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,17 +34,24 @@ export function ImageRevealSlider() {
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[4/3] w-full max-w-md select-none overflow-hidden bg-surface"
+      className="relative aspect-[3/4] w-full max-w-md select-none overflow-hidden bg-surface"
     >
-      <div className="absolute inset-0 flex items-center justify-center p-10">
-        <DogMark variant="sketch" className="h-full w-full" />
-      </div>
+      <Image
+        src="/dog-portrait.png"
+        alt="Retrato em aquarela de um cachorro, em preto e branco"
+        fill
+        sizes="(min-width: 640px) 28rem, 100vw"
+        className="object-cover grayscale"
+      />
 
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center p-10"
-        style={{ clipPath }}
-      >
-        <DogMark variant="solid" className="h-full w-full" />
+      <motion.div className="absolute inset-0" style={{ clipPath }}>
+        <Image
+          src="/dog-portrait.png"
+          alt="Retrato em aquarela de um cachorro, colorido"
+          fill
+          sizes="(min-width: 640px) 28rem, 100vw"
+          className="object-cover"
+        />
       </motion.div>
 
       <motion.div
@@ -55,11 +62,11 @@ export function ImageRevealSlider() {
         style={{ x }}
         className="absolute top-0 left-0 -ml-4 flex h-full w-8 touch-none cursor-ew-resize items-center justify-center"
       >
-        <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-foreground" />
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-full border border-foreground bg-background">
+        <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-accent" />
+        <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-accent bg-background">
           <svg
             viewBox="0 0 16 16"
-            className="h-4 w-4 text-foreground"
+            className="h-4 w-4 text-accent"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.5"

@@ -9,7 +9,7 @@ import { motionComponentApi, motionDragApi, useMotionValueApi, useTransformApi }
 export const metadata: Metadata = {
   title: "Motion — Slider de Revelação — Web Motion Lab",
   description:
-    "Experimento com a biblioteca Motion: drag move um MotionValue em pixels, e useTransform o converte num clip-path que revela a camada de baixo.",
+    "Experimento com a biblioteca Motion: drag move um MotionValue em pixels, e useTransform o converte num clip-path que revela a foto colorida sobre a versão em preto e branco.",
 };
 
 const concepts = [
@@ -32,9 +32,6 @@ const sourceFiles: SourceFileEntry[] = [
     filePath: "lab/motion/image-reveal-slider.tsx",
     apis: [motionComponentApi, motionDragApi, useMotionValueApi, useTransformApi],
   },
-  {
-    filePath: "lab/motion/dog-mark.tsx",
-  },
 ];
 
 export default function MotionImageRevealSliderLabPage() {
@@ -49,13 +46,16 @@ export default function MotionImageRevealSliderLabPage() {
           Slider de Revelação
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          Arraste a alça horizontalmente. Em vez de duas fotos, este slider
-          compara dois tratamentos do mesmo traçado — um esboço em contorno e
-          uma marca sólida — para isolar o mecanismo do efeito: posição vira{" "}
+          Arraste a alça horizontalmente. As duas camadas são a mesma foto —
+          uma com{" "}
+          <code className="mx-1 font-mono text-sm text-accent">
+            filter: grayscale(1)
+          </code>{" "}
+          — empilhadas uma sobre a outra; a posição da alça vira um{" "}
           <code className="mx-1 font-mono text-sm text-accent">
             clip-path
-          </code>
-          , sem depender de nenhuma imagem específica.
+          </code>{" "}
+          que recorta a camada colorida por cima.
         </p>
 
         <dl className="mt-10 grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">
