@@ -4,33 +4,33 @@ import { BackLink } from "@/components/navigation/back-link";
 import { ArcadeRoomScene } from "@/components/lab/gsap/arcade-room/arcade-room-scene";
 import { LiveExample } from "@/components/lab-detail/live-example";
 import { SourceCode, type SourceFileEntry } from "@/components/lab-detail/source-code";
-import { scrollTriggerApi, useGsapApi } from "@/data/api-docs";
+import { useGsapApi } from "@/data/api-docs";
 
 export const metadata: Metadata = {
   title: "GSAP — Sala de Fliperama — Web Motion Lab",
   description:
-    "Experimento com GSAP: ScrollTrigger num contêiner horizontal customizado cria uma sala de scroll infinito com máquinas de fliperama clicáveis.",
+    "Experimento com GSAP: perspective e translateZ criam um corredor 3D real; o scroll avança a câmera por fliperamas dispostos nas paredes, num loop infinito.",
 };
 
 const concepts = [
   {
-    term: "ScrollTrigger num scroller customizado",
-    detail: "ScrollTrigger não precisa ser a página inteira — aqui ele observa o scroll horizontal de uma div específica.",
+    term: "perspective + translateZ",
+    detail: "3D de verdade via CSS — cada fliperama tem sua própria posição no eixo Z; o navegador cuida da escala e do ponto de fuga sozinho.",
   },
   {
-    term: "Scroll nativo, infinito de mentira",
-    detail: "A sequência de máquinas se repete 3x; ao chegar perto de uma ponta, o scroll salta um conjunto inteiro para trás — imperceptível porque o conteúdo é idêntico.",
+    term: "Scroll vira profundidade",
+    detail: "O delta do scroll acumula num valor de profundidade, suavizado por gsap.to() com overwrite — sem depender de nenhuma barra de rolagem real.",
   },
   {
-    term: "Dados viram cena",
-    detail: "As máquinas não são fixas no código — vêm de data/experiments.ts filtrado por biblioteca, a mesma fonte do catálogo do /lab.",
+    term: "Wrap infinito no eixo Z",
+    detail: "Cada fliperama tem sua posição embrulhada entre 0 e a profundidade total — ao passar pela câmera, reaparece lá no fundo do corredor.",
   },
 ];
 
 const sourceFiles: SourceFileEntry[] = [
   {
     filePath: "lab/gsap/arcade-room/arcade-room-scene.tsx",
-    apis: [useGsapApi, scrollTriggerApi],
+    apis: [useGsapApi],
   },
   {
     filePath: "lab/gsap/arcade-room/arcade-cabinet.tsx",
@@ -49,9 +49,10 @@ export default function GsapArcadeRoomLabPage() {
           Sala de Fliperama
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          Role para os lados dentro da caixa abaixo — a sala não tem fim.
-          Cada máquina representa um dos experimentos de GSAP deste próprio
-          laboratório; clique numa para abrir os detalhes.
+          Role para dentro da caixa abaixo — a câmera avança por um corredor
+          que não tem fim, com fliperamas nas paredes em perspectiva real de
+          CSS. Cada máquina representa um dos experimentos de GSAP deste
+          próprio laboratório; clique numa para abrir os detalhes.
         </p>
 
         <dl className="mt-10 grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">

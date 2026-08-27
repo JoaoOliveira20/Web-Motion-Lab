@@ -98,7 +98,7 @@ export const experiments: Experiment[] = [
     category: "Animation",
     complexity: 4,
     summary:
-      "ScrollTrigger num contêiner horizontal customizado cria uma sala de scroll infinito com máquinas clicáveis que abrem detalhes.",
+      "perspective e translateZ criam um corredor 3D real; o scroll avança a câmera por fliperamas clicáveis num loop infinito no eixo Z.",
     status: "disponivel",
   },
   {

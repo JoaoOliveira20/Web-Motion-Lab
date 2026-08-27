@@ -2,14 +2,11 @@
 
 import { useRef, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { experiments } from "@/data/experiments";
 import { ArcadeCabinet } from "@/components/lab/gsap/arcade-room/arcade-cabinet";
 import { cn } from "@/lib/cn";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Glyph = "circle" | "square" | "triangle" | "diamond";
 
@@ -25,9 +22,18 @@ const cabinets = experiments
   .map((experiment, index) => ({
     experiment,
     style: CABINET_STYLES[index % CABINET_STYLES.length],
+    side: (index % 2 === 0 ? -1 : 1) as -1 | 1,
   }));
 
-const REPEATS = 3;
+const SPACING = 420;
+const TOTAL_DEPTH = cabinets.length * SPACING;
+const WALL_OFFSET = 210;
+const WALL_ANGLE = 40;
+
+function wrap(min: number, max: number, value: number) {
+  const range = max - min;
+  return min + (((value - min) % range) + range) % range;
+}
 
 interface ArcadeRoomSceneProps {
   className?: string;
@@ -35,7 +41,7 @@ interface ArcadeRoomSceneProps {
 
 export function ArcadeRoomScene({ className }: ArcadeRoomSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const setRef = useRef<HTMLDivElement>(null);
+  const cabinetRefs = useRef<Array<HTMLDivElement | null>>([]);
   const panelRef = useRef<HTMLDivElement>(null);
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -45,52 +51,42 @@ export function ArcadeRoomScene({ className }: ArcadeRoomSceneProps) {
   useGSAP(
     () => {
       const container = containerRef.current;
-      const set = setRef.current;
-      if (!container || !set) return;
+      if (!container) return;
 
-      const setWidth = set.getBoundingClientRect().width;
-      container.scrollLeft = setWidth;
+      const depth = { value: 0 };
+      const depthEased = { value: 0 };
 
-      const correctWrap = () => {
-        if (container.scrollLeft < setWidth * 0.5) {
-          container.scrollLeft += setWidth;
-        } else if (container.scrollLeft > setWidth * 1.5) {
-          container.scrollLeft -= setWidth;
-        }
+      const render = () => {
+        cabinetRefs.current.forEach((el, index) => {
+          if (!el) return;
+          const baseZ = -(index * SPACING);
+          const z = wrap(-TOTAL_DEPTH, 0, baseZ + depthEased.value);
+          const t = z / -TOTAL_DEPTH;
+          let opacity = 1;
+          if (t < 0.1) opacity = t / 0.1;
+          else if (t > 0.88) opacity = (1 - t) / 0.12;
+          const side = cabinets[index].side;
+          el.style.transform = `translate(-50%, -50%) translateX(${side * WALL_OFFSET}px) translateZ(${z}px) rotateY(${-side * WALL_ANGLE}deg)`;
+          el.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+        });
       };
 
-      const trigger = ScrollTrigger.create({
-        scroller: container,
-        horizontal: true,
-        start: 0,
-        end: "max",
-        onUpdate: correctWrap,
-      });
+      render();
 
       const handleWheel = (event: WheelEvent) => {
-        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
         event.preventDefault();
-        container.scrollLeft += event.deltaY;
-      };
-      container.addEventListener("wheel", handleWheel, { passive: false });
-
-      if (!prefersReducedMotion) {
-        gsap.utils.toArray<HTMLElement>(".cabinet-glyph").forEach((glyph, index) => {
-          gsap.to(glyph, {
-            opacity: 0.4,
-            duration: 1 + (index % 3) * 0.3,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: (index % 5) * 0.2,
-          });
+        depth.value += event.deltaY * 1.4;
+        gsap.to(depthEased, {
+          value: depth.value,
+          duration: prefersReducedMotion ? 0 : 0.6,
+          ease: "power2.out",
+          onUpdate: render,
+          overwrite: true,
         });
-      }
-
-      return () => {
-        trigger.kill();
-        container.removeEventListener("wheel", handleWheel);
       };
+
+      container.addEventListener("wheel", handleWheel, { passive: false });
+      return () => container.removeEventListener("wheel", handleWheel);
     },
     { scope: containerRef, dependencies: [prefersReducedMotion] },
   );
@@ -114,52 +110,52 @@ export function ArcadeRoomScene({ className }: ArcadeRoomSceneProps) {
   );
 
   return (
-    <div className={cn("relative overflow-hidden bg-[#171225]", className)}>
+    <div className={cn("relative overflow-hidden bg-[#0c0a14]", className)}>
       <div
-        className="absolute inset-x-0 top-0"
-        style={{ height: "60%", background: "linear-gradient(180deg, #241a3a 0%, #171225 100%)" }}
-      />
-      <div
-        className="absolute inset-x-0 bottom-0"
+        className="pointer-events-none absolute inset-0"
         style={{
-          height: "40%",
           background:
-            "repeating-linear-gradient(90deg, #201a30 0px, #201a30 38px, #241d38 38px, #241d38 40px)",
+            "radial-gradient(ellipse 60% 45% at 50% 42%, #3a2f52 0%, #1a1626 55%, #0c0a14 100%)",
         }}
       />
 
       <div
         ref={containerRef}
-        className="relative h-full w-full overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="relative h-full w-full touch-none select-none"
+        style={{ perspective: "1000px" }}
       >
-        <div className="flex h-full">
-          {Array.from({ length: REPEATS }).map((_, repeatIndex) => (
+        <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
+          {cabinets.map(({ experiment, style }, index) => (
             <div
-              key={repeatIndex}
-              ref={repeatIndex === 1 ? setRef : undefined}
-              className="flex h-full shrink-0 items-end gap-16 px-16 pb-8"
+              key={experiment.slug}
+              ref={(el) => {
+                cabinetRefs.current[index] = el;
+              }}
+              className="absolute left-1/2 top-1/2 w-32"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              {cabinets.map(({ experiment, style }) => (
-                <button
-                  key={`${repeatIndex}-${experiment.slug}`}
-                  type="button"
-                  onClick={() => setActiveSlug(experiment.slug)}
-                  className="group flex w-24 shrink-0 flex-col items-center gap-2 text-center"
-                >
-                  <ArcadeCabinet
-                    color={style.color}
-                    screenColor={style.screenColor}
-                    glyph={style.glyph}
-                    className="h-40 w-24 transition-transform group-hover:-translate-y-1"
-                  />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#c9c3e0]">
-                    {experiment.name}
-                  </span>
-                </button>
-              ))}
+              <button
+                type="button"
+                onClick={() => setActiveSlug(experiment.slug)}
+                className="group flex w-full flex-col items-center gap-2 text-center"
+              >
+                <ArcadeCabinet
+                  color={style.color}
+                  screenColor={style.screenColor}
+                  glyph={style.glyph}
+                  className="w-full transition-transform group-hover:scale-105"
+                />
+                <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#c9c3e0]">
+                  {experiment.name}
+                </span>
+              </button>
             </div>
           ))}
         </div>
+
+        <p className="pointer-events-none absolute inset-x-0 bottom-4 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-[#c9c3e0]/70">
+          role para avançar pelo corredor
+        </p>
       </div>
 
       {active ? (
