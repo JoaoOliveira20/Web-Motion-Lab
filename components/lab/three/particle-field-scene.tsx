@@ -16,6 +16,8 @@ const IDLE_WAVE_AMPLITUDE = 0.14;
 const FOLLOW_RATE = 3.2;
 const FOLLOW_RATE_REDUCED = 9;
 const PRESENCE_RATE = 4;
+const POINT_AT_CURSOR_BASE = 0.6;
+const POINT_AT_CURSOR_EXTRA = 0.4;
 
 function particleCountForWidth(width: number) {
   if (width === 0) return 220;
@@ -61,6 +63,10 @@ function createField(count: number, spreadX: number, spreadY: number): CapsuleFi
 const dummy = new THREE.Object3D();
 const up = new THREE.Vector3(0, 1, 0);
 const movement = new THREE.Vector3();
+const toPointer = new THREE.Vector3();
+const idleQuaternion = new THREE.Quaternion();
+const pointQuaternion = new THREE.Quaternion();
+const idleEuler = new THREE.Euler();
 const capsuleColor = new THREE.Color();
 
 interface CapsuleFieldMeshProps {
@@ -152,10 +158,21 @@ function CapsuleFieldMesh({
       const speed = movement.length();
       if (speed > 0.00006) {
         movement.normalize();
-        dummy.quaternion.setFromUnitVectors(up, movement);
+        idleQuaternion.setFromUnitVectors(up, movement);
       } else {
-        dummy.quaternion.setFromEuler(new THREE.Euler(0, 0, phase));
+        idleQuaternion.setFromEuler(idleEuler.set(0, 0, phase));
       }
+
+      if (presence > 0.001) {
+        toPointer.set(pointerX - nextX, pointerY - nextY, -nextZ);
+        if (toPointer.lengthSq() > 0.0001) {
+          toPointer.normalize();
+          pointQuaternion.setFromUnitVectors(up, toPointer);
+          const pointAmount = presence * (POINT_AT_CURSOR_BASE + influence * POINT_AT_CURSOR_EXTRA);
+          idleQuaternion.slerp(pointQuaternion, pointAmount);
+        }
+      }
+      dummy.quaternion.copy(idleQuaternion);
 
       const depthScale = 0.55 + field.depth[i] * 0.75;
       const finalScale = field.scale[i] * depthScale * (1 + influence * 0.25);
