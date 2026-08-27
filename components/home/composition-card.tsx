@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Composition } from "@/data/compositions";
+import { labLevelLabels } from "@/data/lab-taxonomy";
 import { cn } from "@/lib/cn";
 
 const statusLabel: Record<Composition["status"], string> = {
@@ -30,6 +31,13 @@ export function CompositionCard({ composition }: { composition: Composition }) {
           {composition.name}
         </h3>
         <p className="mt-3 text-sm text-muted">{composition.summary}</p>
+      </div>
+      <div className="mt-6 flex items-center justify-between font-mono text-xs uppercase tracking-[0.14em] text-muted">
+        <span>{composition.category}</span>
+        <span aria-label={`Nível ${labLevelLabels[composition.level]}, ${composition.level} de 5`}>
+          {"●".repeat(composition.level)}
+          {"○".repeat(5 - composition.level)}
+        </span>
       </div>
     </div>
   );
