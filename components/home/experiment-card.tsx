@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Experiment } from "@/data/experiments";
+import { labLevelLabels } from "@/data/lab-taxonomy";
 import { examplePreviews } from "@/components/lab-detail/example-previews";
 import { cn } from "@/lib/cn";
 
@@ -51,9 +52,9 @@ export function ExperimentCard({ experiment }: { experiment: Experiment }) {
       </div>
       <div className="mt-6 flex items-center justify-between font-mono text-xs uppercase tracking-[0.14em] text-muted">
         <span>{experiment.category}</span>
-        <span aria-label={`Complexidade ${experiment.complexity} de 5`}>
-          {"●".repeat(experiment.complexity)}
-          {"○".repeat(5 - experiment.complexity)}
+        <span aria-label={`Nível ${labLevelLabels[experiment.level]}, ${experiment.level} de 5`}>
+          {"●".repeat(experiment.level)}
+          {"○".repeat(5 - experiment.level)}
         </span>
       </div>
     </div>
