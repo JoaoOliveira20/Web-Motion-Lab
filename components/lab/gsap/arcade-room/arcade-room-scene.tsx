@@ -124,14 +124,17 @@ export function ArcadeRoomScene({ className }: ArcadeRoomSceneProps) {
         className="relative h-full w-full touch-none select-none"
         style={{ perspective: "1000px" }}
       >
-        <div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }}>
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ transformStyle: "preserve-3d" }}
+        >
           {cabinets.map(({ experiment, style }, index) => (
             <div
               key={experiment.slug}
               ref={(el) => {
                 cabinetRefs.current[index] = el;
               }}
-              className="absolute left-1/2 top-1/2 w-32"
+              className="pointer-events-auto absolute left-1/2 top-1/2 w-32"
               style={{ transformStyle: "preserve-3d" }}
             >
               <button
