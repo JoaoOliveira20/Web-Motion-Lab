@@ -397,4 +397,22 @@ export const experiments: Experiment[] = [
     summary: "Cápsulas instanciadas reagem ao cursor com inércia, formação em anel e leve profundidade.",
     status: "disponivel",
   },
+  {
+    slug: "motion/bezier-curve-playground",
+    name: "Bezier Curve Playground",
+    library: "Motion",
+    category: "Core",
+    level: 3,
+    concepts: [
+      "Bézier Curves",
+      "Control Points",
+      "Parametric Curves",
+      "Interpolation",
+      "Motion Path",
+      "Pointer Interaction",
+    ],
+    summary:
+      "Curva Bézier cúbica com pontos de controle arrastáveis; useTransform deriva o traçado e o objeto em movimento ao vivo, sem passar por re-render do React.",
+    status: "disponivel",
+  },
 ];
