@@ -75,7 +75,7 @@ export const compositions: Composition[] = [
     libraries: ["tsParticles", "Lenis"],
     category: "Scroll",
     level: 3,
-    concepts: ["Scroll Progress", "Parallax", "Decoupled Libraries"],
+    concepts: ["Particles", "Scroll Progress", "Parallax", "Decoupled Libraries"],
     summary:
       "O progresso de scroll do Lenis desloca o campo de partículas em paralaxe — duas bibliotecas, nenhuma sabendo da outra.",
     status: "disponivel",
