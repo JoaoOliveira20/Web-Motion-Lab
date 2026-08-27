@@ -18,10 +18,10 @@ function GearIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-4 w-4"
+      className="h-6 w-6"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeWidth="1.6"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -67,13 +67,13 @@ export function ParticleFieldControls({
         onClick={() => setIsOpen((value) => !value)}
         aria-label="Configurações do efeito"
         aria-expanded={isOpen}
-        className="flex h-8 w-8 items-center justify-center border border-border bg-surface/90 text-muted transition-colors hover:text-accent"
+        className="flex h-11 w-11 items-center justify-center border border-border bg-surface/90 text-muted transition-colors hover:text-accent"
       >
         <GearIcon />
       </button>
 
       {isOpen ? (
-        <div className="absolute right-0 top-10 w-72 border border-border bg-surface/95 p-4">
+        <div className="absolute right-0 top-12 w-72 border border-border bg-surface/95 p-4">
           <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
             Predefinições
           </p>
