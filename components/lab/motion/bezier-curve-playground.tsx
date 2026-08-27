@@ -37,7 +37,7 @@ interface PointHandleProps {
 
 function PointHandle({ x, y, label, variant, active, onPointerDown }: PointHandleProps) {
   const isAnchor = variant === "anchor";
-  const radius = active ? (isAnchor ? 9 : 7) : isAnchor ? 7 : 6;
+  const radius = active ? (isAnchor ? 10 : 8) : isAnchor ? 8 : 7;
 
   return (
     <g>
@@ -49,15 +49,15 @@ function PointHandle({ x, y, label, variant, active, onPointerDown }: PointHandl
           "cursor-grab touch-none transition-[r] duration-150 active:cursor-grabbing",
           isAnchor ? "fill-foreground" : "fill-background stroke-accent",
         )}
-        strokeWidth={isAnchor ? 0 : 2}
+        strokeWidth={isAnchor ? 0 : 2.2}
         onPointerDown={onPointerDown}
       />
       <motion.text
         x={x}
         y={y}
-        dx={isAnchor ? 12 : 11}
-        dy={isAnchor ? -12 : -10}
-        className="select-none fill-muted font-mono text-[9px] uppercase tracking-[0.1em]"
+        dx={isAnchor ? 14 : 13}
+        dy={isAnchor ? -14 : -12}
+        className="select-none fill-muted font-mono text-[10px] uppercase tracking-[0.1em]"
       >
         {label}
       </motion.text>
@@ -259,12 +259,12 @@ export function BezierCurvePlayground() {
   useEffect(() => () => dragCleanupRef.current?.(), []);
 
   return (
-    <div className="w-full max-w-4xl">
+    <div className="w-full">
       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
         Pontos de Controle <span className="text-accent">→</span> Curva <span className="text-accent">→</span> Movimento
       </p>
 
-      <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-start">
+      <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-start">
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
@@ -282,7 +282,8 @@ export function BezierCurvePlayground() {
           <svg
             ref={svgRef}
             viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
-            className="mt-3 w-full touch-none select-none bg-surface"
+            style={{ overflow: "visible" }}
+            className="mt-4 w-full touch-none select-none bg-surface"
           >
             <defs>
               <pattern id="bezier-grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -303,8 +304,8 @@ export function BezierCurvePlayground() {
 
             {showMotion ? (
               <>
-                <motion.circle cx={markerX} cy={markerY} r={9} className="fill-accent opacity-25" />
-                <motion.circle cx={markerX} cy={markerY} r={4.5} className="fill-accent" />
+                <motion.circle cx={markerX} cy={markerY} r={10} className="fill-accent opacity-25" />
+                <motion.circle cx={markerX} cy={markerY} r={5} className="fill-accent" />
               </>
             ) : null}
 
@@ -347,7 +348,7 @@ export function BezierCurvePlayground() {
           </svg>
         </div>
 
-        <div className="w-full shrink-0 lg:w-56">
+        <div className="w-full shrink-0 lg:w-72">
           <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Curva de Bézier</p>
 
           <div className="mt-4 space-y-1 border-b border-border pb-4 font-mono text-xs">
@@ -404,7 +405,7 @@ export function BezierCurvePlayground() {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 border-t border-border pt-6 sm:grid-cols-[1.3fr_1fr]">
+      <div className="mt-10 grid grid-cols-1 gap-6 border-t border-border pt-6 sm:grid-cols-[1.3fr_1fr]">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Curva de Bézier Cúbica</p>
           <p className="mt-2 text-sm text-muted">
