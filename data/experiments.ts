@@ -92,6 +92,16 @@ export const experiments: Experiment[] = [
     status: "disponivel",
   },
   {
+    slug: "gsap/arcade-room",
+    name: "Sala de Fliperama",
+    library: "GSAP",
+    category: "Animation",
+    complexity: 4,
+    summary:
+      "ScrollTrigger num contêiner horizontal customizado cria uma sala de scroll infinito com máquinas clicáveis que abrem detalhes.",
+    status: "disponivel",
+  },
+  {
     slug: "lenis/smooth-scroll",
     name: "Scroll Suave",
     library: "Lenis",
