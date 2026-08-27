@@ -1,23 +1,26 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree, type RootState } from "@react-three/fiber";
 import * as THREE from "three";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCssVariable } from "@/hooks/use-css-variable";
 import { cn } from "@/lib/cn";
+import {
+  defaultParticleFieldConfig,
+  particleFieldPresets,
+  type ParticleFieldConfig,
+} from "@/components/lab/three/particle-field-config";
+import { ParticleFieldControls } from "@/components/lab/three/particle-field-controls";
 
 const FIELD_RADIUS_RATIO = 0.24;
 const RING_RADIUS_RATIO = 0.42;
-const SWIRL_STRENGTH = 0.55;
-const RING_PULL_STRENGTH = 0.85;
 const IDLE_BREATHE_AMPLITUDE = 0.05;
 const IDLE_WAVE_AMPLITUDE = 0.14;
-const FOLLOW_RATE = 3.2;
 const FOLLOW_RATE_REDUCED = 9;
 const PRESENCE_RATE = 4;
-const POINT_AT_CURSOR_BASE = 0.6;
-const POINT_AT_CURSOR_EXTRA = 0.4;
+const POINT_AT_CURSOR_BASE_RATIO = 0.6;
+const POINT_AT_CURSOR_EXTRA_RATIO = 0.4;
 
 function particleCountForWidth(width: number) {
   if (width === 0) return 220;
@@ -75,6 +78,7 @@ interface CapsuleFieldMeshProps {
   foregroundColor: string;
   reduceMotion: boolean;
   presenceTargetRef: React.RefObject<number>;
+  config: ParticleFieldConfig;
 }
 
 function CapsuleFieldMesh({
@@ -83,6 +87,7 @@ function CapsuleFieldMesh({
   foregroundColor,
   reduceMotion,
   presenceTargetRef,
+  config,
 }: CapsuleFieldMeshProps) {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const presenceRef = useRef(0);
@@ -114,7 +119,7 @@ function CapsuleFieldMesh({
     const pointerX = state.pointer.x * viewport.width * 0.5;
     const pointerY = state.pointer.y * viewport.height * 0.5;
     const time = state.clock.elapsedTime;
-    const followRate = reduceMotion ? FOLLOW_RATE_REDUCED : FOLLOW_RATE;
+    const followRate = reduceMotion ? FOLLOW_RATE_REDUCED : config.followRate;
     const followAmount = 1 - Math.exp(-delta * followRate);
 
     for (let i = 0; i < count; i += 1) {
@@ -135,15 +140,19 @@ function CapsuleFieldMesh({
       const radialY = toPointerY / dist;
       const tangentX = -radialY;
       const tangentY = radialX;
-      const ringPull = (ringRadius - dist) * RING_PULL_STRENGTH;
+      const ringPull = (ringRadius - dist) * config.ringPullStrength;
 
       const phase = field.phase[i];
-      const breathe = reduceMotion ? 0 : Math.sin(time * 0.6 + phase) * IDLE_BREATHE_AMPLITUDE;
-      const wave = reduceMotion ? 0 : Math.sin(time * 1.3 + phase * 1.7) * IDLE_WAVE_AMPLITUDE * influence;
+      const breathe = reduceMotion
+        ? 0
+        : Math.sin(time * 0.6 + phase) * IDLE_BREATHE_AMPLITUDE * config.idleIntensity;
+      const wave = reduceMotion
+        ? 0
+        : Math.sin(time * 1.3 + phase * 1.7) * IDLE_WAVE_AMPLITUDE * influence * config.idleIntensity;
 
-      const targetX = baseX + (tangentX * SWIRL_STRENGTH + radialX * ringPull) * influence + tangentX * wave;
+      const targetX = baseX + (tangentX * config.swirlStrength + radialX * ringPull) * influence + tangentX * wave;
       const targetY =
-        baseY + (tangentY * SWIRL_STRENGTH + radialY * ringPull) * influence + tangentY * wave + breathe;
+        baseY + (tangentY * config.swirlStrength + radialY * ringPull) * influence + tangentY * wave + breathe;
       const targetZ = baseZ + breathe * 0.6 + wave * 0.4;
 
       const nextX = curX + (targetX - curX) * followAmount;
@@ -163,12 +172,15 @@ function CapsuleFieldMesh({
         idleQuaternion.setFromEuler(idleEuler.set(0, 0, phase));
       }
 
-      if (presence > 0.001) {
+      if (presence > 0.001 && config.cursorFocus > 0.001) {
         toPointer.set(pointerX - nextX, pointerY - nextY, -nextZ);
         if (toPointer.lengthSq() > 0.0001) {
           toPointer.normalize();
           pointQuaternion.setFromUnitVectors(up, toPointer);
-          const pointAmount = presence * (POINT_AT_CURSOR_BASE + influence * POINT_AT_CURSOR_EXTRA);
+          const pointAmount =
+            presence *
+            config.cursorFocus *
+            (POINT_AT_CURSOR_BASE_RATIO + influence * POINT_AT_CURSOR_EXTRA_RATIO);
           idleQuaternion.slerp(pointQuaternion, pointAmount);
         }
       }
@@ -211,10 +223,12 @@ export function ParticleFieldScene({ className }: ParticleFieldSceneProps) {
   const backgroundColor = useCssVariable("--background", "#0b0b0c");
   const foregroundColor = useCssVariable("--foreground", "#f4f3ef");
   const presenceTargetRef = useRef(0);
+  const [config, setConfig] = useState<ParticleFieldConfig>(defaultParticleFieldConfig);
+  const [activePresetId, setActivePresetId] = useState<string | null>(particleFieldPresets[0].id);
 
   return (
     <div
-      className={cn("touch-none select-none", className)}
+      className={cn("relative touch-none select-none", className)}
       onPointerEnter={() => {
         presenceTargetRef.current = 1;
       }}
@@ -233,8 +247,24 @@ export function ParticleFieldScene({ className }: ParticleFieldSceneProps) {
           foregroundColor={foregroundColor}
           reduceMotion={prefersReducedMotion}
           presenceTargetRef={presenceTargetRef}
+          config={config}
         />
       </Canvas>
+
+      <ParticleFieldControls
+        config={config}
+        activePresetId={activePresetId}
+        onPresetSelect={(presetId) => {
+          const preset = particleFieldPresets.find((item) => item.id === presetId);
+          if (!preset) return;
+          setConfig(preset.config);
+          setActivePresetId(presetId);
+        }}
+        onFieldChange={(key, value) => {
+          setConfig((previous) => ({ ...previous, [key]: value }));
+          setActivePresetId(null);
+        }}
+      />
     </div>
   );
 }
