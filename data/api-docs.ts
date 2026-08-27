@@ -50,6 +50,11 @@ export const motionDragApi: ApiReference = {
   href: "https://motion.dev/docs/react-gestures#drag",
 };
 
+export const motionAnimateApi: ApiReference = {
+  name: "animate()",
+  href: "https://motion.dev/docs/react-animate",
+};
+
 
 export const useGsapApi: ApiReference = {
   name: "useGSAP()",

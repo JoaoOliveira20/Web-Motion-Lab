@@ -4,6 +4,7 @@ import { GesturesPreview } from "@/components/lab/motion/gestures-preview";
 import { RadialMenuPreview } from "@/components/lab/motion/radial-menu-preview";
 import { ScrollTickerPreview } from "@/components/lab/motion/scroll-ticker-preview";
 import { ImageRevealSliderPreview } from "@/components/lab/motion/image-reveal-slider-preview";
+import { BezierCurvePlaygroundPreview } from "@/components/lab/motion/bezier-curve-playground-preview";
 import { KartRacerPreview } from "@/components/lab/gsap/kart-racer/kart-racer-preview";
 import { ArcadeRoomPreview } from "@/components/lab/gsap/arcade-room/arcade-room-preview";
 import { TimelinePreview } from "@/components/lab/gsap/timeline-preview";
@@ -43,6 +44,7 @@ export const examplePreviews: Record<string, ComponentType> = {
   "motion/radial-menu": RadialMenuPreview,
   "motion/scroll-ticker": ScrollTickerPreview,
   "motion/image-reveal-slider": ImageRevealSliderPreview,
+  "motion/bezier-curve-playground": BezierCurvePlaygroundPreview,
   "gsap/kart-racer": KartRacerPreview,
   "gsap/arcade-room": ArcadeRoomPreview,
   "gsap/timeline": TimelinePreview,
