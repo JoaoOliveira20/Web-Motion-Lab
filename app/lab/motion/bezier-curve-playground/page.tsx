@@ -9,21 +9,21 @@ import { useMotionValueApi, useTransformApi, motionAnimateApi } from "@/data/api
 export const metadata: Metadata = {
   title: "Motion — Bezier Curve Playground — Web Motion Lab",
   description:
-    "Drag the control points of a cubic Bézier curve and watch an object travel along it in real time — built with Motion's useMotionValue and useTransform.",
+    "Arraste os pontos de controle de uma curva de Bézier cúbica e veja um objeto percorrê-la em tempo real — construído com useMotionValue e useTransform da Motion.",
 };
 
 const concepts = [
   {
-    term: "8 MotionValues, no re-renders",
-    detail: "Every point is its own MotionValue; dragging never touches React state, only .set() calls.",
+    term: "8 MotionValues, zero re-render",
+    detail: "Cada ponto é sua própria MotionValue; arrastar nunca passa pelo React state, só chama .set().",
   },
   {
-    term: "useTransform() combining values",
-    detail: "The path, and the moving marker's position, are derived live from the point MotionValues.",
+    term: "useTransform() combinando valores",
+    detail: "O traçado da curva e a posição do marcador em movimento são derivados ao vivo das MotionValues dos pontos.",
   },
   {
-    term: "animate() driving t",
-    detail: "Play/Pause/Reset and Speed all just start, stop, or retime an animate() call on a single progress value.",
+    term: "animate() conduzindo o t",
+    detail: "Play/Pause/Reset e Velocidade apenas iniciam, param ou reajustam uma chamada de animate() sobre um único valor de progresso.",
   },
 ];
 
@@ -46,10 +46,11 @@ export default function BezierCurvePlaygroundLabPage() {
           Bezier Curve Playground
         </h1>
         <p className="mt-4 max-w-2xl text-muted">
-          Drag any of the four points below. The curve, its control polygon
-          and the object traveling along it all update immediately —
-          nothing here is pre-baked, it&apos;s the same cubic Bézier formula
-          evaluated live from wherever you leave the points.
+          Arraste qualquer um dos quatro pontos abaixo. A curva, seu
+          polígono de controle e o objeto que a percorre atualizam
+          imediatamente — nada aqui é pré-calculado, é a mesma fórmula da
+          Bézier cúbica avaliada ao vivo a partir de onde você deixar os
+          pontos.
         </p>
 
         <dl className="mt-10 grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">

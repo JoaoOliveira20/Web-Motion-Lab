@@ -261,21 +261,21 @@ export function BezierCurvePlayground() {
   return (
     <div className="w-full max-w-4xl">
       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-        Control Points <span className="text-accent">→</span> Curve <span className="text-accent">→</span> Motion
+        Pontos de Controle <span className="text-accent">→</span> Curva <span className="text-accent">→</span> Movimento
       </p>
 
       <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-start">
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-              Drag the points
+              Arraste os pontos
             </span>
             <button
               type="button"
               onClick={resetPoints}
               className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted transition-colors hover:text-foreground"
             >
-              Reset Points
+              Redefinir Pontos
             </button>
           </div>
 
@@ -313,7 +313,7 @@ export function BezierCurvePlayground() {
                 <PointHandle
                   x={p0x}
                   y={p0y}
-                  label="P0 Start"
+                  label="P0 Início"
                   variant="anchor"
                   active={activePoint === "p0"}
                   onPointerDown={(event) => handlePointerDown(event, "p0", p0x, p0y)}
@@ -321,7 +321,7 @@ export function BezierCurvePlayground() {
                 <PointHandle
                   x={p1x}
                   y={p1y}
-                  label="P1 Control"
+                  label="P1 Controle"
                   variant="control"
                   active={activePoint === "p1"}
                   onPointerDown={(event) => handlePointerDown(event, "p1", p1x, p1y)}
@@ -329,7 +329,7 @@ export function BezierCurvePlayground() {
                 <PointHandle
                   x={p2x}
                   y={p2y}
-                  label="P2 Control"
+                  label="P2 Controle"
                   variant="control"
                   active={activePoint === "p2"}
                   onPointerDown={(event) => handlePointerDown(event, "p2", p2x, p2y)}
@@ -337,7 +337,7 @@ export function BezierCurvePlayground() {
                 <PointHandle
                   x={p3x}
                   y={p3y}
-                  label="P3 End"
+                  label="P3 Fim"
                   variant="anchor"
                   active={activePoint === "p3"}
                   onPointerDown={(event) => handlePointerDown(event, "p3", p3x, p3y)}
@@ -348,22 +348,22 @@ export function BezierCurvePlayground() {
         </div>
 
         <div className="w-full shrink-0 lg:w-56">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Bezier Curve</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Curva de Bézier</p>
 
           <div className="mt-4 space-y-1 border-b border-border pb-4 font-mono text-xs">
             <div className="flex items-center justify-between">
-              <span className="text-muted">Type</span>
-              <span className="text-foreground">Cubic</span>
+              <span className="text-muted">Tipo</span>
+              <span className="text-foreground">Cúbica</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted">Duration</span>
+              <span className="text-muted">Duração</span>
               <span className="text-foreground">{effectiveDuration}s</span>
             </div>
           </div>
 
           <div className="mt-4 border-b border-border pb-4">
             <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-              <span>Speed</span>
+              <span>Velocidade</span>
               <span className="text-foreground">{speed.toFixed(2)}x</span>
             </div>
             <input
@@ -384,12 +384,12 @@ export function BezierCurvePlayground() {
               className="flex h-9 flex-1 items-center justify-center gap-2 border border-border font-mono text-[10px] uppercase tracking-[0.12em] text-foreground transition-colors hover:border-accent hover:text-accent"
             >
               <PlaybackIcon kind={isPlaying ? "pause" : "play"} />
-              {isPlaying ? "Pause" : "Play"}
+              {isPlaying ? "Pausar" : "Reproduzir"}
             </button>
             <button
               type="button"
               onClick={resetPlayback}
-              aria-label="Reset animation"
+              aria-label="Reiniciar animação"
               className="flex h-9 w-9 items-center justify-center border border-border text-muted transition-colors hover:border-accent hover:text-accent"
             >
               <PlaybackIcon kind="reset" />
@@ -397,20 +397,20 @@ export function BezierCurvePlayground() {
           </div>
 
           <div className="mt-5 space-y-1">
-            <ToggleField label="Show Control Points" checked={showPoints} onChange={setShowPoints} />
-            <ToggleField label="Show Control Polygon" checked={showPolygon} onChange={setShowPolygon} />
-            <ToggleField label="Show Motion" checked={showMotion} onChange={setShowMotion} />
+            <ToggleField label="Mostrar Pontos de Controle" checked={showPoints} onChange={setShowPoints} />
+            <ToggleField label="Mostrar Polígono de Controle" checked={showPolygon} onChange={setShowPolygon} />
+            <ToggleField label="Mostrar Movimento" checked={showMotion} onChange={setShowMotion} />
           </div>
         </div>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 border-t border-border pt-6 sm:grid-cols-[1.3fr_1fr]">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Cubic Bézier Curve</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Curva de Bézier Cúbica</p>
           <p className="mt-2 text-sm text-muted">
-            A cubic Bézier curve is defined by four points: P0 and P3 are the start and end anchors the curve
-            passes through; P1 and P2 are control points that pull the curve toward them without the curve ever
-            touching them.
+            Uma curva de Bézier cúbica é definida por quatro pontos: P0 e P3 são as âncoras de início e fim
+            pelas quais a curva passa; P1 e P2 são pontos de controle que puxam a curva em direção a eles sem
+            que a curva chegue a tocá-los.
           </p>
         </div>
         <div className="flex flex-col justify-center border border-border bg-surface px-4 py-3 font-mono text-xs leading-relaxed text-muted">
