@@ -111,6 +111,21 @@ export const webglRendererApi: ApiReference = {
   href: "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
 };
 
+export const useFrameApi: ApiReference = {
+  name: "useFrame()",
+  href: "https://r3f.docs.pmnd.rs/api/hooks#useframe",
+};
+
+export const useThreeApi: ApiReference = {
+  name: "useThree()",
+  href: "https://r3f.docs.pmnd.rs/api/hooks#usethree",
+};
+
+export const instancedMeshApi: ApiReference = {
+  name: "InstancedMesh",
+  href: "https://threejs.org/docs/#api/en/objects/InstancedMesh",
+};
+
 export const lottieComponentApi: ApiReference = {
   name: "<Lottie autoplay loop />",
   href: "https://www.lottiereact.com/docs/reference/lottie",

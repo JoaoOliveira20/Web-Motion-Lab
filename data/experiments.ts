@@ -344,4 +344,13 @@ export const experiments: Experiment[] = [
     summary: "Um campo de pontos animado a partir de um BufferGeometry com Float32Array.",
     status: "disponivel",
   },
+  {
+    slug: "three/particle-field",
+    name: "Campo de Partículas",
+    library: "Three.js",
+    category: "3D",
+    complexity: 4,
+    summary: "Cápsulas instanciadas reagem ao cursor com inércia, formação em anel e leve profundidade.",
+    status: "disponivel",
+  },
 ];
