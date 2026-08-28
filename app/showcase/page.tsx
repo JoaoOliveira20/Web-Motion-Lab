@@ -22,19 +22,11 @@ export default function ShowcasePage() {
         <ShowcaseHero />
 
         <RevealOnScroll className="border-b border-border py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            01 · Tese
-          </p>
-          <div className="mt-6">
-            <ShowcaseThesis />
-          </div>
+          <ShowcaseThesis />
         </RevealOnScroll>
 
         <RevealOnScroll className="border-b border-border py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            02 · Peça viva
-          </p>
-          <h2 className="mt-3 max-w-2xl font-display text-display font-light tracking-tight">
+          <h2 className="max-w-2xl font-display text-display font-light tracking-tight">
             A mesma cena da Fase 5, sem reescrever uma linha
           </h2>
           <p className="mt-4 max-w-2xl text-muted">
@@ -49,10 +41,7 @@ export default function ShowcasePage() {
         </RevealOnScroll>
 
         <RevealOnScroll className="border-b border-border py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            03 · Stack
-          </p>
-          <h2 className="mt-3 font-display text-display font-light tracking-tight">
+          <h2 className="font-display text-display font-light tracking-tight">
             Dezesseis bibliotecas, um propósito cada
           </h2>
           <div className="mt-10">
@@ -61,10 +50,7 @@ export default function ShowcasePage() {
         </RevealOnScroll>
 
         <RevealOnScroll className="py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            04 · Fechamento
-          </p>
-          <h2 className="mt-3 max-w-2xl font-display text-display font-light tracking-tight">
+          <h2 className="max-w-2xl font-display text-display font-light tracking-tight">
             Cada experimento tem sua própria página de aprendizado
           </h2>
           <p className="mt-4 max-w-2xl text-muted">
